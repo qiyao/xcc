@@ -1,0 +1,233 @@
+
+# Copyright (C) 2003-2007 Tensilica, Inc.  All Rights Reserved.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it would be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+#
+# Further, this software is distributed without any warranty that it is
+# free of the rightful claim of any third person regarding infringement 
+# or the like.  Any license provided herein, whether implied or 
+# otherwise, applies only to this software file.  Patent licenses, if 
+# any, provided herein do not apply to combinations of this program with 
+# other software, or any other product whatsoever.  
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write the Free Software Foundation, Inc., 59
+# Temple Place - Suite 330, Boston MA 02111-1307, USA.
+
+#
+#  Makefile for xtensa
+#
+
+BINDIR = $(PREFIX)/bin
+LIBDIR = $(PREFIX)/lib/xcc-lib
+LIBDIR_TO_BINDIR = ../../bin
+INSTRDIR = $(PREFIX)/xtensa-elf/src/libinstr
+
+BUILDDIR = .
+BUILD_INSTALL = .
+
+#
+#  These directories must be "built" first because they generate header files
+#  which other directories depend on.
+#
+INCLUDE_SUBDIRS = \
+	include \
+	targ_info
+
+#
+#  Next, all of the libraries are built because the tools depend on them.
+#
+LIBRARY_SUBDIRS = \
+	libcomutil \
+	libiberty \
+	libdwarf \
+	libelf \
+	libelfutil \
+	libunwindP \
+
+
+#
+#  Finally, the compiler tools (components) are built.
+#
+TOOL_SUBDIRS = \
+	driver \
+	cpp \
+	g++fe \
+	gccfe \
+	be \
+	cg \
+	wopt \
+	inline \
+	ipl \
+	ipa \
+	lno \
+	whirl2c \
+	ir_tools \
+	dwarfdump
+
+SUBDIRS=$(INCLUDE_SUBDIRS) $(LIBRARY_SUBDIRS) $(TOOL_SUBDIRS)
+
+ifeq ($(BUILD_OS), CYGWIN)
+EXE_EXT = .exe
+DLL_EXT = .dll
+else
+EXE_EXT = 
+DLL_EXT = .so
+endif
+
+all build: default
+
+config:
+
+default clean clobber:
+	@for d in $(SUBDIRS); do \
+	  if [ -d $$d ]; then \
+	    echo "===> cd $$d; $(MAKE) $@"; \
+	    if (cd $$d && $(MAKE) $@ BUILD_INSTALL=$(BUILD_INSTALL)); \
+	    then true; else exit 1; fi; \
+	  else \
+	    echo "Skipping non-existent $$d"; \
+	  fi; \
+	done
+
+install:
+
+
+	mkdir -p $(BINDIR)
+	mkdir -p $(LIBDIR)
+	cp -f $(BUILDDIR)/driver/driver$(EXE_EXT)   $(BINDIR)/xt-xcc$(EXE_EXT)
+	if (cd cpp && $(MAKE) $@); \
+	then true; else exit 1; fi
+ifeq ($(TEN4_INTERNAL),1)
+	cp -f $(BUILDDIR)/ir_tools/ir_b2a$(EXE_EXT) $(BINDIR)/ir_b2a$(EXE_EXT)
+	cp -f $(BUILDDIR)/dwarfdump/dwarfdump$(EXE_EXT) $(BINDIR)/dwarfdump$(EXE_EXT)
+endif
+	cp -f $(BUILDDIR)/be/be$(EXE_EXT)           $(LIBDIR)/be$(EXE_EXT)
+	cp -f $(BUILDDIR)/be/be$(DLL_EXT)           $(LIBDIR)/be$(DLL_EXT)
+	cp -f $(BUILDDIR)/cg/cg$(DLL_EXT)           $(LIBDIR)/cg$(DLL_EXT)
+	cp -f $(BUILDDIR)/gccfe/gfec$(EXE_EXT)      $(LIBDIR)/gfec$(EXE_EXT)
+	cp -f $(BUILDDIR)/g++fe/gfecc$(EXE_EXT)     $(LIBDIR)/gfecc$(EXE_EXT)
+	cp -f $(BUILDDIR)/inline/inline$(EXE_EXT)   $(LIBDIR)/inline$(EXE_EXT)
+	cp -f $(BUILDDIR)/ipa/ipa$(DLL_EXT)         $(LIBDIR)/ipa$(DLL_EXT)
+	cp -f $(BUILDDIR)/../binutils/ld/ld_ipa$(DLL_EXT) $(LIBDIR)/ld_ipa$(DLL_EXT)
+	cp -f $(BUILDDIR)/ipl/ipl$(DLL_EXT)         $(LIBDIR)/ipl$(DLL_EXT)
+	cp -f $(BUILDDIR)/lno/lno$(DLL_EXT)         $(LIBDIR)/lno$(DLL_EXT)
+ifeq ($(BUILD_OS), CYGWIN)
+	cp -f $(BUILDDIR)/be/be$(EXE_EXT) $(LIBDIR)/whirl2c$(EXE_EXT)
+else
+	cp -f $(BUILDDIR)/whirl2c/whirl2c$(EXE_EXT) $(LIBDIR)/whirl2c$(EXE_EXT)
+endif
+	cp -f $(BUILDDIR)/whirl2c/whirl2c$(DLL_EXT) $(LIBDIR)/whirl2c$(DLL_EXT)
+	cp -f $(BUILDDIR)/wopt/wopt$(DLL_EXT)       $(LIBDIR)/wopt$(DLL_EXT)
+
+ifeq ($(BUILD_OS), CYGWIN)
+	cp -f $(BUILDDIR)/driver/driver$(EXE_EXT)   $(BINDIR)/xt-xc++$(EXE_EXT)
+	cp -f $(BUILDDIR)/be/be$(EXE_EXT)           $(LIBDIR)/ipl$(EXE_EXT)
+	cp -f $(BINDIR)/xtensa-elf-ld$(EXE_EXT)     $(LIBDIR)/ipa_link$(EXE_EXT)
+else
+	rm -f $(BINDIR)/xt-xc++
+	cd $(BINDIR) && ln -sf xt-xcc xt-xc++
+	rm -f $(LIBDIR)/ipl
+	cd $(LIBDIR) && ln -sf be ipl
+	rm -f $(LIBDIR)/ipa_link
+	cd $(LIBDIR) && ln -sf $(LIBDIR_TO_BINDIR)/xt-ld ipa_link
+endif
+
+	mkdir -p $(LIBDIR)/include
+	rm -f $(LIBDIR)/include/whirl2c.h && \
+	  cp -f $(BUILD_TOT)/include/whirl2c.h $(LIBDIR)/include
+	cd $(BUILD_TOT)/gnu_common/ginclude && \
+	  for h in * -dummy- ; do \
+	    if [ -r $$h ]; then \
+	      if (rm -f $(LIBDIR)/include/$$h && \
+	          cp -f $$h $(LIBDIR)/include); \
+	      then true; else exit 1; fi; \
+	    fi; \
+	  done
+
+	mkdir -p $(INSTRDIR)
+#copy sources that are shared between both xcalibur and the instrumentation library
+	cp -f $(BUILD_TOT)/common/com/fb_freq.h $(INSTRDIR)
+	cp -f $(BUILD_TOT)/common/com/fb_info.h $(INSTRDIR)
+	cp -f $(BUILD_TOT)/common/com/defs.h $(INSTRDIR)
+	cp -f $(BUILD_TOT)/common/com/profile_com.h $(INSTRDIR)
+
+
+FORCETAGS:
+
+TAGS: FORCETAGS
+	rm -f TAGS; \
+	BDIR=`pwd`; cd $(BUILD_BASE); \
+	etags -o $$BDIR/TAGS ./be/*/*.h \
+		./be/*/*.c \
+		./be/*/*.cxx \
+		./be/cg/gra_mon/*.h \
+		./be/cg/gra_mon/*.c \
+		./be/cg/gra_mon/*.cxx \
+		./driver/*.h \
+		./driver/*.c \
+		./driver/*.cxx \
+		./common/*/*.h \
+		./common/*/*.c \
+		./common/*/*.cxx \
+		./common/targ_info/static/*/*/xtensa/*.h \
+		./common/targ_info/static/*/*/xtensa/*.c \
+		./common/targ_info/static/*/*/xtensa/*.cxx \
+		./common/targ_info/static/be/cg/xtensa/isel.pat \
+		./common/targ_info/static/access/*.h \
+		./common/targ_info/static/access/*.c \
+		./common/targ_info/static/access/*.cxx \
+		./common/targ_info/*/*.h \
+		./common/targ_info/*/*.c \
+		./common/targ_info/*/*.cxx \
+		./common/targ_info/abi/xtensa/*.h \
+		./common/targ_info/abi/xtensa/*.c \
+		./common/targ_info/abi/xtensa/*.cxx \
+		./common/targ_info/isa/xtensa/*.h \
+		./common/targ_info/isa/xtensa/*.c \
+		./common/targ_info/isa/xtensa/*.cxx \
+		./common/targ_info/proc/xtensa/*.h \
+		./common/targ_info/proc/xtensa/*.c \
+		./common/targ_info/proc/xtensa/*.cxx \
+		./ipa/*/*.h \
+		./ipa/*/*.c \
+		./ipa/*/*.cxx \
+		./ipa/main/*/*.h \
+		./ipa/main/*/*.c \
+		./ipa/main/*/*.cxx \
+		./gccfe/*.h \
+		./gccfe/*.c \
+		./gccfe/*.cxx \
+		./gccfe/gnu/*.h \
+		./gccfe/gnu/*.c \
+		./gccfe/gnu/*.cxx \
+		./gccfe/gnu/config/*.h \
+		./gccfe/gnu/config/*.c \
+		./gccfe/gnu/config/*.cxx \
+		./gccfe/gnu/config/xtensa/*.h \
+		./gccfe/gnu/config/xtensa/*.c \
+		./gccfe/gnu/config/xtensa/*.cxx \
+		./gccfe/gnu/xtensa/*.h \
+		./gccfe/gnu/xtensa/*.c \
+		./gccfe/gnu/xtensa/*.cxx \
+		./g++fe/*.h \
+		./g++fe/*.c \
+		./g++fe/*.cxx \
+		./g++fe/gnu/*.h \
+		./g++fe/gnu/*.c \
+		./g++fe/gnu/*.cxx \
+		./g++fe/gnu/config/*.h \
+		./g++fe/gnu/config/*.c \
+		./g++fe/gnu/config/*.cxx \
+		./g++fe/gnu/config/xtensa/*.h \
+		./g++fe/gnu/config/xtensa/*.c \
+		./g++fe/gnu/config/xtensa/*.cxx \
+		./g++fe/gnu/xtensa/*.h \
+		./g++fe/gnu/xtensa/*.c \
+		./g++fe/gnu/xtensa/*.cxx

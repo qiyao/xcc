@@ -1,0 +1,13 @@
+# Copyright (C) 2001 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+
+RANLIB = :
+RANLIB_TEST = false
+CC = cc
+OLDCC = cc
+CCLIBFLAGS =
+# We avoid the ALLOCA in -lPW becuase it gives us an evil index()
+ALLOCA = alloca.o
+
+# See all the declarations.
+FIXPROTO_DEFINES = -D_XOPEN_SOURCE -D_POSIX_C_SOURCE=2

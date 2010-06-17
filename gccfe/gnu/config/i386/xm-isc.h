@@ -1,0 +1,10 @@
+
+/* 
+   Copyright (C) 2001 Tensilica, Inc.  All Rights Reserved.
+   Revised to support Tensilica processors and to improve overall performance
+ */
+
+#ifndef REAL_ARITHMETIC
+#define REAL_VALUE_ATOF(x, mode) strtod ((x), (char **)0)
+extern double strtod ();
+#endif

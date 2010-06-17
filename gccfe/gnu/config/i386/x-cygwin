@@ -1,0 +1,7 @@
+# Copyright (C) 2001 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+
+# Don't run fixproto
+STMP_FIXPROTO =
+# prefix.c wants to poke around the Registry
+CLIB = -ladvapi32

@@ -1,0 +1,11 @@
+# Copyright (C) 2001 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+
+# Defaults for OSF/1 1.3+
+CC		= $(OLDCC)
+CLIB		= -lld
+INSTALL		= installbsd -c
+OLDCC		= /usr/ccs/gcc/gcc
+X_CFLAGS	= -static
+
+# FIXPROTO_DEFINES = -D_XOPEN_SOURCE

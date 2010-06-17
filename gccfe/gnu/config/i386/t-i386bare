@@ -1,0 +1,6 @@
+
+# Copyright (C) 2001 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+# The i386 md has all of these taken care of, according to sef.
+LIBGCC1 =
+CROSS_LIBGCC1 =

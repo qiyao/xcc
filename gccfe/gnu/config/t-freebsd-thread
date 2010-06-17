@@ -1,0 +1,7 @@
+# This is currently needed to compile libgcc2 for threads support
+#
+# Copyright (C) 2001 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+TARGET_LIBGCC2_CFLAGS=-pthread
+#T_CFLAGS=-pthread
+#T_CPPFLAGS=-pthread

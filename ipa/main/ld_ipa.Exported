@@ -1,0 +1,10 @@
+EXPORTS
+ld_get_mmap_addr
+ld_get_section_base
+ld_get_section_name
+ld_get_section_size
+ld_get_st_idx
+ld_resolved_to_obj
+ld_set_st_idx
+ld_slookup_mext
+

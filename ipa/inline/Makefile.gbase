@@ -1,0 +1,324 @@
+#
+# Copyright (C) 2004-2006 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+#
+#  Copyright (C) 2000 Silicon Graphics, Inc.  All Rights Reserved.
+#
+#  This program is free software; you can redistribute it and/or modify it
+#  under the terms of version 2 of the GNU General Public License as
+#  published by the Free Software Foundation.
+#
+#  This program is distributed in the hope that it would be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+#
+#  Further, this software is distributed without any warranty that it is
+#  free of the rightful claim of any third person regarding infringement 
+#  or the like.  Any license provided herein, whether implied or 
+#  otherwise, applies only to this software file.  Patent licenses, if 
+#  any, provided herein do not apply to combinations of this program with 
+#  other software, or any other product whatsoever.  
+#
+#  You should have received a copy of the GNU General Public License along
+#  with this program; if not, write the Free Software Foundation, Inc., 59
+#  Temple Place - Suite 330, Boston MA 02111-1307, USA.
+#
+#  Contact information:  Silicon Graphics, Inc., 1600 Amphitheatre Pky,
+#  Mountain View, CA 94043, or:
+#
+#  http://www.sgi.com
+#
+#  For further information regarding this notice, see:
+#
+#  http://oss.sgi.com/projects/GenInfo/NoticeExplan
+#
+#
+
+#
+#  Makefile.base for inline
+#
+
+#----------------------------------------------------------------------
+#  Set environment variables
+#
+#  TARGDIR   :  is the targ specific directory in which we do build.
+#               e.q.  /d1/cmplrs.src/v4.00/host32
+#
+#----------------------------------------------------------------------
+TARGDIR = $(BUILD_AREA)
+CURDIR  = .
+
+#----------------------------------------------------------------------
+#  Include the usual commondefs
+#----------------------------------------------------------------------
+include $(COMMONDEFS)
+
+#----------------------------------------------------------------------
+#  Set environment variables
+#
+#  TARG_BE_DIR: is the be directory with which we do build... this can
+#               be retargeted (e.g., for building be with different options)
+#               by setting LOCAL_BE_DIR in localdefs
+#----------------------------------------------------------------------
+ifdef LOCAL_BE_DIR
+CVERSION  =  -xansi
+TARG_BE_DIR = $(TARGDIR)/$(LOCAL_BE_DIR)
+else
+TARG_BE_DIR = $(TARGDIR)/be
+endif
+
+#----------------------------------------------------------------------
+#  Compiler Options
+#----------------------------------------------------------------------
+HOSTDEFS += -Dsgi -DMONGOOSE_BE -D_STANDALONE_INLINER -D_LOCAL_INLINER
+HOSTDEFS += -Dlonglong
+# need to define _LONGLONG and _SVR4_SOURCE to allow compilation with -ansi.
+HOSTDEFS += -D_LONGLONG -D_SVR4_SOURCE
+HOSTDEFS += -D_NEW_SYMTAB
+
+ifeq ($(BUILD_OPTIMIZE), DEBUG)
+HOSTDEFS += -DIs_True_On
+HOSTDEFS += -DInsist_On
+#HOSTDEFS += -DIPA_DEBUG
+endif
+
+ifeq ($(BUILD_OS), CYGWIN)
+HOSTDEFS += -DDLL_SHARED=__declspec\(dllimport\)
+else
+HOSTDEFS += -DDLL_SHARED=
+endif
+
+ifeq ($(BUILD_TARGET), XTENSA)
+HOSTDEFS += -D__MIPS_AND_IA64_ELF_H
+endif
+
+#----------------------------------------------------------------------
+#  List of directories, and source files of interest
+#----------------------------------------------------------------------
+LIBISA_DIR		= $(BUILD_TOT)/../libisa
+LIBTIE_DIR		= $(BUILD_TOT)/../libtie
+LIBAUTO_DIR		= $(BUILD_TOT)/../libauto
+LIBCOMMON_DIR		= $(BUILD_TOT)/../libcommon
+
+IPA_DIR                 = $(BUILD_TOT)/ipa
+IPA_COMMON_DIR          = $(IPA_DIR)/common
+IPA_LOCAL_DIR           = $(IPA_DIR)/local
+IPA_MAIN_DIR            = $(IPA_DIR)/main
+IPA_OPTIMIZE_DIR        = $(IPA_MAIN_DIR)/optimize
+IPA_ANALYZE_DIR         = $(IPA_MAIN_DIR)/analyze
+IPA_INLINE_DIR          = $(IPA_DIR)/inline
+BE_DIR                  = $(BUILD_TOT)/be
+BE_MIPS_DIR             = $(BE_DIR)/MIPS
+BE_CG_DIR               = $(BE_DIR)/cg
+BE_COM_DIR              = $(BE_DIR)/com
+BE_LNO_DIR              = $(BE_DIR)/lno
+BE_REGION_DIR           = $(BE_DIR)/region
+BE_OPT_DIR              = $(BE_DIR)/opt
+BE_VHO_DIR              = $(BE_DIR)/vho
+COMMON_DIR              = $(BUILD_TOT)/common
+COMMON_COM_DIR          = $(COMMON_DIR)/com
+COMMON_TARG_INFO_DIR	= $(COMMON_DIR)/targ_info
+COMMON_TARG_INFO_LIBTI	= $(COMMON_TARG_INFO_DIR)/libti
+COMMON_COM_TARG_DIR	= $(COMMON_TARG_INFO_DIR)/static/common/com/$(BUILD_TARGET_DIR)
+COMMON_UTIL_TARG_DIR	= $(COMMON_TARG_INFO_DIR)/static/common/util/$(BUILD_TARGET_DIR)
+COMMON_ACCESS_DIR	= $(COMMON_TARG_INFO_DIR)/static/access
+COMMON_LIB_DIR          = $(COMMON_DIR)/lib
+COMMON_TARG_INFO_ACCESS = $(COMMON_DIR)/targ_info/access
+COMMON_UTIL_DIR         = $(COMMON_DIR)/util
+LD_DIR			= $(BUILD_TOT)/ld
+LD_COMMON_DIR		= $(LD_DIR)/common
+INCLUDE_DIR             = $(ROOT)/usr/include
+
+# These are the directories in which to look for source files.
+
+SRC_DIRS = \
+  $(IPA_COMMON_DIR)   \
+  $(IPA_LOCAL_DIR)    \
+  $(IPA_ANALYZE_DIR)  \
+  $(IPA_OPTIMIZE_DIR) \
+  $(IPA_INLINE_DIR) \
+  $(COMMON_COM_DIR) \
+  $(BE_COM_DIR) \
+  $(BE_REGION_DIR) \
+  $(BE_OPT_DIR) \
+  $(BE_LNO_DIR) \
+  $(COMMON_UTIL_DIR) \
+
+HEADER_DIRS = \
+  $(SRC_DIRS)		\
+  $(LIBISA_DIR)		\
+  $(LIBTIE_DIR)		\
+  $(LIBAUTO_DIR)        \
+  $(LIBCOMMON_DIR)      \
+  $(COMMON_TARG_INFO_LIBTI) \
+  $(COMMON_ACCESS_DIR) \
+  $(COMMON_COM_TARG_DIR) \
+  $(COMMON_UTIL_DIR)	\
+  $(COMMON_TDT_DIR)	\
+  $(LD_COMMON_DIR)	\
+  $(TARGDIR)/be		\
+  $(TARGDIR)/targ_info	\
+  $(BE_VHO_DIR)		\
+  $(LD_DIR)		\
+
+IPA_INLINE_CXX_SRCS = \
+	inline_driver.cxx \
+        inline.cxx \
+	timelib.cxx \
+
+IPA_LOCAL_CXX_SRCS = \
+       ipl_summarize_util.cxx \
+
+IPA_ANALYZE_CXX_SRCS = \
+	ip_graph_trav.cxx \
+	ipa_cg.cxx \
+	ipa_inline.cxx \
+	ipa_summary.cxx \
+	ipa_nested_pu.cxx \
+
+IPA_OPTIMIZE_CXX_SRCS =	\
+	ipo_tlog_utils.cxx \
+        ipo_inline_util.cxx \
+        ipo_inline.cxx \
+        ipo_clone.cxx \
+	ipo_parent.cxx \
+
+IPA_COMMON_CXX_SRCS = \
+	ipc_bread.cxx \
+	ipc_file.cxx \
+	ip_graph.cxx \
+	ipc_option.cxx \
+
+BE_COM_CXX_SRCS = \
+	cxx_template.cxx \
+#	ipl_lno_util.cxx \
+#	clone.cxx	\
+
+BE_LNO_CXX_SRCS = \
+	lwn_util.cxx \
+
+COMMON_COM_CXX_SRCS = \
+#        dwarf_DST.cxx      \
+#        dwarf_DST_mem.cxx       \
+#        dwarf_DST_producer.cxx  \
+
+COMMON_UTIL_CXX_SRCS = \
+	cxx_memory.cxx \
+   
+IPA_CXX_SRCS = \
+   $(IPA_LOCAL_CXX_SRCS) \
+   $(IPA_COMMON_CXX_SRCS) \
+   $(IPA_ANALYZE_CXX_SRCS) \
+   $(IPA_INLINE_CXX_SRCS) \
+   $(IPA_OPTIMIZE_CXX_SRCS) \
+   $(COMMON_COM_CXX_SRCS) \
+   $(BE_COM_CXX_SRCS) \
+   $(BE_LNO_CXX_SRCS) \
+   $(COMMON_UTIL_CXX_SRCS)
+
+IPA_CXX_OBJS = $(IPA_CXX_SRCS:.cxx=.o)
+
+VPATH    =  $(SRC_DIRS)
+
+ifeq ($(BUILD_COMPILER), EDG)
+WOFF = -fullwarn -woff 1171,1172,1174,1201,1209,1375 -LANG:packed=on
+else
+WOFF =
+endif
+
+LCOPTS = $(STD_COMPILE_OPTS)
+LCDEFS = $(HOSTDEFS) $(TARGDEFS)
+LCINCS = $(addprefix -I, $(HEADER_DIRS))
+LC++OPTS = $(STD_COMPILE_OPTS) $(STD_C++_OPTS) $(WOFF)
+LC++DEFS = $(HOSTDEFS) $(TARGDEFS)
+LC++INCS = $(LCINCS)
+LASOPTS = $(STD_COMPILE_OPTS)
+LASDEFS = $(HOSTDEFS) $(TARGDEFS)
+LASINCS = $(LCINCS)
+
+ifeq ($(BUILD_OS), CYGWIN)
+LDFLAGS += -Wl,--disable-auto-import
+else
+LDFLAGS += -lm -Wl,--allow-shlib-undefined
+endif
+
+GLDOPTS = $(STD_LOAD_OPTS) $(LD_QUICKSTART_INFO)
+
+TARGETS = inline$(EXE_EXT)
+
+LDIRT = be$(IMP_EXT) ii_files
+
+ifeq ($(BUILD_OS), IRIX)
+LLDLIBS = -lmangle -lgen
+else
+LLDLIBS =
+endif
+
+
+default: first
+	$(MAKE) $(JOBS) $(TARGETS)
+	$(MAKE) last
+
+#----------------------------------------------------------------------
+#  The commands in this section are done BEFORE any other target is
+#  built.
+#----------------------------------------------------------------------
+first :
+## verify that be.so is up to date
+	cd $(TARG_BE_DIR) && $(MAKE)
+
+#----------------------------------------------------------------------
+#  The commands in this section are done AFTER every other target is
+#  built.
+#----------------------------------------------------------------------
+last : make_deps
+
+ifneq ($(EXE_EXT), )
+inline: inline$(EXE_EXT)
+endif
+
+install:: default
+	cp -f $(TARGETS) $(PREFIX)/lib/xcc-lib
+
+# Unix libraries conventionally begin with "lib"; Windows libraries do not.
+ifeq ($(BUILD_OS), CYGWIN)
+libnameprefix =
+else
+libnameprefix = lib
+endif
+
+LIBAUTO_IMP = $(libnameprefix)auto$(IMP_EXT)
+LIBTIE_IMP = $(libnameprefix)tie$(IMP_EXT)
+LIBISA_IMP = $(libnameprefix)xtisa$(IMP_EXT)
+LIBCOMMON_IMP = $(libnameprefix)common$(IMP_EXT)
+
+INLINE_LIBS = $(LIBAUTO_IMP) $(LIBTIE_IMP) $(LIBISA_IMP) \
+	$(LIBCOMMON_IMP) be$(IMP_EXT)
+
+ifeq ($(BUILD_OS), CYGWIN)
+INLINE_LIBS += cg$(IMP_EXT)
+endif
+
+be$(IMP_EXT): $(TARG_BE_DIR)/be$(IMP_EXT)
+	if [ ! -f be$(IMP_EXT) ]; then ln -sf $< .; fi
+
+$(LIBAUTO_IMP): $(TARGDIR)/../libauto/$(LIBAUTO_IMP)
+	ln -sf $< .
+
+$(LIBTIE_IMP): $(TARGDIR)/../libtie/$(LIBTIE_IMP)
+	ln -sf $< .
+
+$(LIBISA_IMP): $(TARGDIR)/../libisa/$(LIBISA_IMP)
+	ln -sf $< .
+
+$(LIBCOMMON_IMP): $(TARGDIR)/../libcommon/$(LIBCOMMON_IMP)
+	ln -sf $< .
+
+inline$(EXE_EXT): $(IPA_CXX_OBJS) $(INLINE_LIBS)
+	$(C++F) -o $@ $(IPA_CXX_OBJS) $(INLINE_LIBS) $(LDFLAGS)
+
+#----------------------------------------------------------------------
+#  Include the usual commonrules
+#----------------------------------------------------------------------
+include $(COMMONRULES)
+

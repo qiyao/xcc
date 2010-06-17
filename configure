@@ -1,0 +1,194 @@
+#!/bin/sh
+# Set up build directories and makefiles for Xcalibur build
+
+# Copyright (C) 2003-2006 Tensilica, Inc.  All Rights Reserved.
+#
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of version 2 of the GNU General Public License as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it would be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+#
+# Further, this software is distributed without any warranty that it is
+# free of the rightful claim of any third person regarding infringement 
+# or the like.  Any license provided herein, whether implied or 
+# otherwise, applies only to this software file.  Patent licenses, if 
+# any, provided herein do not apply to combinations of this program with 
+# other software, or any other product whatsoever.  
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write the Free Software Foundation, Inc., 59
+# Temple Place - Suite 330, Boston MA 02111-1307, USA.
+
+BUILD_AREA=`pwd`
+BUILD_TOT=`dirname $0`
+cd $BUILD_TOT; BUILD_TOT=`pwd`; cd $BUILD_AREA
+
+# options
+prefix=/usr/xtensa
+dodebug=0
+optextend=
+
+# parse command line
+prevopt=
+for option
+do
+
+  # If the previous option needs an argument, assign it.
+  if test -n "$prevopt"; then
+    eval "$prevopt=\$option"
+    prevopt=
+    continue
+  fi
+
+  case "$option" in
+  -*=*) optarg=`echo "$option" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+  *) optarg= ;;
+  esac
+
+  case "$option" in
+
+  -enable-xcalibur | --enable-xcalibur)
+    optextend=-DENABLE_ARCHITECTURE_EXTENSIONS ;;
+
+  -enable-debug | --enable-debug)
+    dodebug=1 ;;
+
+  -help | --help | --hel | --he | --h)
+    cat <<EOF
+Usage: configure [options]
+Options:
+  --prefix=PREFIX         install files in PREFIX directory
+  --enable-debug          build with debugging enabled
+EOF
+    exit 0 ;;
+
+  -prefix | --prefix | --prefi | --pref | --pre | --pr | --p)
+    prevopt=prefix ;;
+  -prefix=* | --prefix=* | --prefi=* | --pref=* | --pre=* | --pr=* | --p=*)
+    prefix="$optarg" ;;
+
+  *)
+    # ignore other options
+    ;;
+
+  esac
+done
+
+if test -n "$prevopt"; then
+  { echo "configure: error: missing argument to --$prevopt" 1>&2; exit 1; }
+fi
+
+# Produce a "config.status" file to record the options
+HOST=`hostname`
+cat > $BUILD_AREA/config.status <<-EOF
+	#! /bin/sh
+	# Generated automatically by configure.
+	# Run this file to recreate the current configuration.
+	# This directory was configured as follows:
+	#
+	export STDTOOLS; STDTOOLS=$STDTOOLS
+	export LD_LIBRARY_PATH; LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+	export TENSILICA_TOOLS; TENSILICA_TOOLS=$TENSILICA_TOOLS
+	export TEN4_INTERNAL; TEN4_INTERNAL=$TEN4_INTERNAL
+	export PATH; PATH=$PATH
+	export CFLAGS; CFLAGS="$CFLAGS"
+	export CC; CC="$CC"
+	export CXX; CXX="$CXX"
+	$BUILD_TOT/configure $*
+EOF
+chmod ugo+x $BUILD_AREA/config.status
+
+# Figure out the host platform
+os=`/bin/uname -s`
+case "$os" in
+  SunOS)
+	BUILD_OS=SOLARIS ;;
+  Linux)
+	BUILD_OS=LINUX ;;
+  CYGWIN*)
+	host_options="--build=i686-pc-cygwin --host=i686-pc-mingw32"
+	BUILD_OS=CYGWIN ;;
+  *)
+	echo "Operating system '$os' is not supported"
+	exit 1 ;;
+esac
+
+# BUILD_OPTIMIZE may be: DEFAULT, DEBUG, NODEBUG or CFLAGS
+if [ $dodebug != 0 ]; then
+  BUILD_OPTIMIZE=DEBUG
+elif [ "X$CFLAGS" = "X" ]; then
+  BUILD_OPTIMIZE=DEFAULT
+else
+  BUILD_OPTIMIZE=$CFLAGS
+fi
+
+# Precompute the version string and number so they don't have to be
+# calculated for every invocation of make.
+if [ -r $BUILD_TOT/configure.version ]; then
+  . $BUILD_TOT/configure.version
+else
+  XTENSA_VERSION_NUMBER=`$STDTOOLS/bin/perl -w -I $TENSILICA_TOOLS/lib -e 'use Xtensa::Version; my $major = ((new Xtensa::Version())->current_sw_version())[3]; print "$major\n";'`
+  XTENSA_VERSION_MINOR=`$STDTOOLS/bin/perl -w -I $TENSILICA_TOOLS/lib -e 'use Xtensa::Version; my $minor = ((new Xtensa::Version())->current_sw_version())[4]; print "$minor\n";'`
+  XTENSA_VERSION=`cat $BUILD_TOT/../../version`
+fi
+
+makefiles=`cd $BUILD_TOT/targ_xtensa; find . -name Makefile.in -print`
+for mkfile in $makefiles; do
+
+  blddir=$BUILD_AREA/`dirname $mkfile`
+  mkdir -p $blddir
+
+  cat > $blddir/Makefile <<-EOF
+
+	# Don't include Makefile.env in the xcalibur builds
+	export MAKEFILES=
+
+	PATH           = $PATH
+	PREFIX         = $prefix
+	XTENSA_SRC_DIR = $BUILD_TOT/../..
+	STDTOOLS       = $STDTOOLS
+	export LD_LIBRARY_PATH = $LD_LIBRARY_PATH
+	XTENSA_VERSION = $XTENSA_VERSION
+	XTENSA_VERSION_NUMBER = $XTENSA_VERSION_NUMBER
+	XTENSA_VERSION_MINOR = $XTENSA_VERSION_MINOR
+	TEN4_INTERNAL  = $TEN4_INTERNAL
+	OPTEXTEND      = $optextend
+	BUILD_AREA     = $BUILD_AREA
+	BUILD_TOT      = $BUILD_TOT
+	BUILD_ROOTS    = TARGET
+	BUILD_ABI      = X32BIT
+	BUILD_ARCH     = XTENSA
+	BUILD_TYPE     = SHARED
+	BUILD_OPTIMIZE = $BUILD_OPTIMIZE
+	BUILD_VARIANT  = DEFAULT
+	BUILD_INSTALL  = DEFAULT
+	BUILD_TARGET   = XTENSA
+	BUILD_COMPILER = GNU
+	BUILD_OS       = $BUILD_OS
+	CCNAME = $CC
+	C++NAME = $CXX
+	export DISTCC_HOSTS = $DISTCC_HOSTS
+EOF
+
+  cat $BUILD_TOT/targ_xtensa/$mkfile - >> $blddir/Makefile <<-EOF
+
+	#  Include (optional) parameter override file
+	-include \$(BUILD_AREA)/Makefile.override
+
+	#  Include (optional) parameter override file from source area
+	-include \$(BUILD_TOT)/Makefile.override
+
+	#  Include setup file which will then include Makefile.base
+	include \$(BUILD_TOT)/Makefile.gsetup
+EOF
+
+done
+
+if [ ! -d $BUILD_AREA/cpp ]; then
+  mkdir $BUILD_AREA/cpp
+fi
+cd $BUILD_AREA/cpp
+$BUILD_TOT/cpp/configure $host_options --target=xtensa-elf --prefix=$prefix --disable-nls

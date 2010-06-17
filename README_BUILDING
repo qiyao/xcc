@@ -1,0 +1,57 @@
+Build Instructions:
+
+This version of XCC is known to build with GCC 3.4. Tensilica does not
+provide GCC, but it should be easily available from the Free Software
+Foundation (FSF). These instructions assume that the correct version of
+GCC is the first one found in your path.
+
+To build XCC:
+
+1. Obtain both the XCC source files (xcc-src.tar.gz) and the Xtensa GNU
+tool sources (gnu-tool-src.tar.gz).
+
+2. Create a new directory to hold the source files.  This directory is
+   referred to here as $srcdir.
+
+3. Untar the GNU tool sources into $srcdir.
+
+4. Untar the XCC sources in the same location.
+
+5. Tell the build scripts where to find the build tool bison, also
+   available from the FSF.  Set the STDTOOLS environment variable to
+   the "prefix" directory where bison is installed.  (This is the
+   directory one level above the "bin" directory containing bison,
+   typically "/usr" or "/usr/local".)  For example, if you have
+   /usr/bin/bison, you would set STDTOOLS to /usr.
+
+6. Create a new build directory, separate from the source files.  This
+   will be referred to here as $builddir.  Inside $builddir, create
+   each of the following directories:
+
+   libisa
+   xtparams
+   libcommon
+   libtie
+   libauto
+   config-info
+   binutils
+   xcc
+
+7. Run the configure scripts: go to each build directory and run the
+   configure script from the corresponding source directory.  Set the
+   --target option to xtensa-elf and use the --prefix option to
+   specify the directory where you want to install XCC.  For example,
+   if you want to install to a directory called $installdir, the
+   Bourne shell syntax for this would be:
+
+   cd $builddir
+   for d in *; do
+     (cd $d && $srcdir/$d/configure --target=xtensa-elf --prefix=$installdir)
+   done
+
+8. Run make in each build directory.  Because there are dependencies
+   between build directories, you must do this in the order the
+   directories are listed in step (6).  For each directory except
+   binutils, run "make" followed by "make install".  For binutils,
+   you only need to build the linker, so use "make all-ld install-ld"
+   in that directory.

@@ -1,0 +1,326 @@
+# Makefile for GNU C compiler.
+#   Copyright (C) 1987, 1988, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997
+#   1998, 1999, 2000, 2001, 2002 Free Software Foundation, Inc.
+
+#This file is part of GCC.
+
+#GCC is free software; you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation; either version 2, or (at your option)
+#any later version.
+
+#GCC is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+
+#You should have received a copy of the GNU General Public License
+#along with GCC; see the file COPYING.  If not, write to
+#the Free Software Foundation, 59 Temple Place - Suite 330,
+#Boston MA 02111-1307, USA.
+
+# This is the default target.
+all:
+
+# Suppress smart makes who think they know how to automake Yacc files
+.y.c:
+
+# Directory where sources are, from where we are.
+srcdir = @srcdir@
+VPATH = @srcdir@
+
+# Variables that exist for you to override.
+# See below for how to change them for certain systems.
+
+# Various ways of specifying flags for compilations:
+# CFLAGS is for the user to override to, e.g., do a cross build with -O2.
+# XCFLAGS is used for most compilations but not when using the GCC just built.
+# TCFLAGS is used for compilations with the GCC just built.
+XCFLAGS =
+TCFLAGS =
+CFLAGS = -g
+
+# The warning flags are separate from BOOT_CFLAGS because people tend to
+# override optimization flags and we'd like them to still have warnings
+# turned on.  These flags are also used to pass other stage dependent
+# flags from configure.  The user is free to explicitly turn these flags
+# off if they wish.
+# LOOSE_WARN are the warning flags to use when compiling something
+# which is only compiled with gcc, such as libgcc and the frontends
+# other than C.
+# STRICT_WARN and STRICT2_WARN are the additional warning flags to
+# apply to the back end and the C front end, which may be compiled
+# with other compilers.  This is partially controlled by configure in
+# stage1, as not all versions of gcc understand -Wno-long-long.
+LOOSE_WARN = -W -Wall -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes
+STRICT_WARN = -Wtraditional @strict1_warn@
+STRICT2_WARN = -Wtraditional -pedantic -Wno-long-long
+
+# This is how we control whether or not the additional warnings are applied.
+.-warn = $(STRICT_WARN)
+GCC_WARN_CFLAGS = $(LOOSE_WARN) $($(@D)-warn)
+
+# All warnings have to be shut off in stage1 if the compiler used then
+# isn't gcc; configure determines that.  WARN_CFLAGS will be either
+# $(GCC_WARN_CFLAGS), or nothing.
+WARN_CFLAGS = @warn_cflags@
+
+# These exists to be overridden by the x-* and t-* files, respectively.
+X_CFLAGS =
+T_CFLAGS =
+
+X_CPPFLAGS =
+T_CPPFLAGS =
+
+AWK = @AWK@
+CC = @CC@
+BISON = @BISON@
+BISONFLAGS =
+AR = ar
+AR_FLAGS = rc
+RANLIB = @RANLIB@
+SHELL = /bin/sh
+# on sysV, define this as cp.
+INSTALL = @INSTALL@
+# These permit overriding just for certain files.
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL@
+# For GNUmake: let us decide what gets passed to recursive makes.
+MAKEOVERRIDES =
+@SET_MAKE@
+# Some compilers can't handle cc -c blah.c -o foo/blah.o.
+# In stage2 and beyond, we force this to "-o $@" since we know we're using gcc.
+OUTPUT_OPTION = @OUTPUT_OPTION@
+
+# Where to find some libiberty headers.
+OBSTACK_H   = $(srcdir)/../include/obstack.h
+SPLAY_TREE_H= $(srcdir)/../include/splay-tree.h
+
+target=@target@
+target_alias=@target_alias@
+xmake_file=@dep_host_xmake_file@
+tmake_file=@dep_tmake_file@
+host_xm_file_list=@host_xm_file_list@
+host_xm_file=@host_xm_file@
+host_xm_defines=@host_xm_defines@
+target_cpu_default=@target_cpu_default@
+gcc_version=@gcc_version@
+version=$(gcc_version)
+
+# Common prefix for installation directories.
+# NOTE: This directory must exist when you start installation.
+prefix = @prefix@
+# Directory in which to put localized header files. On the systems with
+# gcc as the native cc, `local_prefix' may not be `prefix' which is
+# `/usr'.
+# NOTE: local_prefix *should not* default from prefix.
+local_prefix = @local_prefix@
+# Directory in which to put host dependent programs and libraries
+exec_prefix = @exec_prefix@
+# Directory in which to put the directories used by the compiler.
+libdir = @libdir@
+# Directory in which the compiler finds executables, libraries, etc.
+libsubdir = $(libdir)/xcc-lib
+# Used to produce a relative $(gcc_tooldir) in gcc.o
+unlibsubdir = ..
+# Used in install-cross.
+gcc_tooldir = @gcc_tooldir@
+# Directory in which the compiler finds target-independent g++ includes.
+gcc_gxx_include_dir = @gcc_gxx_include_dir@
+# Directory to search for site-specific includes.
+local_includedir = $(local_prefix)/include
+# where the locale files go
+datadir = @datadir@
+localedir = $(datadir)/locale
+objext = .o
+exeext = @host_exeext@
+
+# Internationalization library.
+INTLLIBS = @INTLLIBS@
+INTLDEPS = @INTLDEPS@
+
+# Definition of `all' is here so that new rules inserted by sed
+# do not specify the default target.
+all: cpp0$(exeext) tradcpp0$(exeext)
+
+# GCONFIG_H lists the config files that the generator files depend on, while
+# CONFIG_H lists the the ones ordinary gcc files depend on, which includes
+# several files generated by those generators.
+GCONFIG_H = config.h $(host_xm_file_list)
+#CONFIG_H = $(GCONFIG_H) insn-constants.h insn-flags.h
+CONFIG_H = $(GCONFIG_H)
+SYSTEM_H = system.h hwint.h $(srcdir)/../include/libiberty.h
+CPPLIB_H = cpplib.h line-map.h
+
+# sed inserts variable overrides after the following line.
+####target overrides
+@target_overrides@
+
+####host overrides
+@host_overrides@
+#
+# Now figure out from those variables how to compile and link.
+
+# IN_GCC distinguishes between code compiled into GCC itself and other
+# programs built during a bootstrap.
+# autoconf inserts -DCROSS_COMPILE if we are building a cross compiler.
+INTERNAL_CFLAGS = -DIN_GCC @CROSS@
+
+# This is the variable actually used when we compile.
+# If you change this line, you probably also need to change the definition
+# of HOST_CFLAGS in build-make to match.
+ALL_CFLAGS = $(INTERNAL_CFLAGS) $(X_CFLAGS) $(T_CFLAGS) \
+  $(CFLAGS) $(WARN_CFLAGS) $(XCFLAGS) @DEFS@
+
+# Likewise.
+ALL_CPPFLAGS = $(CPPFLAGS) $(X_CPPFLAGS) $(T_CPPFLAGS)
+
+LIBIBERTY = ../libiberty/libiberty.a
+
+# Dependencies on the intl and portability libraries.
+LIBDEPS= $(INTLDEPS) $(LIBIBERTY)
+
+# How to link with both our special library facilities
+# and the system's installed libraries.
+LIBS =	$(INTLLIBS) @LIBS@ $(LIBIBERTY)
+
+# Specify the directories to be searched for header files.
+# Both . and srcdir are used, in that order,
+# so that *config.h will be found in the compilation
+# subdirectory rather than in the source directory.
+# -I$(@D) and -I$(srcdir)/$(@D) cause the subdirectory of the file
+# currently being compiled, in both source trees, to be examined as well.
+INCLUDES = -I. -I$(@D) -I$(srcdir) -I$(srcdir)/$(@D) \
+	   -I$(srcdir)/config -I$(srcdir)/../include
+
+# Always use -I$(srcdir)/config when compiling.
+.c.o:
+	$(CC) -c $(ALL_CFLAGS) $(ALL_CPPFLAGS) $(INCLUDES) $< $(OUTPUT_OPTION)
+
+# Files to be copied away after each stage in building.
+STAGESTUFF = *$(objext) cpp0$(exeext) tradcpp0$(exeext) libcpp.a 
+
+#
+Makefile: $(srcdir)/Makefile.in config.status $(srcdir)/version.c \
+   $(xmake_file) $(tmake_file) $(LANG_MAKEFILES)
+	$(SHELL) $(srcdir)/configure.frag $(srcdir) "$(SUBDIRS)" \
+		"$(xmake_file)" "$(tmake_file)"
+	cp config.status config.run
+	LANGUAGES="$(CONFIG_LANGUAGES)" $(SHELL) config.run
+	rm -f config.run
+
+config.h: cs-config.h ; @true
+
+cs-config.h: Makefile
+	HEADERS="$(host_xm_file)" DEFINES="$(host_xm_defines)" \
+	TARGET_CPU_DEFAULT="$(target_cpu_default)" \
+	$(SHELL) $(srcdir)/mkconfig.sh config.h
+
+# Don't automatically run autoconf, since configure.in might be accidentally
+# newer than configure.  Also, this writes into the source directory which
+# might be on a read-only file system.  If configured for maintainer mode
+# then do allow autoconf to be run.
+
+$(srcdir)/configure: @MAINT@ $(srcdir)/configure.in
+	(cd $(srcdir) && autoconf)
+
+mbchar.o: mbchar.c $(CONFIG_H) $(SYSTEM_H) mbchar.h
+
+version.o: version.c version.h
+
+hashtable.o: hashtable.c hashtable.h $(CONFIG_H) $(SYSTEM_H) $(OBSTACK_H)
+
+line-map.o: line-map.c line-map.h intl.h $(CONFIG_H) $(SYSTEM_H)
+
+prefix.o: prefix.c $(CONFIG_H) $(SYSTEM_H) Makefile prefix.h
+	$(CC) $(ALL_CFLAGS) $(ALL_CPPFLAGS) $(INCLUDES) \
+	-DPREFIX=\"$(prefix)\" \
+	  -c $(srcdir)/prefix.c $(OUTPUT_OPTION)
+
+# Remake internationalization support.
+intl.o: intl.c $(CONFIG_H) system.h intl.h Makefile
+	$(CC) $(ALL_CFLAGS) $(ALL_CPPFLAGS) $(INCLUDES) \
+	  -DLOCALEDIR=\"$(localedir)\" \
+	  -c $(srcdir)/intl.c $(OUTPUT_OPTION)
+
+#
+# Remake cpp and protoize.
+
+PREPROCESSOR_DEFINES = \
+  -DGCC_INCLUDE_DIR=\"$(libsubdir)/include\" \
+  -DGPLUSPLUS_INCLUDE_DIR=\"$(gcc_gxx_include_dir)\" \
+  -DGPLUSPLUS_TOOL_INCLUDE_DIR=\"$(gcc_gxx_include_dir)/$(target_alias)\" \
+  -DGPLUSPLUS_BACKWARD_INCLUDE_DIR=\"$(gcc_gxx_include_dir)/backward\" \
+  -DLOCAL_INCLUDE_DIR=\"$(local_includedir)\" \
+  -DCROSS_INCLUDE_DIR=\"$(gcc_tooldir)/sys-include\" \
+  -DTOOL_INCLUDE_DIR=\"$(gcc_tooldir)/include\"
+
+LIBCPP_OBJS =	cpplib.o cpplex.o cppmacro.o cppexp.o cppfiles.o \
+		cpphash.o cpperror.o cppinit.o cppdefault.o \
+		hashtable.o line-map.o mkdeps.o prefix.o version.o mbchar.o
+
+LIBCPP_DEPS =	$(CPPLIB_H) cpphash.h line-map.h hashtable.h intl.h \
+		$(OBSTACK_H) $(SYSTEM_H)
+
+# Most of the other archives built/used by this makefile are for
+# targets.  This one is strictly for the host.
+libcpp.a: $(LIBCPP_OBJS)
+	-rm -rf libcpp.a
+	$(AR) $(AR_FLAGS) libcpp.a $(LIBCPP_OBJS)
+	-$(RANLIB) libcpp.a
+
+cpp0$(exeext): cppmain.o intl.o libcpp.a $(LIBDEPS)
+	$(CC) $(ALL_CFLAGS) $(LDFLAGS) -o cpp0$(exeext) cppmain.o \
+	intl.o libcpp.a $(LIBS)
+
+cppmain.o:  cppmain.c  $(CONFIG_H) $(CPPLIB_H) intl.h $(SYSTEM_H)
+
+cpperror.o: cpperror.c $(CONFIG_H) $(LIBCPP_DEPS)
+cppexp.o:   cppexp.c   $(CONFIG_H) $(LIBCPP_DEPS)
+cpplex.o:   cpplex.c   $(CONFIG_H) $(LIBCPP_DEPS) mbchar.h
+cppmacro.o: cppmacro.c $(CONFIG_H) $(LIBCPP_DEPS)
+cpplib.o:   cpplib.c   $(CONFIG_H) $(LIBCPP_DEPS)
+cpphash.o:  cpphash.c  $(CONFIG_H) $(LIBCPP_DEPS)
+cppfiles.o: cppfiles.c $(CONFIG_H) $(LIBCPP_DEPS) $(SPLAY_TREE_H) mkdeps.h
+cppinit.o:  cppinit.c  $(CONFIG_H) $(LIBCPP_DEPS) cppdefault.h \
+		mkdeps.h prefix.h version.h except.h
+
+cppdefault.o: cppdefault.c $(CONFIG_H) $(SYSTEM_H) cppdefault.h Makefile
+	$(CC) $(ALL_CFLAGS) $(ALL_CPPFLAGS) $(INCLUDES) \
+	  $(PREPROCESSOR_DEFINES) \
+	  -c $(srcdir)/cppdefault.c $(OUTPUT_OPTION)
+
+mkdeps.o: mkdeps.c $(CONFIG_H) $(SYSTEM_H) mkdeps.h
+
+# The traditional mode preprocessor, a separate program for ease of
+# maintenance.  Some code is shared with the ISO-C cpp.
+tradcpp0$(exeext): tradcpp.o tradcif.o cppdefault.o version.o intl.o \
+        mkdeps.o $(LIBDEPS)
+	$(CC) $(ALL_CFLAGS) $(LDFLAGS) -o tradcpp0$(exeext) \
+	tradcpp.o tradcif.o mkdeps.o cppdefault.o version.o intl.o $(LIBS)
+
+tradcpp.o: tradcpp.c $(CONFIG_H) $(SYSTEM_H) version.h cppdefault.h tradcpp.h
+tradcif.o: $(srcdir)/tradcif.c $(CONFIG_H) $(SYSTEM_H) tradcpp.h
+
+$(srcdir)/tradcif.c: @MAINT@ $(srcdir)/tradcif.y
+	(cd $(srcdir) && $(BISON) $(BISONFLAGS) -o tr$$$$.c tradcif.y && \
+	mv -f tr$$$$.c tradcif.c)
+
+#
+# Deletion of files made during compilation.
+mostlyclean:
+	-rm -f $(STAGESTUFF)
+
+# Delete all files made by compilation
+# that don't exist in the distribution.
+clean: mostlyclean
+	-rm -f config.h
+	-rm -f cs-*
+
+install: cpp0$(exeext) tradcpp0$(exeext)
+	-rm -f $(libsubdir)/cpp0$(exeext)
+	$(INSTALL_PROGRAM) cpp0$(exeext) $(libsubdir)/cpp0$(exeext)
+	-rm -f $(libsubdir)/tradcpp0$(exeext)
+	$(INSTALL_PROGRAM) tradcpp0$(exeext) $(libsubdir)/tradcpp0$(exeext)
+

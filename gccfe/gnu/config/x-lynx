@@ -1,0 +1,9 @@
+# Copyright (C) 2001 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+# Don't run fixproto
+# /bin/cc is hopelessly broken, so we must use /bin/gcc instead.
+CC	= $(OLDCC)
+OLDCC	= /bin/gcc
+
+# /bin/sh is too buggy, so use /bin/bash instead.
+SHELL = /bin/bash

@@ -1,0 +1,9 @@
+# Don't build libgcc at the same time as gcc.  Unlike the compiler itself,
+# which can be configured at runtime, the library is inherently configuration-
+# specific and must be rebuilt for each configuration.
+LIBGCC =
+INSTALL_LIBGCC =
+
+# Don't run fixproto
+STMP_FIXPROTO =
+

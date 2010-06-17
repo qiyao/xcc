@@ -1,0 +1,9 @@
+
+/* 
+   Copyright (C) 2001 Tensilica, Inc.  All Rights Reserved.
+   Revised to support Tensilica processors and to improve overall performance
+ */
+
+Took the libelf-0.7.0 sources, ran ./configure,
+then created own Makefile.gbase to build with.
+For the headers, modified include/Makefile.gbase to link to them.

@@ -1,0 +1,40 @@
+# configure.in for libgcc (XCC version).
+# Process this file with autoconf to generate a configuration script.
+
+# Copyright (c) 2003, 2004 by Tensilica Inc.
+
+# This file was derived from GCC and is free software; you can
+# redistribute it and/or modify it under the terms of the GNU General
+# Public License as published by the Free Software Foundation; either
+# version 2, or (at your option) any later version.
+
+AC_INIT(libgcc2.c)
+AC_PROG_INSTALL
+
+inhibit_libc="-Dinhibit_libc"
+
+AC_SUBST(inhibit_libc)
+
+# Set this to control which thread package will be used.
+thread_file=
+
+case "${target}" in
+*-vxworks)
+	thread_file='vxworks'
+	;;
+esac
+
+if test x$thread_file = x; then
+	thread_file='single'
+fi
+
+# Make gthr-default.h if we have a thread file.
+gthread_flags=
+if test $thread_file != single; then
+    rm -f gthr-default.h
+    echo "#include \"gthr-${thread_file}.h\"" > gthr-default.h
+    gthread_flags=-DHAVE_GTHR_DEFAULT
+fi
+AC_SUBST(gthread_flags)
+
+AC_OUTPUT(Makefile mklibgcc)

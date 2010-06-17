@@ -1,0 +1,7106 @@
+%!PS-Adobe-3.0
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%PageOrder: (atend)
+%%DocumentFonts: (atend)
+%%Creator: Frame 5.0
+%%DocumentData: Clean7Bit
+%%EndComments
+%%BeginProlog
+%
+% Frame ps_prolog 5.0, for use with Frame 5.0 products
+% This ps_prolog file is Copyright (c) 1986-1995 Frame Technology
+% Corporation.  All rights reserved.  This ps_prolog file may be
+% freely copied and distributed in conjunction with documents created
+% using FrameMaker, FrameMaker/SGML and FrameViewer as long as this 
+% copyright notice is preserved.
+%
+% FrameMaker users specify the proper paper size for each print job in the
+% "Print" dialog's "Printer Paper Size" "Width" and "Height~ fields.  If the
+% printer that the PS file is sent to does not support the requested paper
+% size, or if there is no paper tray of the proper size currently installed, 
+% then the job will not be printed.  The following flag, if set to true, will
+% cause the job to print on the default paper in such cases.
+/FMAllowPaperSizeMismatch            false def
+%
+% Frame products normally print colors as their true color on a color printer
+% or as shades of gray, based on luminance, on a black-and white printer. The
+% following flag, if set to true, forces all non-white colors to print as pure
+% black. This has no effect on bitmap images.
+/FMPrintAllColorsAsBlack             false def
+%
+% Frame products can either set their own line screens or use a printer's 
+% default settings. Three flags below control this separately for no 
+% separations, spot separations and process separations. If a flag
+% is true, then the default printer settings will not be changed. If it is
+% false, Frame products will use their own settings from a table based on
+% the printer's resolution.
+/FMUseDefaultNoSeparationScreen      true  def
+/FMUseDefaultSpotSeparationScreen    true  def
+/FMUseDefaultProcessSeparationScreen false def
+%
+% For any given PostScript printer resolution, Frame products have two sets of 
+% screen angles and frequencies for printing process separations, which are 
+% recomended by Adobe. The following variable chooses the higher frequencies
+% when set to true or the lower frequencies when set to false. This is only
+% effective if the appropriate FMUseDefault...SeparationScreen flag is false.
+/FMUseHighFrequencyScreens true def
+%
+% The following is a set of predefined optimal frequencies and angles for various
+% common dpi settings. This is taken from "Advances in Color Separation Using
+% PostScript Software Technology," from Adobe Systems (3/13/89 P.N. LPS 0043)
+% and corrolated with information which is in various PPD (4.0) files.
+%
+% The "dpiranges" figure is the minimum dots per inch device resolution which
+% can support this setting. The "low" and "high" values are controlled by the
+% setting of the FMUseHighFrequencyScreens flag above. The "TDot" flags control
+% the use of the "Yellow Triple Dot" feature whereby the frequency id divided by
+% three, but the dot function is "trippled" giving a block of 3x3 dots per cell.
+%
+% PatFreq is a compromise pattern frequency for ps Level 2 printers which is close
+% to the ideal WYSIWYG pattern frequency of 9 repetitions/inch but does not beat
+% (too badly) against the screen frequencies of any separations for that DPI.
+/dpiranges   [  2540    2400    1693     1270    1200     635      600      0      ] def
+/CMLowFreqs  [ 100.402  94.8683 89.2289 100.402  94.8683  66.9349  63.2456 47.4342 ] def
+/YLowFreqs   [  95.25   90.0    84.65    95.25   90.0     70.5556  66.6667 50.0    ] def
+/KLowFreqs   [  89.8026 84.8528 79.8088  89.8026 84.8528  74.8355  70.7107 53.033  ] def
+/CLowAngles  [  71.5651 71.5651 71.5651 71.5651  71.5651  71.5651  71.5651 71.5651 ] def
+/MLowAngles  [  18.4349 18.4349 18.4349 18.4349  18.4349  18.4349  18.4349 18.4349 ] def
+/YLowTDot    [  true    true    false    true    true     false    false   false   ] def
+/CMHighFreqs [ 133.87  126.491 133.843  108.503 102.523  100.402   94.8683 63.2456 ] def
+/YHighFreqs  [ 127.0   120.0   126.975  115.455 109.091   95.25    90.0    60.0    ] def
+/KHighFreqs  [ 119.737 113.137 119.713  128.289 121.218   89.8026  84.8528 63.6395 ] def
+/CHighAngles [  71.5651 71.5651 71.5651  70.0169 70.0169  71.5651  71.5651 71.5651 ] def
+/MHighAngles [  18.4349 18.4349 18.4349  19.9831 19.9831  18.4349  18.4349 18.4349 ] def
+/YHighTDot   [  false   false   true     false   false    true     true    false   ] def
+/PatFreq     [	10.5833 10.0     9.4055  10.5833 10.0	  10.5833  10.0	   9.375   ] def
+%
+% PostScript Level 2 printers contain an "Accurate Screens" feature which can
+% improve process separation rendering at the expense of compute time. This 
+% flag is ignored by PostScript Level 1 printers.
+/FMUseAcccurateScreens true def
+%
+% The following PostScript procedure defines the spot function that Frame
+% products will use for process separations. You may un-comment-out one of
+% the alternative functions below, or use your own.
+%
+% Dot function
+/FMSpotFunction {abs exch abs 2 copy add 1 gt 
+		{1 sub dup mul exch 1 sub dup mul add 1 sub }
+		{dup mul exch dup mul add 1 exch sub }ifelse } def
+%
+% Line function
+% /FMSpotFunction { pop } def
+%
+% Elipse function
+% /FMSpotFunction { dup 5 mul 8 div mul exch dup mul exch add 
+%		sqrt 1 exch sub } def
+%
+%
+/FMversion (5.0) def 
+/fMLevel1 /languagelevel where {pop languagelevel} {1} ifelse 2 lt def
+/FMPColor
+	fMLevel1 {
+		false
+		/colorimage where {pop pop true} if
+	} {
+		true
+	} ifelse
+def
+/FrameDict 400 dict def 
+systemdict /errordict known not {/errordict 10 dict def
+		errordict /rangecheck {stop} put} if
+% The readline in PS 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} bind def
+	} if
+/FMshowpage /showpage load def
+/FMquit /quit load def
+/FMFAILURE { 
+	dup = flush 
+	FMshowpage 
+	/Helvetica findfont 12 scalefont setfont
+	72 200 moveto show
+	72 220 moveto show
+	FMshowpage 
+	FMquit 
+	} def 
+/FMVERSION {
+	FMversion ne {
+		(Frame product version does not match ps_prolog!  Check installation;)
+		(also check ~/fminit and ./fminit for old versions) FMFAILURE
+		} if
+	} def 
+/FMBADEPSF { 
+	(Adobe's PostScript Language Reference Manual, 2nd Edition, section H.2.4)
+	(says your EPS file is not valid, as it calls X              )
+	dup dup (X) search pop exch pop exch pop length 
+	5 -1 roll 
+	putinterval 
+	FMFAILURE
+	} def
+/fmConcatProcs
+	{
+	/proc2 exch cvlit def/proc1 exch cvlit def/newproc proc1 length proc2 length add array def
+	newproc 0 proc1 putinterval newproc proc1 length proc2 putinterval newproc cvx
+}def
+FrameDict begin [
+	/ALDsave
+	/FMdicttop
+	/FMoptop
+	/FMpointsize
+	/FMsaveobject
+	/b
+	/bitmapsave
+	/blut
+	/bpside
+	/bs
+	/bstring
+	/bwidth
+	/c
+	/cf
+	/cs
+	/cynu
+	/depth
+	/edown
+	/fh
+	/fillvals
+	/fw
+	/fx
+	/fy
+	/g
+	/gfile
+	/gindex
+	/grnt
+	/gryt
+	/gstring
+	/height
+	/hh
+	/i
+	/im
+	/indx
+	/is
+	/k
+	/kk
+	/landscape
+	/lb
+	/len
+	/llx
+	/lly
+	/m
+	/magu
+	/manualfeed
+	/n
+	/offbits
+	/onbits
+	/organgle
+	/orgbangle
+	/orgbfreq
+	/orgbproc
+	/orgbxfer
+	/orgfreq
+	/orggangle
+	/orggfreq
+	/orggproc
+	/orggxfer
+	/orgmatrix
+	/orgproc
+	/orgrangle
+	/orgrfreq
+	/orgrproc
+	/orgrxfer
+	/orgxfer
+	/pagesave
+	/paperheight
+	/papersizedict
+	/paperwidth
+	/pos
+	/pwid
+	/r
+	/rad
+	/redt
+	/sl
+	/str
+	/tran
+	/u
+	/urx
+	/ury
+	/val
+	/width
+	/width
+	/ws
+	/ww
+	/x
+	/x1
+	/x2
+	/xindex
+	/xpoint
+	/xscale
+	/xx
+	/y
+	/y1
+	/y2
+	/yelu
+	/yindex
+	/ypoint
+	/yscale
+	/yy
+] { 0 def } forall
+/FmBD {bind def} bind def
+systemdict /pdfmark known {
+	/fMAcrobat true def
+	
+	/FmPD /pdfmark load def
+	
+	
+	/FmPT /show load def
+	
+	
+	currentdistillerparams /CoreDistVersion get 2000 ge {
+	
+		
+		/FmPD2 /pdfmark load def
+		
+		
+		
+		
+		
+		/FmPA { mark exch /Dest exch 5 3 roll 
+				/View [ /XYZ null 6 -2 roll FmDC exch pop null] /DEST FmPD 
+		}FmBD
+	} {
+		
+		/FmPD2 /cleartomark load def
+		/FmPA {pop pop pop}FmBD
+	} ifelse
+} {
+	
+	/fMAcrobat false def
+	/FmPD /cleartomark load def
+	/FmPD2 /cleartomark load def
+	/FmPT /pop load def
+	/FmPA {pop pop pop}FmBD
+} ifelse
+/FmDC {
+	transform fMDefaultMatrix itransform cvi exch cvi exch
+}FmBD
+/FmBx {
+	dup 3 index lt {3 1 roll exch} if 
+	1 index 4 index lt {4 -1 roll 3 1 roll exch 4 1 roll} if
+}FmBD
+/FMnone 0 def
+/FMcyan 1 def
+/FMmagenta 2 def
+/FMyellow 3 def
+/FMblack 4 def
+/FMcustom 5 def
+/fMNegative false def 
+/FrameSepIs FMnone def 
+/FrameSepBlack 0 def
+/FrameSepYellow 0 def
+/FrameSepMagenta 0 def
+/FrameSepCyan 0 def
+/FrameSepRed 1 def
+/FrameSepGreen 1 def
+/FrameSepBlue 1 def
+/FrameCurGray 1 def
+/FrameCurPat null def
+/FrameCurColors [ 0 0 0 1 0 0 0 ] def 
+/FrameColorEpsilon .001 def	
+/eqepsilon {		
+	sub dup 0 lt {neg} if
+	FrameColorEpsilon le
+} bind def
+/FrameCmpColorsCMYK { 
+	2 copy 0 get exch 0 get eqepsilon {
+		2 copy 1 get exch 1 get eqepsilon {
+			2 copy 2 get exch 2 get eqepsilon {
+				3 get exch 3 get eqepsilon
+			} {pop pop false} ifelse
+		}{pop pop false} ifelse
+	} {pop pop false} ifelse
+} bind def
+/FrameCmpColorsRGB { 
+	2 copy 4 get exch 0 get eqepsilon {
+		2 copy 5 get exch 1 get eqepsilon {
+			6 get exch 2 get eqepsilon
+		}{pop pop false} ifelse
+	} {pop pop false} ifelse
+} bind def
+/RGBtoCMYK { 
+	1 exch sub 
+	3 1 roll 
+	1 exch sub 
+	3 1 roll 
+	1 exch sub 
+	3 1 roll 
+	3 copy 
+	2 copy 
+	le { pop } { exch pop } ifelse 
+	2 copy 
+	le { pop } { exch pop } ifelse 
+	dup dup dup 
+	6 1 roll 
+	4 1 roll 
+	7 1 roll 
+	sub 
+	6 1 roll 
+	sub 
+	5 1 roll 
+	sub 
+	4 1 roll 
+} bind def
+/CMYKtoRGB { 
+	dup dup 4 -1 roll add 						  
+	5 1 roll 3 -1 roll add 						  
+	4 1 roll add 								  
+	1 exch sub dup 0 lt {pop 0} if 3 1 roll 	  
+	1 exch sub dup 0 lt {pop 0} if exch 	      
+	1 exch sub dup 0 lt {pop 0} if exch	  		  
+} bind def
+/FrameSepInit {
+	1.0 RealSetgray
+} bind def
+/FrameSetSepColor { 
+	/FrameSepBlue exch def
+	/FrameSepGreen exch def
+	/FrameSepRed exch def
+	/FrameSepBlack exch def
+	/FrameSepYellow exch def
+	/FrameSepMagenta exch def
+	/FrameSepCyan exch def
+	/FrameSepIs FMcustom def
+	setCurrentScreen	
+} bind def
+/FrameSetCyan {
+	/FrameSepBlue 1.0 def
+	/FrameSepGreen 1.0 def
+	/FrameSepRed 0.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 1.0 def
+	/FrameSepIs FMcyan def
+	setCurrentScreen	
+} bind def
+ 
+/FrameSetMagenta {
+	/FrameSepBlue 1.0 def
+	/FrameSepGreen 0.0 def
+	/FrameSepRed 1.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 1.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMmagenta def
+	setCurrentScreen
+} bind def
+ 
+/FrameSetYellow {
+	/FrameSepBlue 0.0 def
+	/FrameSepGreen 1.0 def
+	/FrameSepRed 1.0 def
+	/FrameSepBlack 0.0 def
+	/FrameSepYellow 1.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMyellow def
+	setCurrentScreen
+} bind def
+ 
+/FrameSetBlack {
+	/FrameSepBlue 0.0 def
+	/FrameSepGreen 0.0 def
+	/FrameSepRed 0.0 def
+	/FrameSepBlack 1.0 def
+	/FrameSepYellow 0.0 def
+	/FrameSepMagenta 0.0 def
+	/FrameSepCyan 0.0 def
+	/FrameSepIs FMblack def
+	setCurrentScreen
+} bind def
+ 
+/FrameNoSep { 
+	/FrameSepIs FMnone def
+	setCurrentScreen
+} bind def
+/FrameSetSepColors { 
+	FrameDict begin
+	[ exch 1 add 1 roll ]
+	/FrameSepColors  
+	exch def end
+	} bind def
+/FrameColorInSepListCMYK { 
+	FrameSepColors {  
+       		exch dup 3 -1 roll 
+       		FrameCmpColorsCMYK 
+       		{ pop true exit } if
+    	} forall 
+	dup true ne {pop false} if
+	} bind def
+/FrameColorInSepListRGB { 
+	FrameSepColors {  
+       		exch dup 3 -1 roll 
+       		FrameCmpColorsRGB 
+       		{ pop true exit } if
+    	} forall 
+	dup true ne {pop false} if
+	} bind def
+/RealSetgray /setgray load def
+/RealSetrgbcolor /setrgbcolor load def
+/RealSethsbcolor /sethsbcolor load def
+end 
+/setgray { 
+	FrameDict begin
+	FrameSepIs FMnone eq
+		{ RealSetgray } 
+		{ 
+		FrameSepIs FMblack eq 
+			{ RealSetgray } 
+			{ FrameSepIs FMcustom eq 
+			  FrameSepRed 0 eq and
+			  FrameSepGreen 0 eq and
+			  FrameSepBlue 0 eq and {
+			  	RealSetgray
+			  } {
+				1 RealSetgray pop 
+			  } ifelse
+			} ifelse
+		} ifelse
+	end
+} bind def
+/setrgbcolor { 
+	FrameDict begin
+	FrameSepIs FMnone eq
+	{  RealSetrgbcolor }
+	{
+		3 copy [ 4 1 roll ] 
+		FrameColorInSepListRGB
+		{
+				FrameSepBlue eq exch 
+			 	FrameSepGreen eq and exch 
+			 	FrameSepRed eq and
+			 	{ 0 } { 1 } ifelse
+		}
+		{
+			FMPColor {
+				RealSetrgbcolor
+				currentcmykcolor
+			} {
+				RGBtoCMYK
+			} ifelse
+			FrameSepIs FMblack eq
+			{1.0 exch sub 4 1 roll pop pop pop} {
+			FrameSepIs FMyellow eq
+			{pop 1.0 exch sub 3 1 roll pop pop} {
+			FrameSepIs FMmagenta eq
+			{pop pop 1.0 exch sub exch pop } {
+			FrameSepIs FMcyan eq
+			{pop pop pop 1.0 exch sub } 
+			{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+		} ifelse
+		RealSetgray
+	} 
+	ifelse
+	end
+} bind def
+/sethsbcolor {
+	FrameDict begin
+	FrameSepIs FMnone eq 
+	{ RealSethsbcolor } 
+	{
+		RealSethsbcolor 
+		currentrgbcolor  
+		setrgbcolor 
+	} 
+	ifelse
+	end
+} bind def
+FrameDict begin
+/setcmykcolor where {
+	pop /RealSetcmykcolor /setcmykcolor load def
+} {
+	/RealSetcmykcolor {
+		4 1 roll
+		3 { 3 index add 0 max 1 min 1 exch sub 3 1 roll} repeat 
+		RealSetrgbcolor pop
+	} bind def
+} ifelse
+userdict /setcmykcolor { 
+		FrameDict begin
+		FrameSepIs FMnone eq
+		{ RealSetcmykcolor } 
+		{
+			4 copy [ 5 1 roll ]
+			FrameColorInSepListCMYK
+			{
+				FrameSepBlack eq exch 
+				FrameSepYellow eq and exch 
+				FrameSepMagenta eq and exch 
+				FrameSepCyan eq and 
+				{ 0 } { 1 } ifelse
+			}
+			{
+				FrameSepIs FMblack eq
+				{1.0 exch sub 4 1 roll pop pop pop} {
+				FrameSepIs FMyellow eq
+				{pop 1.0 exch sub 3 1 roll pop pop} {
+				FrameSepIs FMmagenta eq
+				{pop pop 1.0 exch sub exch pop } {
+				FrameSepIs FMcyan eq
+				{pop pop pop 1.0 exch sub } 
+				{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+			} ifelse
+			RealSetgray
+		}
+		ifelse
+		end
+	} bind put
+fMLevel1 { 
+	
+	
+	
+	/patScreenDict 7 dict dup begin
+		<0f1e3c78f0e1c387> [ 45  { pop } {exch pop} 		.5   2 sqrt] FmBD
+		<0f87c3e1f0783c1e> [ 135 { pop } {exch pop}			.5   2 sqrt] FmBD
+		<cccccccccccccccc> [ 0   { pop } dup				.5   2	   ] FmBD
+		<ffff0000ffff0000> [ 90  { pop } dup				.5   2	   ] FmBD
+		<8142241818244281> [ 45  { 2 copy lt {exch} if pop}	dup .75  2 sqrt] FmBD
+		<03060c183060c081> [ 45  { pop } {exch pop}			.875 2 sqrt] FmBD
+		<8040201008040201> [ 135 { pop } {exch pop}			.875 2 sqrt] FmBD
+	end def
+} { 
+	
+	/patProcDict 5 dict dup begin
+		<0f1e3c78f0e1c387> { 3 setlinewidth -1 -1 moveto 9 9 lineto stroke 
+											4 -4 moveto 12 4 lineto stroke
+											-4 4 moveto 4 12 lineto stroke} bind def
+		<0f87c3e1f0783c1e> { 3 setlinewidth -1 9 moveto 9 -1 lineto stroke 
+											-4 4 moveto 4 -4 lineto stroke
+											4 12 moveto 12 4 lineto stroke} bind def
+		<8142241818244281> { 1 setlinewidth -1 9 moveto 9 -1 lineto stroke
+											-1 -1 moveto 9 9 lineto stroke } bind def
+		<03060c183060c081> { 1 setlinewidth -1 -1 moveto 9 9 lineto stroke 
+											4 -4 moveto 12 4 lineto stroke
+											-4 4 moveto 4 12 lineto stroke} bind def
+		<8040201008040201> { 1 setlinewidth -1 9 moveto 9 -1 lineto stroke 
+											-4 4 moveto 4 -4 lineto stroke
+											4 12 moveto 12 4 lineto stroke} bind def
+	end def
+	/patDict 15 dict dup begin
+		/PatternType 1 def		
+		/PaintType 2 def		
+		/TilingType 3 def		
+		/BBox [ 0 0 8 8 ] def 	
+		/XStep 8 def			
+		/YStep 8 def			
+		/PaintProc {
+			begin
+			patProcDict bstring known {
+				patProcDict bstring get exec
+			} {
+				8 8 true [1 0 0 -1 0 8] bstring imagemask
+			} ifelse
+			end
+		} bind def
+	end def
+} ifelse
+/combineColor {
+    FrameSepIs FMnone eq
+	{
+		graymode fMLevel1 or not {
+			
+			[/Pattern [/DeviceCMYK]] setcolorspace
+			FrameCurColors 0 4 getinterval aload pop FrameCurPat setcolor
+		} {
+			FrameCurColors 3 get 1.0 ge {
+				FrameCurGray RealSetgray
+			} {
+				fMAcrobat not FMPColor graymode and and {
+					0 1 3 { 
+						FrameCurColors exch get
+						1 FrameCurGray sub mul
+					} for
+					RealSetcmykcolor
+				} {
+					4 1 6 {
+						FrameCurColors exch get
+						graymode {
+							1 exch sub 1 FrameCurGray sub mul 1 exch sub
+						} {
+							1.0 lt {FrameCurGray} {1} ifelse
+						} ifelse
+					} for
+					RealSetrgbcolor
+				} ifelse
+			} ifelse
+		} ifelse
+	} { 
+		FrameCurColors 0 4 getinterval aload
+		FrameColorInSepListCMYK {
+			FrameSepBlack eq exch 
+			FrameSepYellow eq and exch 
+			FrameSepMagenta eq and exch 
+			FrameSepCyan eq and
+			FrameSepIs FMcustom eq and
+			{ FrameCurGray } { 1 } ifelse
+		} {
+			FrameSepIs FMblack eq
+			{FrameCurGray 1.0 exch sub mul 1.0 exch sub 4 1 roll pop pop pop} {
+			FrameSepIs FMyellow eq
+			{pop FrameCurGray 1.0 exch sub mul 1.0 exch sub 3 1 roll pop pop} {
+			FrameSepIs FMmagenta eq
+			{pop pop FrameCurGray 1.0 exch sub mul 1.0 exch sub exch pop } {
+			FrameSepIs FMcyan eq
+			{pop pop pop FrameCurGray 1.0 exch sub mul 1.0 exch sub } 
+			{pop pop pop pop 1} ifelse } ifelse } ifelse } ifelse 
+		} ifelse
+		graymode fMLevel1 or not {
+			
+			[/Pattern [/DeviceGray]] setcolorspace
+			FrameCurPat setcolor
+		} { 
+			graymode not fMLevel1 and {
+				
+				dup 1 lt {pop FrameCurGray} if
+			} if
+			RealSetgray
+		} ifelse
+	} ifelse
+} bind def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/fMDefaultMatrix matrix defaultmatrix def
+/fMatrix2 matrix def
+/dpi    72 0 fMDefaultMatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+	
+/freq dpi dup 72 div round dup 0 eq {pop 1} if 8 mul div def
+/sangle 1 0 fMDefaultMatrix dtransform exch atan def
+	sangle fMatrix2 rotate 
+	fMDefaultMatrix fMatrix2 concatmatrix 
+	dup 0 get /sflipx exch def
+	    3 get /sflipy exch def
+/screenIndex {
+	0 1 dpiranges length 1 sub { dup dpiranges exch get 1 sub dpi le {exit} {pop} ifelse } for
+} bind def
+/getCyanScreen {
+	FMUseHighFrequencyScreens { CHighAngles CMHighFreqs} {CLowAngles CMLowFreqs} ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get /FMSpotFunction load
+} bind def
+/getMagentaScreen {
+	FMUseHighFrequencyScreens { MHighAngles CMHighFreqs } {MLowAngles CMLowFreqs} ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get /FMSpotFunction load
+} bind def
+/getYellowScreen {
+	FMUseHighFrequencyScreens { YHighTDot YHighFreqs} { YLowTDot YLowFreqs } ifelse
+		screenIndex dup 3 1 roll get 3 1 roll get { 3 div
+			{2 { 1 add 2 div 3 mul dup floor sub 2 mul 1 sub exch} repeat
+			FMSpotFunction } } {/FMSpotFunction load } ifelse
+			0.0 exch
+} bind def
+/getBlackScreen  {
+	FMUseHighFrequencyScreens { KHighFreqs } { KLowFreqs } ifelse
+		screenIndex get 45.0 /FMSpotFunction load 
+} bind def
+/getSpotScreen {
+	getBlackScreen
+} bind def
+/getCompositeScreen {
+	getBlackScreen
+} bind def
+/FMSetScreen 
+	fMLevel1 { /setscreen load 
+	}{ {
+		8 dict begin
+		/HalftoneType 1 def
+		/SpotFunction exch def
+		/Angle exch def
+		/Frequency exch def
+		/AccurateScreens FMUseAcccurateScreens def
+		currentdict end sethalftone
+	} bind } ifelse
+def
+/setDefaultScreen {
+	FMPColor {
+		orgrxfer cvx orggxfer cvx orgbxfer cvx orgxfer cvx setcolortransfer
+	}
+	{
+		orgxfer cvx settransfer
+	} ifelse
+	orgfreq organgle orgproc cvx setscreen
+} bind def
+/setCurrentScreen {
+	FrameSepIs FMnone eq {
+		FMUseDefaultNoSeparationScreen {
+			setDefaultScreen
+		} {
+			getCompositeScreen FMSetScreen
+		} ifelse
+	} {
+		FrameSepIs FMcustom eq {
+			FMUseDefaultSpotSeparationScreen {
+				setDefaultScreen
+			} {
+				getSpotScreen FMSetScreen
+			} ifelse
+		} {
+			FMUseDefaultProcessSeparationScreen {
+				setDefaultScreen
+			} {
+				FrameSepIs FMcyan eq {
+					getCyanScreen FMSetScreen
+				} {
+					FrameSepIs FMmagenta eq {
+						getMagentaScreen FMSetScreen
+					} {
+						FrameSepIs FMyellow eq {
+							getYellowScreen FMSetScreen
+						} {
+							getBlackScreen FMSetScreen
+						} ifelse
+					} ifelse
+				} ifelse
+			} ifelse
+		} ifelse
+	} ifelse 
+} bind def
+end
+	
+/FMDOCUMENT { 
+	array /FMfonts exch def 
+	/#copies exch def
+	FrameDict begin
+	0 ne /manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	0 ne /fMNegative exch def 
+	0 ne /edown exch def 
+	/yscale exch def
+	/xscale exch def
+	fMLevel1 {
+		manualfeed {setmanualfeed} if
+		/FMdicttop countdictstack 1 add def 
+		/FMoptop count def 
+		setpapername 
+		manualfeed {true} {papersize} ifelse 
+		{manualpapersize} {false} ifelse 
+		{desperatepapersize} {false} ifelse 
+		{papersizefailure} if
+		count -1 FMoptop {pop pop} for
+		countdictstack -1 FMdicttop {pop end} for 
+		}
+		{2 dict
+		 dup /PageSize [paperwidth paperheight] put
+		 manualfeed {dup /ManualFeed manualfeed put} if
+		 {setpagedevice} stopped {papersizefailure} if
+		}
+	ifelse 
+	
+	FMPColor {
+		currentcolorscreen
+			cvlit /orgproc exch def
+				  /organgle exch def 
+				  /orgfreq exch def
+			cvlit /orgbproc exch def
+				  /orgbangle exch def 
+				  /orgbfreq exch def
+			cvlit /orggproc exch def
+				  /orggangle exch def 
+				  /orggfreq exch def
+			cvlit /orgrproc exch def
+				  /orgrangle exch def 
+				  /orgrfreq exch def
+			currentcolortransfer 
+			fMNegative {
+				1 1 4 { 
+					pop { 1 exch sub } fmConcatProcs 4 1 roll
+				} for
+				4 copy
+				setcolortransfer
+			} if
+			cvlit /orgxfer exch def
+			cvlit /orgbxfer exch def
+			cvlit /orggxfer exch def
+			cvlit /orgrxfer exch def
+	} {
+		currentscreen 
+			cvlit /orgproc exch def
+				  /organgle exch def 
+				  /orgfreq exch def
+				  
+		currenttransfer 
+		fMNegative {
+			{ 1 exch sub } fmConcatProcs
+			dup settransfer
+		} if 
+		cvlit /orgxfer exch def
+	} ifelse
+	end 
+} def 
+/FMBEGINPAGE { 
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne def
+	landscape { 
+		90 rotate 0 exch dup /pwid exch def neg translate pop 
+	}{
+		pop /pwid exch def
+	} ifelse
+	edown { [-1 0 0 1 pwid 0] concat } if
+	0 0 moveto paperwidth 0 lineto paperwidth paperheight lineto 
+	0 paperheight lineto 0 0 lineto 1 setgray fill
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+/FMFONTDEFINE { 
+	FrameDict begin
+	findfont 
+	ReEncode 
+	1 index exch 
+	definefont 
+	FMfonts 3 1 roll 
+	put
+	end 
+	} def 
+/FMFILLS {
+	FrameDict begin dup
+	array /fillvals exch def
+	dict /patCache exch def
+	end 
+	} def 
+/FMFILL {
+	FrameDict begin
+	 fillvals 3 1 roll put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	1 setlinewidth
+	0 setlinecap
+	0 0 0 sethsbcolor
+	0 setgray 
+	} bind def
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def 
+	/showpage {} def 
+% See Adobe's "PostScript Language Reference Manual, 2nd Edition", page 714.
+% "...the following operators MUST NOT be used in an EPS file:" (emphasis ours)
+	/banddevice {(banddevice) FMBADEPSF} def
+	/clear {(clear) FMBADEPSF} def
+	/cleardictstack {(cleardictstack) FMBADEPSF} def 
+	/copypage {(copypage) FMBADEPSF} def
+	/erasepage {(erasepage) FMBADEPSF} def
+	/exitserver {(exitserver) FMBADEPSF} def
+	/framedevice {(framedevice) FMBADEPSF} def
+	/grestoreall {(grestoreall) FMBADEPSF} def
+	/initclip {(initclip) FMBADEPSF} def
+	/initgraphics {(initgraphics) FMBADEPSF} def
+	/quit {(quit) FMBADEPSF} def
+	/renderbands {(renderbands) FMBADEPSF} def
+	/setglobal {(setglobal) FMBADEPSF} def
+	/setpagedevice {(setpagedevice) FMBADEPSF} def
+	/setshared {(setshared) FMBADEPSF} def
+	/startjob {(startjob) FMBADEPSF} def
+	/lettertray {(lettertray) FMBADEPSF} def
+	/letter {(letter) FMBADEPSF} def
+	/lettersmall {(lettersmall) FMBADEPSF} def
+	/11x17tray {(11x17tray) FMBADEPSF} def
+	/11x17 {(11x17) FMBADEPSF} def
+	/ledgertray {(ledgertray) FMBADEPSF} def
+	/ledger {(ledger) FMBADEPSF} def
+	/legaltray {(legaltray) FMBADEPSF} def
+	/legal {(legal) FMBADEPSF} def
+	/statementtray {(statementtray) FMBADEPSF} def
+	/statement {(statement) FMBADEPSF} def
+	/executivetray {(executivetray) FMBADEPSF} def
+	/executive {(executive) FMBADEPSF} def
+	/a3tray {(a3tray) FMBADEPSF} def
+	/a3 {(a3) FMBADEPSF} def
+	/a4tray {(a4tray) FMBADEPSF} def
+	/a4 {(a4) FMBADEPSF} def
+	/a4small {(a4small) FMBADEPSF} def
+	/b4tray {(b4tray) FMBADEPSF} def
+	/b4 {(b4) FMBADEPSF} def
+	/b5tray {(b5tray) FMBADEPSF} def
+	/b5 {(b5) FMBADEPSF} def
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fw 2 div add fy fh 2 div add  translate
+	rotate
+	fw 2 div neg fh 2 div neg translate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count def 
+	} bind def
+/FMENDEPSF {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} bind def
+/max {2 copy lt {exch} if pop} bind def
+/min {2 copy gt {exch} if pop} bind def
+/inch {72 mul} def
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} bind def
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} bind def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray letter} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray 11x17} def
+		/Ledger {ledgertray ledger} def
+		/Legal {legaltray legal} def
+		/Statement {statementtray statement} def
+		/Executive {executivetray executive} def
+		/A3 {a3tray a3} def
+		/A4 {a4tray a4} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray b4} def
+		/B5 {b5tray b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	statusdict begin stopped end 
+	} bind def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} bind def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped 
+		end
+		} {true} ifelse 
+	} bind def
+/papersizefailure {
+	FMAllowPaperSizeMismatch not
+		{
+(The requested paper size is not available in any currently-installed tray)
+(Edit the PS file to "FMAllowPaperSizeMismatch true" to use default tray)
+		 FMFAILURE } if
+	} def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+/ReEncode { 
+	dup 
+	length 
+	dict begin 
+	{
+	1 index /FID ne 
+		{def} 
+		{pop pop} ifelse 
+	} forall 
+	0 eq {/Encoding DiacriticEncoding def} if 
+	currentdict 
+	end 
+	} bind def
+FMPColor 
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUECOLOR } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUECOLORc } def
+	/BEGINBITMAPCMYK { 
+		BITMAPCMYK } def
+	/BEGINBITMAPCMYKc { 
+		BITMAPCMYKc } def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUEGRAY } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUEGRAYc } def
+	/BEGINBITMAPCMYK { 
+		BITMAPCMYKGRAY } def
+	/BEGINBITMAPCMYKc { 
+		BITMAPCMYKGRAYc } def
+	}
+ifelse
+/K { 
+	FMPrintAllColorsAsBlack {
+		dup 1 eq 2 index 1 eq and 3 index 1 eq and not
+			{7 {pop} repeat 0 0 0 1 0 0 0} if
+	} if 
+	FrameCurColors astore 
+	pop combineColor
+} bind def
+/graymode true def
+fMLevel1 {
+	/fmGetFlip {
+		fMatrix2 exch get mul 0 lt { -1 } { 1 } ifelse
+	} FmBD
+} if
+/setPatternMode {
+	fMLevel1 {
+		2 index patScreenDict exch known {
+			pop pop
+			patScreenDict exch get aload pop 
+			freq 								
+			mul									
+			5 2 roll							
+			fMatrix2 currentmatrix 1 get 0 ne {
+				3 -1 roll 90 add 3 1 roll 		
+				sflipx 1 fmGetFlip sflipy 2 fmGetFlip neg mul
+			} {  								
+				sflipx 0 fmGetFlip sflipy 3 fmGetFlip mul 
+			} ifelse
+			0 lt {exch pop} {pop} ifelse 		
+			fMNegative { 
+				{neg} fmConcatProcs 			
+			} if
+			bind
+			
+			
+			
+			systemdict /setscreen get exec		
+			/FrameCurGray exch def
+		} {
+			/bwidth  exch def
+			/bpside  exch def
+			/bstring exch def
+			/onbits 0 def  /offbits 0 def
+			freq sangle landscape {90 add} if 
+				{/ypoint exch def
+				 /xpoint exch def
+				 /xindex xpoint 1 add 2 div bpside mul cvi def
+				 /yindex ypoint 1 add 2 div bpside mul cvi def
+				 bstring yindex bwidth mul xindex 8 idiv add get
+				 1 7 xindex 8 mod sub bitshift and 0 ne fMNegative {not} if
+				 {/onbits  onbits  1 add def 1}
+				 {/offbits offbits 1 add def 0}
+				 ifelse
+				}
+				setscreen
+			offbits offbits onbits add div fMNegative {1.0 exch sub} if
+			/FrameCurGray exch def
+		} ifelse
+	} { 
+		pop pop
+		dup patCache exch known {
+			patCache exch get
+		} { 
+			dup
+			patDict /bstring 3 -1 roll put
+			patDict 
+			9 PatFreq screenIndex get div dup matrix scale
+			makepattern
+			dup 
+			patCache 4 -1 roll 3 -1 roll put
+		} ifelse
+		/FrameCurGray 0 def
+		/FrameCurPat exch def
+	} ifelse
+	/graymode false def
+	combineColor
+} bind def
+/setGrayScaleMode {
+	graymode not {
+		/graymode true def
+		fMLevel1 {
+			setCurrentScreen
+		} if
+	} if
+	/FrameCurGray exch def
+	combineColor
+} bind def
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z {
+	setlinecap
+	} bind def
+	
+/PFill {
+	graymode fMLevel1 or not {
+		gsave 1 setgray eofill grestore
+	} if
+} bind def
+/PStroke {
+	graymode fMLevel1 or not {
+		gsave 1 setgray stroke grestore
+	} if
+	stroke
+} bind def
+/X { 
+	fillvals exch get
+	dup type /stringtype eq
+	{8 1 setPatternMode} 
+	{setGrayScaleMode}
+	ifelse
+	} bind def
+/V { 
+	PFill gsave eofill grestore
+	} bind def
+/Vclip {
+	clip
+	} bind def
+/Vstrk {
+	currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/N { 
+	PStroke
+	} bind def
+/Nclip {
+	strokepath clip newpath
+	} bind def
+/Nstrk {
+	currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/rarc 
+	{rad 
+	 arcto
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	mark
+	newpath
+	{
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rarc
+	x2 y2 x2 y1 rarc
+	x2 y1 x1 y1 rarc
+	x1 y1 x1 y2 rarc
+	closepath
+	} stopped {x1 y1 x2 y2 R} if 
+	cleartomark
+	} bind def
+/RRR { 
+	/rad exch def
+	normalize /y4 exch def /x4 exch def
+	normalize /y3 exch def /x3 exch def
+	normalize /y2 exch def /x2 exch def
+	normalize /y1 exch def /x1 exch def
+	newpath
+	normalize moveto 
+	mark
+	{
+	x2 y2 x3 y3 rarc
+	x3 y3 x4 y4 rarc
+	x4 y4 x1 y1 rarc
+	x1 y1 x2 y2 rarc
+	closepath
+	} stopped
+	 {x1 y1 x2 y2 x3 y3 x4 y4 newpath moveto lineto lineto lineto closepath} if
+	cleartomark
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	setCurrentScreen
+} bind def
+/CP { 
+	grestore
+	gsave
+	Y 
+	clip
+	setCurrentScreen
+} bind def
+/F { 
+	FMfonts exch get
+	FMpointsize scalefont
+	setfont
+	} bind def
+/Q { 
+	/FMpointsize exch def
+	F 
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne {-1 1 scale} if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	PFill fill
+	grestore
+	} bind def
+/Gstrk {
+	savematrix
+    newpath
+    2 index 2 div add exch 3 index 2 div sub exch 
+    normalize 2 index 2 div sub exch 3 index 2 div add exch 
+    translate
+    scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    restorematrix
+    currentlinewidth exch setlinewidth PStroke setlinewidth
+    } bind def
+/Gclip { 
+	newpath
+	savematrix
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	clip newpath
+	restorematrix
+	} bind def
+/GG { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	rotate 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath
+	PFill
+	fill
+	grestore
+	} bind def
+/GGclip { 
+	savematrix
+	newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath
+	clip newpath
+	restorematrix
+	} bind def
+/GGstrk { 
+	savematrix
+    newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath 
+	restorematrix
+    currentlinewidth exch setlinewidth PStroke setlinewidth
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	PStroke
+	grestore
+	} bind def
+/Aclip {
+	newpath
+	savematrix
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath 
+	strokepath clip newpath
+	restorematrix
+} bind def
+/Astrk {
+	Gstrk
+} bind def
+/AA { 
+	gsave
+	savematrix
+	newpath
+	
+	3 index 2 div add exch 4 index 2 div sub exch 
+	
+	normalize 3 index 2 div sub exch 4 index 2 div add exch
+	translate 
+	rotate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	PStroke
+	grestore
+	} bind def
+/AAclip {
+	savematrix
+	newpath
+    normalize translate 0.0 0.0 moveto 
+    rotate 
+    dnormalize scale 
+    0.0 0.0 1.0 5 3 roll arc 
+    closepath
+	strokepath clip newpath
+	restorematrix
+} bind def
+/AAstrk {
+	GGstrk
+} bind def
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 7 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/rip { 
+	   
+	  
+	  bis ris copy pop 
+      is
+      0
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop 
+	  ris gis copy pop 
+	  dup is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop
+	  gis bis copy pop 
+	  dup add is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+      pop 
+      
+      } bind def
+/rip4 { 
+	   
+	  
+	  kis cis copy pop 
+      is
+      0
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop 
+	  cis mis copy pop 
+	  dup is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop
+	  mis yis copy pop 
+	  dup dup add is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+	  pop pop
+	  yis kis copy pop 
+	  3 mul is exch 
+	  
+      cf cs readline pop 
+      {       ic exch get exec 
+              add 
+              } forall 
+      pop 
+      
+      } bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+/wbytes { 
+      dup dup
+      8 gt { pop 8 idiv mul }
+      { 8 eq {pop} {1 eq {7 add 8 idiv} {3 add 4 idiv} ifelse} ifelse } ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+		 
+	/cvtProc exch def
+	/depth exch def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/height exch def /width exch def
+	/lb width depth wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	cvtProc                
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	width height depth [width 0 0 height neg 0 height] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/cvtProc exch def
+	/depth exch def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/height exch def /width exch def
+	/bitmapsave save def 
+	cvtProc              
+	/is width depth wbytes string def
+	/cf currentfile def 
+	width height depth [width 0 0 height neg 0 height] 
+	{cf is readhexstring pop} image
+	bitmapsave restore 
+	grestore
+	} bind def
+/ngrayt 256 array def
+/nredt 256 array def
+/nbluet 256 array def
+/ngreent 256 array def
+fMLevel1 {
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/kk cynu magu min yelu min def
+		/u kk currentundercolorremoval exec def
+%		/u 0 def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 kk currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+}
+{
+/colorSetup2 {
+	[ /Indexed /DeviceRGB 255 
+		{dup red exch get 255 div 
+		 exch dup green exch get 255 div 
+		 exch blue exch get 255 div}
+	] setcolorspace
+} bind def
+} ifelse
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 {/indx exch def 
+		tran indx
+		red indx get 77 mul
+		green indx get 151 mul
+		blue indx get 28 mul
+		add add 256 idiv put} for
+	currenttransfer
+	{255 mul cvi tran exch get 255.0 div}
+	exch fmConcatProcs settransfer
+} bind def
+/BITMAPCOLOR { 
+	/depth 8 def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/height exch def /width exch def
+	/bitmapsave save def
+	fMLevel1 {	
+		colorsetup
+		/is width depth wbytes string def
+		/cf currentfile def 
+		width height depth [width 0 0 height neg 0 height] 
+		{cf is readhexstring pop} {is} {is} true 3 colorimage 
+	} {
+		colorSetup2
+		/is width depth wbytes string def
+		/cf currentfile def 
+		7 dict dup begin
+			/ImageType 1 def
+			/Width width def
+			/Height height def
+			/ImageMatrix [width 0 0 height neg 0 height] def
+			/DataSource {cf is readhexstring pop} bind def
+			/BitsPerComponent depth def
+			/Decode [0 255] def
+		end image	
+	} ifelse
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/depth 8 def
+	gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/height exch def /width exch def
+	/lb width depth wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	fMLevel1 {	
+		colorsetup
+		/is im 0 lb getinterval def 
+		ws 0 lb getinterval is copy pop 
+		/cf currentfile def 
+		width height depth [width 0 0 height neg 0 height] 
+		{ip} {is} {is} true 3 colorimage
+	} {
+		colorSetup2
+		/is im 0 lb getinterval def 
+		ws 0 lb getinterval is copy pop 
+		/cf currentfile def 
+		7 dict dup begin
+			/ImageType 1 def
+			/Width width def
+			/Height height def
+			/ImageMatrix [width 0 0 height neg 0 height] def
+			/DataSource {ip} bind def
+			/BitsPerComponent depth def
+			/Decode [0 255] def
+		end image	
+	} ifelse
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPTRUECOLORc { 
+	/depth 24 def
+        gsave
+ 	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/height exch def /width exch def
+	/lb width depth wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+        
+	/is im 0 lb getinterval def	
+	/ris im 0 width getinterval def	
+	/gis im width width getinterval def	
+	/bis im width 2 mul width getinterval def 
+        
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	width height 8 [width 0 0 height neg 0 height] 
+	{width rip pop ris} {gis} {bis} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCMYKc { 
+	/depth 32 def
+        gsave
+ 	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/height exch def /width exch def
+	/lb width depth wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+        
+	/is im 0 lb getinterval def	
+	/cis im 0 width getinterval def	
+	/mis im width width getinterval def	
+	/yis im width 2 mul width getinterval def 
+	/kis im width 3 mul width getinterval def 
+        
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	width height 8 [width 0 0 height neg 0 height] 
+	{width rip4 pop cis} {mis} {yis} {kis} true 4 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPTRUECOLOR { 
+        gsave
+		
+		3 index 2 div add exch	
+		4 index 2 div add exch	
+		translate		
+		rotate			
+		1 index 2 div neg	
+		1 index 2 div neg	
+		translate		
+		scale			
+		/height exch def /width exch def
+        /bitmapsave save def 
+        /is width string def
+        /gis width string def
+        /bis width string def
+        /cf currentfile def 
+        width height 8 [width 0 0 height neg 0 height] 
+        { cf is readhexstring pop } 
+        { cf gis readhexstring pop } 
+        { cf bis readhexstring pop } 
+        true 3 colorimage 
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPCMYK { 
+        gsave
+		
+		3 index 2 div add exch	
+		4 index 2 div add exch	
+		translate		
+		rotate			
+		1 index 2 div neg	
+		1 index 2 div neg	
+		translate		
+		scale			
+		/height exch def /width exch def
+        /bitmapsave save def 
+        /is width string def
+        /mis width string def
+        /yis width string def
+        /kis width string def
+        /cf currentfile def 
+        width height 8 [width 0 0 height neg 0 height] 
+        { cf is readhexstring pop } 
+        { cf mis readhexstring pop } 
+        { cf yis readhexstring pop } 
+        { cf kis readhexstring pop } 
+        true 4 colorimage 
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUEGRAYc { 
+	/depth 24 def
+        gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/height exch def /width exch def
+	/lb width depth wbytes def 
+	sl lb lt {lb ms} if 
+        /bitmapsave save def 
+        
+	/is im 0 lb getinterval def	
+	/ris im 0 width getinterval def	
+	/gis im width width getinterval def	
+	/bis im width 2 mul width getinterval def 
+        ws 0 lb getinterval is copy pop 
+        /cf currentfile def 
+        width height 8 [width 0 0 height neg 0 height] 
+        {width rip pop ris gis bis width gray} image
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPCMYKGRAYc { 
+	/depth 32 def
+        gsave
+	
+	3 index 2 div add exch	
+	4 index 2 div add exch	
+	translate		
+	rotate			
+	1 index 2 div neg	
+	1 index 2 div neg	
+	translate		
+	scale			
+	/height exch def /width exch def
+	/lb width depth wbytes def 
+	sl lb lt {lb ms} if 
+        /bitmapsave save def 
+        
+	/is im 0 lb getinterval def	
+	/cis im 0 width getinterval def	
+	/mis im width width getinterval def	
+	/yis im width 2 mul width getinterval def 
+	/kis im width 3 mul width getinterval def 
+        ws 0 lb getinterval is copy pop 
+        /cf currentfile def 
+        width height 8 [width 0 0 height neg 0 height] 
+        {width rip pop cis mis yis kis width cgray} image
+        bitmapsave restore 
+        grestore
+        } bind def
+/cgray { 
+        /ww exch def
+        /k exch def
+        /y exch def
+        /m exch def
+        /c exch def
+        0 1 ww 1 sub { /i exch def c i get m i get y i get k i get CMYKtoRGB
+				.144 mul 3 1 roll .587 mul 3 1 roll .299 mul add add
+				c i 3 -1 roll floor cvi put } for
+        c
+ 		} bind def
+/gray { 
+        /ww exch def
+        /b exch def
+        /g exch def
+        /r exch def
+        0 1 ww 1 sub { /i exch def r i get .299 mul g i get .587 mul
+			b i get .114 mul add add r i 3 -1 roll floor cvi put } for
+        r
+        } bind def
+/BITMAPTRUEGRAY { 
+        gsave
+		
+		3 index 2 div add exch	
+		4 index 2 div add exch	
+		translate		
+		rotate			
+		1 index 2 div neg	
+		1 index 2 div neg	
+		translate		
+		scale			
+		/height exch def /width exch def
+        /bitmapsave save def 
+        /is width string def
+        /gis width string def
+        /bis width string def
+        /cf currentfile def 
+        width height 8 [width 0 0 height neg 0 height] 
+        { cf is readhexstring pop 
+          cf gis readhexstring pop 
+          cf bis readhexstring pop width gray}  image
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPCMYKGRAY { 
+        gsave
+		
+		3 index 2 div add exch	
+		4 index 2 div add exch	
+		translate		
+		rotate			
+		1 index 2 div neg	
+		1 index 2 div neg	
+		translate		
+		scale			
+		/height exch def /width exch def
+        /bitmapsave save def 
+        /is width string def
+        /yis width string def
+        /mis width string def
+        /kis width string def
+        /cf currentfile def 
+        width height 8 [width 0 0 height neg 0 height] 
+        { cf is readhexstring pop 
+          cf mis readhexstring pop 
+          cf yis readhexstring pop 
+          cf kis readhexstring pop width cgray}  image
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+	/ALDmatrix matrix def ALDmatrix currentmatrix pop
+/StartALD {
+	/ALDsave save def
+	 savematrix
+	 ALDmatrix setmatrix
+	} bind def
+/InALD {
+	 restorematrix
+	} bind def
+/DoneALD {
+	 ALDsave restore
+	} bind def
+/I { setdash } bind def
+/J { [] 0 setdash } bind def
+%%EndProlog
+%%BeginSetup
+(5.0) FMVERSION
+1 1 0 0 612 792 0 1 15 FMDOCUMENT
+0 0 /Helvetica-Bold FMFONTDEFINE
+1 0 /Times-Bold FMFONTDEFINE
+2 0 /Times-Italic FMFONTDEFINE
+3 0 /Times-Roman FMFONTDEFINE
+4 0 /Helvetica-BoldOblique FMFONTDEFINE
+5 1 /ZapfDingbats FMFONTDEFINE
+6 0 /Helvetica FMFONTDEFINE
+32 FMFILLS
+0 0 FMFILL
+1 0.1 FMFILL
+2 0.3 FMFILL
+3 0.5 FMFILL
+4 0.7 FMFILL
+5 0.9 FMFILL
+6 0.97 FMFILL
+7 1 FMFILL
+8 <0f1e3c78f0e1c387> FMFILL
+9 <0f87c3e1f0783c1e> FMFILL
+10 <cccccccccccccccc> FMFILL
+11 <ffff0000ffff0000> FMFILL
+12 <8142241818244281> FMFILL
+13 <03060c183060c081> FMFILL
+14 <8040201008040201> FMFILL
+16 1 FMFILL
+17 0.9 FMFILL
+18 0.7 FMFILL
+19 0.5 FMFILL
+20 0.3 FMFILL
+21 0.1 FMFILL
+22 0.03 FMFILL
+23 0 FMFILL
+24 <f0e1c3870f1e3c78> FMFILL
+25 <f0783c1e0f87c3e1> FMFILL
+26 <3333333333333333> FMFILL
+27 <0000ffff0000ffff> FMFILL
+28 <7ebddbe7e7dbbd7e> FMFILL
+29 <fcf9f3e7cf9f3f7e> FMFILL
+30 <7fbfdfeff7fbfdfe> FMFILL
+%%EndSetup
+%%Page: "1" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+J
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72 750.02 558 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+72 445.03 558 445.03 2 L
+7 X
+V
+2 Z
+0 X
+N
+71.25 74.77 557.25 74.77 2 L
+7 X
+V
+0.25 H
+0 X
+N
+71.25 55.76 467.25 67.71 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 71.25 61.04 T
+0 -13 -14 95 14 108 28 450 45 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+72 468 558 693 R
+7 X
+V
+1 12 Q
+0 X
+1.2 (Memo:) 135 673 S
+2 30 Q
+(Ra) 207 673 T
+(gnar) 240.03 673 T
+(ok) 295.35 673 T
+3 F
+( Coding) 323.67 673 T
+(Con) 207 641 T
+(v) 255.81 641 T
+(entions) 270.36 641 T
+1 12 Q
+1.2 (Fr) 135 587 S
+1.2 (om:) 149.84 587 S
+3 18 Q
+(Jim Dehnert) 207 587 T
+1 12 Q
+1.2 (T) 135 555 S
+1.2 (o:) 143.1 555 S
+2 18 Q
+(Ra) 207 555 T
+(gnar) 226.82 555 T
+(ok) 260.01 555 T
+3 F
+( softw) 277 555 T
+(are de) 321.32 555 T
+(v) 364.34 555 T
+(elopers) 373.07 555 T
+1 12 Q
+1.2 (Date:) 135 523 S
+3 18 Q
+(September 29, 1997) 207 523 T
+576 517 578 535 R
+V
+72 87.98 558 432 R
+7 X
+V
+72 412.98 558 416 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+207 414.49 558 414.49 2 L
+0.25 H
+2 Z
+0 X
+0 0 0 1 0 0 0 K
+N
+72 414.49 198 414.49 2 L
+0 Z
+N
+0 0 612 792 C
+1 16 Q
+0 X
+0 0 0 1 0 0 0 K
+(Section 1) 136.22 421.33 T
+(Intr) 207 421.33 T
+(oduction and Philosoph) 234.26 421.33 T
+(y) 394.97 421.33 T
+3 12 Q
+(This document describes the coding con) 207 390.98 T
+(v) 399.49 390.98 T
+(entions used in the) 405.31 390.98 T
+2 F
+(Ra) 497.98 390.98 T
+(gnar) 511.19 390.98 T
+(ok) 533.32 390.98 T
+3 F
+0 (compiler project. It will continue to e) 207 376.98 P
+0 (v) 385.65 376.98 P
+0 (olv) 391.41 376.98 P
+0 (e o) 406.57 376.98 P
+0 (v) 420.71 376.98 P
+0 (er time, and we in) 426.53 376.98 P
+0 (vite com-) 512.34 376.98 P
+(ments and suggestions, especially for ne) 207 362.98 T
+(w issues that arise. Note, ho) 400.01 362.98 T
+(we) 534.02 362.98 T
+(v-) 547.72 362.98 T
+(er) 207 348.98 T
+(, that this document re\337ects con) 215.84 348.98 T
+(v) 368.02 348.98 T
+(entions used both by the Josie group) 373.84 348.98 T
+-0.04 (and in the current) 207 334.98 P
+2 F
+-0.04 (Ra) 294.15 334.98 P
+-0.04 (gnar) 307.36 334.98 P
+-0.04 (ok) 329.49 334.98 P
+3 F
+-0.04 ( compiler) 340.82 334.98 P
+-0.04 (. As a result, there is a great deal of) 385.78 334.98 P
+-0.07 (e) 207 320.98 P
+-0.07 (xisting code which already matches these con) 212.15 320.98 P
+-0.07 (v) 430.55 320.98 P
+-0.07 (entions, and we prefer to) 436.37 320.98 P
+(a) 207 306.98 T
+(v) 212.09 306.98 T
+(oid arbitrary changes which result in a great deal of non-conforming) 217.85 306.98 T
+(old code. Please k) 207 292.98 T
+(eep this in mind in making suggestions.) 293.53 292.98 T
+(An underlying assumption is that the b) 207 266.98 T
+(ulk of code will be in ANSI C. If) 392.76 266.98 T
+(we should mak) 207 252.98 T
+(e substantial use of another language, we can mak) 279.54 252.98 T
+(e addi-) 519.7 252.98 T
+(tions to re\337ect that. I ha) 207 238.98 T
+(v) 320.75 238.98 T
+(en\325) 326.57 238.98 T
+(t bothered for isolated cases lik) 341.68 238.98 T
+(e the use of) 491.2 238.98 T
+4 10 Q
+(a) 207 224.98 T
+(wk) 212.41 224.98 T
+3 12 Q
+( for the TDT generation.) 225.75 224.98 T
+(Note that I do not vie) 207 198.98 T
+(w coding con) 309.02 198.98 T
+(v) 373.2 198.98 T
+(entions as a set of la) 379.02 198.98 T
+(ws ne) 475.82 198.98 T
+(v) 503.18 198.98 T
+(er to be) 509 198.98 T
+-0.47 (brok) 207 184.98 P
+-0.47 (en. I vie) 228.88 184.98 P
+-0.47 (w them as a set of guidelines to be follo) 266.63 184.98 P
+-0.47 (wed UNLESS there\325) 453.09 184.98 P
+-0.47 (s) 550.8 184.98 P
+(a v) 207 170.98 T
+(ery good reason not to. \050Note that \322I really lik) 221.15 170.98 T
+(e it better this other) 440.99 170.98 T
+(w) 207 156.98 T
+(ay\323 doesn\325) 215.54 156.98 T
+(t qualify as a good reason.\051 The objecti) 266.98 156.98 T
+(v) 453.97 156.98 T
+(es include:) 459.79 156.98 T
+5 7 Q
+(l) 216 136.98 T
+3 12 Q
+(T) 237.6 136.98 T
+(o maximize functional consistenc) 243.97 136.98 T
+(y \050e.g. of things lik) 404.77 136.98 T
+(e data struc-) 495.98 136.98 T
+(tures\051 so that common utility packages can be used, a) 237.6 122.98 T
+(v) 493.32 122.98 T
+(oiding du-) 499.08 122.98 T
+(plication of ef) 237.6 108.98 T
+(fort.) 304.62 108.98 T
+FMENDPAGE
+%%EndPage: "1" 1
+%%Page: "2" 2
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+54 750.02 540 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+54 730.15 540 742.18 R
+7 X
+V
+0 7 Q
+0 X
+(P) 515.97 736.18 T
+(a) 520.43 736.18 T
+(g) 524.26 736.18 T
+(e) 528.6 736.18 T
+0 9 Q
+(2) 535 736.18 T
+54 726.98 540 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+0 -13 -14 95 14 108 28 54 45 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+54 76.5 540 76.5 2 L
+7 X
+V
+2 Z
+0 X
+N
+162 55.55 540 67.5 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 506.64 60.83 T
+54 87.98 540 686.02 R
+7 X
+V
+5 7 Q
+0 X
+(l) 198 678.02 T
+3 12 Q
+(T) 219.6 678.02 T
+(o maximize stylistic consistenc) 225.97 678.02 T
+(y \050e.g. of naming con) 375.46 678.02 T
+(v) 477.62 678.02 T
+(entions\051 so) 483.44 678.02 T
+-0.04 (that team members other than the author of a piece of code can un-) 219.6 664.02 P
+(derstand and possibly \336x it without w) 219.6 650.02 T
+(ading through unf) 400.15 650.02 T
+(amiliar) 486.02 650.02 T
+(terms and inconsistent styles.) 219.6 636.02 T
+5 7 Q
+(l) 198 619.02 T
+3 12 Q
+(T) 219.6 619.02 T
+(o pro) 225.97 619.02 T
+(vide a consistent set of solutions to commonly encountered) 250.79 619.02 T
+(problems.) 219.6 605.02 T
+(The underlying message of all of these is that, with a lar) 189 579.02 T
+(ge group of peo-) 458.08 579.02 T
+(ple w) 189 565.02 T
+(orking on a lar) 215.21 565.02 T
+(ge piece of softw) 285.31 565.02 T
+(are, consistenc) 367.5 565.02 T
+(y helps to allo) 437.96 565.02 T
+(w e) 505.33 565.02 T
+(v-) 522.02 565.02 T
+(eryone to understand and w) 189 551.02 T
+(ork with code without a lot of unnecessary) 321.52 551.02 T
+-0.35 (learning o) 189 537.02 P
+-0.35 (v) 236.8 537.02 P
+-0.35 (erhead. This pays of) 242.62 537.02 P
+-0.35 (f during de) 338.59 537.02 P
+-0.35 (v) 390.25 537.02 P
+-0.35 (elopment b) 396.07 537.02 P
+-0.35 (y helping u) 449.39 537.02 P
+-0.35 (s to put) 502.7 537.02 P
+(people to w) 189 523.02 T
+(ork where the) 244.87 523.02 T
+(y\325) 310.67 523.02 T
+(re needed, and mak) 320.06 523.02 T
+(es later maintenance by) 413.24 523.02 T
+(people who weren\325) 189 509.02 T
+(t in) 280.75 509.02 T
+(v) 295.94 509.02 T
+(olv) 301.7 509.02 T
+(ed in de) 316.86 509.02 T
+(v) 354.55 509.02 T
+(elopment much easier) 360.37 509.02 T
+(.) 465.02 509.02 T
+(Subordinate to the abo) 189 483.02 T
+(v) 297.14 483.02 T
+(e objecti) 302.96 483.02 T
+(v) 343.66 483.02 T
+(es, we cater to indi) 349.48 483.02 T
+(vidual preferences) 439.49 483.02 T
+-0.45 (and ease of use \321 some things are not speci\336ed in this document because) 189 469.02 P
+(the) 189 455.02 T
+(y don\325) 203.48 455.02 T
+(t further the objecti) 234.26 455.02 T
+(v) 326.28 455.02 T
+(es. I do, ho) 332.1 455.02 T
+(we) 384.79 455.02 T
+(v) 398.48 455.02 T
+(er) 404.3 455.02 T
+(, e) 413.15 455.02 T
+(xpect us all to try to ob-) 424.3 455.02 T
+(serv) 189 441.02 T
+(e the spirit so eloquently e) 208.81 441.02 T
+(xpressed by Mark:) 334.96 441.02 T
+2 F
+(\322... I am only a single participant, so will mana) 225 415.02 T
+(g) 453.23 415.02 T
+(e to put) 459.11 415.02 T
+(aside my e) 225 401.02 T
+(xquisite style and e) 275.41 401.02 T
+(xc) 366.83 401.02 T
+(hang) 377.3 401.02 T
+(e it for whate) 401.18 401.02 T
+(ver) 464.68 401.02 T
+(mangled con) 225 387.02 T
+(ventions the gr) 286.18 387.02 T
+(oup comes up with.) 356.96 387.02 T
+(\323) 447.95 387.02 T
+558 533.02 560 545.02 R
+V
+FMENDPAGE
+%%EndPage: "2" 2
+%%Page: "3" 3
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72 750.02 558 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+72 730.15 558 742.18 R
+7 X
+V
+0 9 Q
+0 X
+(De) 207 736.18 T
+(velopment En) 218.37 736.18 T
+(vir) 277.02 736.18 T
+(onment) 287.85 736.18 T
+0 7 Q
+(P) 533.97 736.18 T
+(a) 538.43 736.18 T
+(g) 542.26 736.18 T
+(e) 546.6 736.18 T
+0 9 Q
+(3) 553 736.18 T
+72 726.98 558 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+71.25 74.77 557.25 74.77 2 L
+7 X
+V
+2 Z
+0 X
+N
+71.25 55.76 467.25 67.71 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 71.25 61.04 T
+0 -13 -14 95 14 108 28 450 44 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+72 87.98 558 686.02 R
+7 X
+V
+72 666.99 558 670.02 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+207 668.5 558 668.5 2 L
+0.25 H
+2 Z
+0 X
+0 0 0 1 0 0 0 K
+N
+72 668.5 198 668.5 2 L
+0 Z
+N
+0 0 612 792 C
+1 16 Q
+0 X
+0 0 0 1 0 0 0 K
+(Section 2) 136.22 675.35 T
+(De) 207 675.35 T
+(v) 225.42 675.35 T
+(elopment En) 233.26 675.35 T
+(vir) 319.29 675.35 T
+(onment) 338.55 675.35 T
+3 12 Q
+(This section is skimp) 207 644.99 T
+(y and only mar) 308.56 644.99 T
+(ginally accurate due to the recent) 380.66 644.99 T
+(mo) 207 630.99 T
+(v) 222.16 630.99 T
+(e to the SGI source repository) 227.98 630.99 T
+(.) 370.84 630.99 T
+-0.07 (T) 207 604.99 P
+-0.07 (he \336le names referenced in this document \050e.g.) 214.33 604.99 P
+4 10 Q
+-0.06 (doc/Ra) 441.08 604.99 P
+-0.06 (gnar) 474.32 604.99 P
+-0.06 (ok/\337a) 495.79 604.99 P
+-0.06 (gs) 521.81 604.99 P
+3 12 Q
+-0.07 (\051 are) 533.48 604.99 P
+(all relati) 207 590.99 T
+(v) 246.36 590.99 T
+(e to the root of our de) 252.18 590.99 T
+(v) 355.86 590.99 T
+(elopment source tree, currently) 361.68 590.99 T
+4 10 Q
+(v6.01) 513.97 590.99 T
+3 12 Q
+(.) 538.99 590.99 T
+(.) 541.99 590.99 T
+72 542.97 558 545.99 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+207 544.48 558 544.48 2 L
+0.25 H
+2 Z
+0 X
+0 0 0 1 0 0 0 K
+N
+72 544.48 198 544.48 2 L
+0 Z
+N
+0 0 612 792 C
+1 16 Q
+0 X
+0 0 0 1 0 0 0 K
+(Section 3) 136.22 551.33 T
+(Files) 207 551.33 T
+3 12 Q
+(Header \336les) 207 520.97 T
+(Most header \336les will ha) 279 520.97 T
+(v) 397.42 520.97 T
+(e a) 403.24 520.97 T
+4 10 Q
+(.h) 419.89 520.97 T
+3 12 Q
+( e) 428.78 520.97 T
+(xtension. In particular) 436.93 520.97 T
+(,) 542.1 520.97 T
+(those which pro) 279 506.97 T
+(vide the interf) 355.48 506.97 T
+(ace speci\336cations for e) 422.68 506.97 T
+(x) 532.13 506.97 T
+(e-) 537.95 506.97 T
+(cutable code modules should ha) 279 492.97 T
+(v) 432.07 492.97 T
+(e the same base name) 437.89 492.97 T
+(with a) 279 478.97 T
+4 10 Q
+(.h) 311.66 478.97 T
+3 12 Q
+( e) 320.55 478.97 T
+(xtension. One historical e) 328.7 478.97 T
+(xception to this rule) 451.17 478.97 T
+(in) 279 464.97 T
+(v) 287.86 464.97 T
+(olv) 293.62 464.97 T
+(es the SGIR de\336nitions, which tend to ha) 308.77 464.97 T
+(v) 505.86 464.97 T
+(e a) 511.68 464.97 T
+4 10 Q
+(xx.h) 528.34 464.97 T
+3 12 Q
+(\336le named after the principal data structure de\336ned \050e.g.) 279 450.97 T
+4 10 Q
+(bb.h) 279 436.97 T
+3 12 Q
+(\051, with miscellaneous interf) 300.11 436.97 T
+(ace and utility routines in) 431.31 436.97 T
+(a \336le named) 279 422.97 T
+4 10 Q
+(xxutil.c) 340.66 422.97 T
+3 12 Q
+( \050e.g.) 375.12 422.97 T
+4 10 Q
+(bb) 402.44 422.97 T
+(util.c) 414.46 422.97 T
+3 12 Q
+(\051.) 437.8 422.97 T
+(Code \336les) 207 396.97 T
+(Files containing e) 279 396.97 T
+(x) 364.15 396.97 T
+(ecutable code will generally ha) 369.97 396.97 T
+(v) 519.02 396.97 T
+(e a) 524.84 396.97 T
+4 10 Q
+(.c) 541.5 396.97 T
+3 12 Q
+(e) 279 382.97 T
+(xtension. Such \336les should minimize the e) 284.15 382.97 T
+(xported inter-) 486.97 382.97 T
+(f) 279 368.97 T
+(ace \050by liberal use of) 282.88 368.97 T
+0 10 Q
+(static) 386.51 368.97 T
+3 12 Q
+( declarations\051, and should al-) 412.63 368.97 T
+(w) 279 354.97 T
+(ays ha) 287.54 354.97 T
+(v) 317.63 354.97 T
+(e an associated header \336le with the same base) 323.45 354.97 T
+(\336le name and a) 279 340.97 T
+4 10 Q
+(.h) 354.98 340.97 T
+3 12 Q
+( e) 363.87 340.97 T
+(xtension, containing) 372.02 340.97 T
+0 10 Q
+(e) 472.35 340.97 T
+(xtern) 477.76 340.97 T
+3 12 Q
+( declara-) 502.21 340.97 T
+(tions and prototypes for the e) 279 326.97 T
+(xported data and functions.) 419.14 326.97 T
+(Other \336les) 207 300.97 T
+-0.3 (There will be some other \336les \050e.g. the TDT source and in-) 279 300.97 P
+(clude \336les\051 which do not f) 279 286.97 T
+(all into the cate) 404.53 286.97 T
+(gories of code) 478.01 286.97 T
+(\336les and their associated interf) 279 272.97 T
+(ace header \336les. The) 425.52 272.97 T
+(y may) 523.97 272.97 T
+(ha) 279 258.97 T
+(v) 290.09 258.97 T
+(e other e) 295.91 258.97 T
+(xtensions which re\337ect their function.) 337.04 258.97 T
+(Note that some Unix systems \050and probably some tools\051 ha) 207 232.97 T
+(v) 490.4 232.97 T
+(e problems) 496.22 232.97 T
+(with \336lenames longer than 14 characters. Since RCS adds a tw) 207 218.97 T
+(o-charac-) 507.84 218.97 T
+-0.13 (ter e) 207 204.97 P
+-0.13 (xtension, try to k) 227.68 204.97 P
+-0.13 (eep the root \336le names at or belo) 308.49 204.97 P
+-0.13 (w 10 characters, or) 464.23 204.97 P
+(shorter if a longer e) 207 190.97 T
+(xtension \050than) 300.79 190.97 T
+4 10 Q
+(.c) 372.12 190.97 T
+3 12 Q
+( or) 380.46 190.97 T
+4 10 Q
+(.h) 396.46 190.97 T
+3 12 Q
+(\051 will be used with it.) 405.35 190.97 T
+(F) 207 164.97 T
+(or lar) 213.49 164.97 T
+(ge collections of closely related \336les, it is useful to use a common) 238.93 164.97 T
+(pre\336x of about tw) 207 150.97 T
+(o characters to associate them in listings and the lik) 292.54 150.97 T
+(e.) 539.39 150.97 T
+-0.13 (F) 207 136.97 P
+-0.13 (or instance, the core) 213.49 136.97 P
+2 F
+-0.13 (Ra) 312.61 136.97 P
+-0.13 (gnar) 325.82 136.97 P
+-0.13 (ok) 347.95 136.97 P
+3 F
+-0.13 ( code generator sources ha) 359.27 136.97 P
+-0.13 (v) 485.79 136.97 P
+-0.13 (e names start-) 491.61 136.97 P
+(ing with) 207 122.97 T
+4 10 Q
+(cg) 249.67 122.97 T
+3 12 Q
+(.) 261.34 122.97 T
+576 586.99 578 638.99 R
+V
+FMENDPAGE
+%%EndPage: "3" 3
+%%Page: "4" 4
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+54 750.02 540 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+54 730.15 540 742.18 R
+7 X
+V
+0 7 Q
+0 X
+(P) 515.97 736.18 T
+(a) 520.43 736.18 T
+(g) 524.26 736.18 T
+(e) 528.6 736.18 T
+0 9 Q
+(4) 535 736.18 T
+54 726.98 540 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+0 -13 -14 95 14 108 28 54 45 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+54 76.5 540 76.5 2 L
+7 X
+V
+2 Z
+0 X
+N
+162 55.55 540 67.5 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 506.64 60.83 T
+54 87.98 540 686.02 R
+7 X
+V
+3 12 Q
+0 X
+-0.07 (All source \336les should ha) 189 678.02 P
+-0.07 (v) 310.47 678.02 P
+-0.07 (e descripti) 316.29 678.02 P
+-0.07 (v) 365.57 678.02 P
+-0.07 (e headers describing their function) 371.39 678.02 P
+(and pro) 189 664.02 T
+(viding cop) 225.14 664.02 T
+(yright and identi\336cation information. All functions) 276.02 664.02 T
+(should also ha) 189 650.02 T
+(v) 257.42 650.02 T
+(e descripti) 263.24 650.02 T
+(v) 312.6 650.02 T
+(e headers. T) 318.42 650.02 T
+(emplates for these may be found) 375.89 650.02 T
+(in \336les i) 189 636.02 T
+(n) 227.68 636.02 T
+4 10 Q
+(doc) 236.68 636.02 T
+3 12 Q
+(:) 254.46 636.02 T
+4 10 Q
+(c.sour) 198 610.02 T
+(ce) 227.81 610.02 T
+(.hdr) 239.13 610.02 T
+3 12 Q
+(for source code \336les,) 279 610.02 T
+4 10 Q
+(c.inc) 198 584.02 T
+(lude) 220.59 584.02 T
+(.hdr) 241.35 584.02 T
+3 12 Q
+(for header \336les, and) 279 584.02 T
+4 10 Q
+(c.func.hdr) 198 558.02 T
+3 12 Q
+(for functions.) 279 558.02 T
+(Note that it is desirable that header \336les #included twice not cause) 189 532.02 T
+(problems. \050This allo) 189 518.02 T
+(ws other header \336les to #include them without) 285.7 518.02 T
+(concern for ho) 189 504.02 T
+(w man) 258.67 504.02 T
+(y others do the same thing \321 b) 290.82 504.02 T
+(ut see belo) 440.9 504.02 T
+(w) 491.93 504.02 T
+(.\051 The) 499.81 504.02 T
+4 10 Q
+-0.51 (c.inc) 189 490.02 P
+-0.51 (lude) 211.59 490.02 P
+-0.51 (.hdr) 232.35 490.02 P
+3 12 Q
+-0.55 ( template mentioned abo) 251.24 490.02 P
+-0.55 (v) 367.73 490.02 P
+-0.55 (e contains) 373.55 490.02 P
+4 10 Q
+-0.51 (cpp) 423.77 490.02 P
+3 12 Q
+-0.55 ( patterns intended to) 441.55 490.02 P
+(achie) 189 476.02 T
+(v) 214.02 476.02 T
+(e this objecti) 219.84 476.02 T
+(v) 280.87 476.02 T
+(e.) 286.69 476.02 T
+(W) 189 450.02 T
+(e discourage #including header \336les in other header \336les. Doing so) 199.37 450.02 T
+(mak) 189 436.02 T
+(es it dif) 209.54 436.02 T
+(\336cult to trac) 245.24 436.02 T
+(k the h) 303.24 436.02 T
+(eaders on which a source \336le is really de-) 335.9 436.02 T
+-0.23 (pendent, and mak) 189 422.02 P
+-0.23 (es reb) 273.4 422.02 P
+-0.23 (uilds after changing a header \336le much more cost-) 301.25 422.02 P
+(ly) 189 408.02 T
+(. As a result of this bias, you should attempt to mak) 197.56 408.02 T
+(e your headers) 444.43 408.02 T
+(independent of #include ordering. This primarily means including in-) 189 394.02 T
+(complete declarations for structure types from else) 189 380.02 T
+(where, and using the) 431.98 380.02 T
+(struct tag instead of the typedef name.) 189 366.02 T
+558 632.02 560 644.02 R
+V
+558 432.02 560 444.02 R
+V
+FMENDPAGE
+%%EndPage: "4" 4
+%%Page: "5" 5
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72 750.02 558 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+72 730.15 558 742.18 R
+7 X
+V
+0 9 Q
+0 X
+(Names) 207 736.18 T
+0 7 Q
+(P) 533.97 736.18 T
+(a) 538.43 736.18 T
+(g) 542.26 736.18 T
+(e) 546.6 736.18 T
+0 9 Q
+(5) 553 736.18 T
+72 726.98 558 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+71.25 74.77 557.25 74.77 2 L
+7 X
+V
+2 Z
+0 X
+N
+71.25 55.76 467.25 67.71 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 71.25 61.04 T
+0 -13 -14 95 14 108 28 450 44 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+72 87.98 558 686.02 R
+7 X
+V
+72 666.99 558 670.02 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+207 668.5 558 668.5 2 L
+0.25 H
+2 Z
+0 X
+0 0 0 1 0 0 0 K
+N
+72 668.5 198 668.5 2 L
+0 Z
+N
+0 0 612 792 C
+1 16 Q
+0 X
+0 0 0 1 0 0 0 K
+(Section 4) 136.22 675.35 T
+(Names) 207 675.35 T
+1 14 Q
+(4.1) 180.5 637.66 T
+(T) 207 637.66 T
+(ypes) 215.3 637.66 T
+3 12 Q
+(W) 207 618.99 T
+(e ha) 217.37 618.99 T
+(v) 236.78 618.99 T
+(e tw) 242.6 618.99 T
+(o principal objecti) 262.81 618.99 T
+(v) 349.84 618.99 T
+(es in the typing/declaration area:) 355.66 618.99 T
+(1.) 221.4 598.99 T
+(T) 237.6 598.99 T
+(o f) 243.97 598.99 T
+(acilitate host portability of the source code. Note that we will) 256.85 598.99 T
+-0.18 (be mo) 237.6 584.99 P
+-0.18 (ving at some point from a 32-bit host to a 64-bit host, so this) 266.9 584.99 P
+(is a v) 237.6 570.99 T
+(ery real concern.) 262.75 570.99 T
+(2.) 221.4 553.99 T
+(T) 237.6 553.99 T
+(o support compact data structures where appropriate without in-) 243.97 553.99 T
+(viting problems if and when data sizes change.) 237.6 539.99 T
+-0.1 (T) 207 513.99 P
+-0.1 (o this end, both the Apogee and) 213.37 513.99 P
+2 F
+-0.1 (Ra) 367.97 513.99 P
+-0.1 (gnar) 381.18 513.99 P
+-0.1 (ok) 403.31 513.99 P
+3 F
+-0.1 ( compilers use a collection of) 414.64 513.99 P
+(type de\336nitions \050in the \336le) 207 499.99 T
+4 10 Q
+(common/com/defs.h) 336.67 499.99 T
+3 12 Q
+(\051, principally for inte) 433.91 499.99 T
+(ger) 533.72 499.99 T
+-0.19 (data types, which encode both the minimum size and a bias in f) 207 485.99 P
+-0.19 (a) 508.88 485.99 P
+-0.19 (v) 513.97 485.99 P
+-0.19 (or of ei-) 519.73 485.99 P
+(ther speed or size. The names ha) 207 471.99 T
+(v) 363.05 471.99 T
+(e the form [) 368.87 471.99 T
+0 10 Q
+(m) 425.18 471.99 T
+3 12 Q
+(][) 434.07 471.99 T
+0 10 Q
+(U) 442.07 471.99 T
+3 12 Q
+(]) 449.29 471.99 T
+0 10 Q
+(INT) 453.28 471.99 T
+3 12 Q
+(s, where:) 469.39 471.99 T
+0 10 Q
+(m) 221.51 451.99 T
+3 12 Q
+-0.4 (is used if the bias is to be memory size, i.e. the object is to be of the) 237.6 451.99 P
+(minimum size possible gi) 237.6 437.99 T
+(v) 360.31 437.99 T
+(en the speci\336ed size.) 366.13 437.99 T
+0 10 Q
+(U) 223.18 417.99 T
+3 12 Q
+(indicates an unsigned rather than a signed type.) 237.6 417.99 T
+(s) 225.73 397.99 T
+-0.19 (is the speci\336ed size, in bits, of the object. It should be chosen to be) 237.6 397.99 P
+(al) 237.6 383.99 T
+(w) 246.14 383.99 T
+(ays adequate for an) 254.69 383.99 T
+(y anticipated instantiation. Although it is) 347.47 383.99 T
+(optional if the) 237.6 369.99 T
+0 10 Q
+(m) 307.93 369.99 T
+3 12 Q
+( is not used, omitting it is bad form.) 316.82 369.99 T
+(There are tw) 237.6 349.99 T
+(o special cases of the size. \324) 298.12 349.99 T
+0 10 Q
+(PS) 431.08 349.99 T
+3 12 Q
+(\325 implies the host\325) 444.42 349.99 T
+(s) 530.76 349.99 T
+(pointer size. \324) 237.6 335.99 T
+0 10 Q
+(SC) 303.25 335.99 T
+3 12 Q
+(\325 implies a size) 317.14 335.99 T
+2 F
+(scaled) 392.47 335.99 T
+3 F
+( for the host\325) 423.13 335.99 T
+(s capabilities) 484.12 335.99 T
+(\321 it will the lar) 237.6 321.99 T
+(gest size ef) 314.05 321.99 T
+(\336ciently supported by the host.) 367.07 321.99 T
+(In general, if) 207 295.99 T
+0 10 Q
+(m) 271.64 295.99 T
+3 12 Q
+( is not used, all of the types are mapped to the def) 280.53 295.99 T
+(ault) 518.71 295.99 T
+0 10 Q
+(int) 539.71 295.99 T
+3 12 Q
+-0.28 (type,) 207 281.99 P
+2 F
+-0.28 (if it is lar) 233.38 281.99 P
+-0.28 (g) 276.44 281.99 P
+-0.28 (e enough) 282.32 281.99 P
+3 F
+-0.28 (, or to) 325.69 281.99 P
+0 10 Q
+-0.26 (long) 356.18 281.99 P
+3 12 Q
+-0.28 ( if not. This type is generally selected) 377.29 281.99 P
+-0.3 (by C implementations to be the most ef) 207 267.99 P
+-0.3 (\336cient size, and is the def) 393.59 267.99 P
+-0.3 (ault type) 513.94 267.99 P
+(for parameters and function results.) 207 253.99 T
+(Struct declarations will be as typedefs as in:) 207 227.99 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+( typedef str) 234 207.99 T
+(uct node {) 293.54 207.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(UINT32 name;) 252 191.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(........) 252 175.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(} NODE;) 234 159.99 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+-0.26 (All other uses of the struct will refer to its typedef names \050) 207 133.99 P
+0 10 Q
+-0.24 (NODE) 484.49 133.99 P
+3 12 Q
+-0.26 ( in e) 513.38 133.99 P
+-0.26 (xam-) 533.34 133.99 P
+(ple abo) 207 119.99 T
+(v) 241.81 119.99 T
+(e\051. The typedef name will be in upper case; the struct name nor-) 247.63 119.99 T
+-0.07 (mally the same spelling in lo) 207 105.99 P
+-0.07 (wer case. In general, references to the struct) 344.67 105.99 P
+(type should use the typedef name. The only signi\336cant e) 207 91.99 T
+(xceptions are:) 477.46 91.99 T
+FMENDPAGE
+%%EndPage: "5" 5
+%%Page: "6" 6
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+54 750.02 540 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+54 730.15 540 742.18 R
+7 X
+V
+0 7 Q
+0 X
+(P) 515.97 736.18 T
+(a) 520.43 736.18 T
+(g) 524.26 736.18 T
+(e) 528.6 736.18 T
+0 9 Q
+(6) 535 736.18 T
+54 726.98 540 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+0 -13 -14 95 14 108 28 54 45 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+54 76.5 540 76.5 2 L
+7 X
+V
+2 Z
+0 X
+N
+162 55.55 540 67.5 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 506.64 60.83 T
+54 87.98 540 686.02 R
+7 X
+V
+5 7 Q
+0 X
+(l) 198 678.02 T
+3 12 Q
+(In the struct declaration itself, where the typedef name is not yet) 219.6 678.02 T
+(a) 219.6 664.02 T
+(v) 224.69 664.02 T
+(ailable.) 230.39 664.02 T
+5 7 Q
+(l) 198 647.02 T
+3 12 Q
+(Where use of the struct name in a pointer declaration eliminates) 219.6 647.02 T
+-0.43 (the need to #include an otherwise unnecessary header \336le. This is a) 219.6 633.02 P
+(frequent occurrence where either \336elds in a data structure or func-) 219.6 619.02 T
+(tion parameters refer to data structures from other \336les.) 219.6 605.02 T
+(An acceptable alternate form of the abo) 189 579.02 T
+(v) 378.76 579.02 T
+(e is:) 384.58 579.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(typedef str) 216 559.02 T
+(uct node NODE;) 272.21 559.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(str) 216 543.02 T
+(uct node {) 229.51 543.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(UINT32 name;) 234 527.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(........) 234 511.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(};) 216 495.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+-0.29 (If it is desirable to declare a pointer type, its name should be a lo) 189 469.02 P
+-0.29 (wer) 494.9 469.02 P
+-0.29 (-case) 512.64 469.02 P
+(p follo) 189 455.02 T
+(wed by the base type name, e.g:) 220.37 455.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(typedef str) 216 435.02 T
+(uct node *pNODE;) 272.21 435.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(Struct \336elds will be accessed vi) 189 409.02 T
+(a) 339.98 409.02 T
+4 10 Q
+(cpp) 348.31 409.02 T
+3 12 Q
+( m) 366.09 409.02 T
+(acros. These macros names will) 378.43 409.02 T
+(ha) 189 395.02 T
+(v) 200.09 395.02 T
+(e an upper case pre\336x indicating the struct type, follo) 205.91 395.02 T
+(wed by an un-) 460.9 395.02 T
+(derscore, follo) 189 381.02 T
+(wed by lo) 258.01 381.02 T
+(wer case name \336eld name. e.g. for symbol table) 305.04 381.02 T
+(components:) 189 367.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(#de\336ne ST_class\050s\051) 216 347.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\050\050s\051->class\051) 342 347.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(#de\336ne ST_name\050s\051) 216 331.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\050\050s\051->name\051) 342 331.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(Fields which require bit e) 189 305.02 T
+(xtraction \050i.e. \337ags\051 also require macros to set) 311.47 305.02 T
+(or reset the \336elds. These should be the same as the access macro names) 189 291.02 T
+(with a pre\336x) 189 277.02 T
+(ed) 249.48 277.02 T
+0 10 Q
+(Set_) 263.81 277.02 T
+3 12 Q
+( or) 284.93 277.02 T
+0 10 Q
+(Reset_) 300.92 277.02 T
+3 12 Q
+(, e.g.:) 333.71 277.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(#de\336ne ST_\337ag\050s\051) 216 257.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\050\050s\051->\337ags & ST_FLA) 360 257.02 T
+(G\051) 472.67 257.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(#de\336ne Set_ST_\337ag\050s\051) 216 241.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\050\050s\051->\337ags |= ST_FLA) 360 241.02 T
+(G\051) 474.79 241.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(#de\336ne Reset_ST_\337ag\050s\051) 216 225.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\050\050s\051->\337ags &= ST_FLA) 360 225.02 T
+(G\051) 479.68 225.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(Note that the access macro names can be predicted from the true \336eld) 189 199.02 T
+(name, and vice v) 189 185.02 T
+(ersa. This is important to f) 270.13 185.02 T
+(acilitate symbolic deb) 396.67 185.02 T
+(ugging) 501.76 185.02 T
+(\050since) 189 171.02 T
+4 10 Q
+(dbx) 220.66 171.02 T
+3 12 Q
+( doesn\325) 238.44 171.02 T
+(t understand) 273.21 171.02 T
+4 10 Q
+(cpp) 335.2 171.02 T
+3 12 Q
+( macros\051, and allo) 352.98 171.02 T
+(ws us to just com-) 438.66 171.02 T
+(ment the \336elds in the struct declaration and not repeat the comments in) 189 157.02 T
+(the access macro de\336nitions.) 189 143.02 T
+-0.24 (When a data structure is \322wrapped\323 around another data structure \050i.e. by) 189 117.02 P
+-0.11 (including a cop) 189 103.02 P
+-0.11 (y of it, or a pointer to it, or whate) 262.66 103.02 P
+-0.11 (v) 421.06 103.02 P
+-0.11 (er \321 see) 426.88 103.02 P
+4 10 Q
+-0.1 (common/com/) 472.21 103.02 P
+558 405.02 560 417.02 R
+V
+FMENDPAGE
+%%EndPage: "6" 6
+%%Page: "7" 7
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72 750.02 558 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+72 730.15 558 742.18 R
+7 X
+V
+0 9 Q
+0 X
+(Names) 207 736.18 T
+0 7 Q
+(P) 533.97 736.18 T
+(a) 538.43 736.18 T
+(g) 542.26 736.18 T
+(e) 546.6 736.18 T
+0 9 Q
+(7) 553 736.18 T
+72 726.98 558 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+71.25 74.77 557.25 74.77 2 L
+7 X
+V
+2 Z
+0 X
+N
+71.25 55.76 467.25 67.71 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 71.25 61.04 T
+0 -13 -14 95 14 108 28 450 44 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+72 87.98 558 686.02 R
+7 X
+V
+4 F
+0 X
+(ins.h) 207 678.02 T
+3 12 Q
+( and) 230.34 678.02 T
+4 10 Q
+(be/com/op.h) 253.67 678.02 T
+3 12 Q
+( for an e) 312.57 678.02 T
+(xample\051, access macros for the wrapping) 352.04 678.02 T
+(structure which access the wrapped structure\325) 207 664.02 T
+(s \336elds should match the) 425.27 664.02 T
+(names of the wrapped structure\325) 207 650.02 T
+(s access macros \050with the pre\336x) 360.96 650.02 T
+(changed\051, for the same reasons that the access macro names match the) 207 636.02 T
+(\336eld names.) 207 622.02 T
+(Note that we do not use C bit \336elds here. The last time we look) 207 596.02 T
+(ed, the) 509.86 596.02 T
+-0.25 (MIPS implementation of them w) 207 582.02 P
+-0.25 (as v) 363.87 582.02 P
+-0.25 (ery inef) 382.43 582.02 P
+-0.25 (\336cient. In general, it must be) 418.87 582.02 P
+(less ef) 207 568.02 T
+(\336cient than the approach described, since a bit \336eld implementa-) 237.02 568.02 T
+(tion must usually shift the e) 207 554.02 T
+(xtracted bit\050s\051 into lo) 339.83 554.02 T
+(w-order position.) 440.52 554.02 T
+(F) 207 528.02 T
+(orw) 213.49 528.02 T
+(ard and backw) 232.03 528.02 T
+(ard link \336elds \050for lists\051 are al) 301.88 528.02 T
+(w) 444.41 528.02 T
+(ays named) 452.95 528.02 T
+0 10 Q
+(ne) 506.94 528.02 T
+(xt) 518.46 528.02 T
+3 12 Q
+( and) 527.35 528.02 T
+0 10 Q
+(pre) 207 514.02 T
+(v) 222.41 514.02 T
+3 12 Q
+( respecti) 227.97 514.02 T
+(v) 267.99 514.02 T
+(ely) 273.81 514.02 T
+(. Gi) 287.69 514.02 T
+(v) 305.39 514.02 T
+(en a structure \050or an) 311.21 514.02 T
+(y other\051 type) 407 514.02 T
+0 10 Q
+(X) 471.32 514.02 T
+3 12 Q
+(, a list of) 477.99 514.02 T
+0 10 Q
+(X) 522.99 514.02 T
+3 12 Q
+(\050which is not embedded in) 207 500.02 T
+0 10 Q
+(X) 337.32 500.02 T
+3 12 Q
+(\325) 343.99 500.02 T
+(s de\336nition\051 is a type named) 347.33 500.02 T
+0 10 Q
+(XLIST) 485.99 500.02 T
+3 12 Q
+( with) 514.33 500.02 T
+-0.43 (\336elds) 207 486.02 P
+0 10 Q
+-0.39 (ne) 235.58 486.02 P
+-0.39 (xt) 247.1 486.02 P
+3 12 Q
+-0.43 ( and) 255.99 486.02 P
+0 10 Q
+-0.39 (item) 278.47 486.02 P
+3 12 Q
+-0.43 (, and a bi-directional list is a type named) 299.03 486.02 P
+0 10 Q
+-0.39 (XCHAIN) 493.18 486.02 P
+3 12 Q
+-0.43 ( with) 531.51 486.02 P
+(\336elds) 207 472.02 T
+0 10 Q
+(ne) 236 472.02 T
+(xt) 247.52 472.02 T
+3 12 Q
+(,) 256.41 472.02 T
+0 10 Q
+(pre) 262.41 472.02 T
+(v) 277.82 472.02 T
+3 12 Q
+(, and) 282.6 472.02 T
+0 10 Q
+(item) 308.93 472.02 T
+3 12 Q
+(. These con) 329.49 472.02 T
+(v) 384 472.02 T
+(entions allo) 389.82 472.02 T
+(w v) 445.18 472.02 T
+(ery predictable list-) 462.67 472.02 T
+(follo) 207 458.02 T
+(wing code.) 229.37 458.02 T
+(See the) 207 432.02 T
+2 F
+(Ra) 244.99 432.02 T
+(gnar) 258.2 432.02 T
+(ok) 280.33 432.02 T
+3 F
+( header \336le) 291.66 432.02 T
+4 10 Q
+(be/com/op.h) 347.98 432.02 T
+3 12 Q
+( for a f) 406.88 432.02 T
+(airly clean e) 439.07 432.02 T
+(xample of) 497.54 432.02 T
+(much of this.) 207 418.02 T
+1 14 Q
+(4.2) 180.5 384.68 T
+(V) 207 384.68 T
+(ariables and Constants) 215.82 384.68 T
+3 12 Q
+(Global v) 207 358.02 T
+(ariables will ha) 248.36 358.02 T
+(v) 321.44 358.02 T
+(e only one non-) 327.26 358.02 T
+0 10 Q
+(e) 405.25 358.02 T
+(xtern) 410.66 358.02 T
+3 12 Q
+( declaration. The) 435.11 358.02 T
+0 10 Q
+(e) 519.09 358.02 T
+(xtern) 524.5 358.02 T
+3 12 Q
+-0.06 (declaration will be in some) 207 344.02 P
+4 10 Q
+-0.06 (.h) 339.68 344.02 P
+3 12 Q
+-0.06 ( \336le, whereas the non-) 348.57 344.02 P
+0 10 Q
+-0.06 (e) 454.64 344.02 P
+-0.06 (xtern) 460.05 344.02 P
+3 12 Q
+-0.06 ( de\336nition will) 484.5 344.02 P
+(be in one of the) 207 330.02 T
+4 10 Q
+(.c) 284.65 330.02 T
+3 12 Q
+( \336les. e) 292.99 330.02 T
+(g:) 327.14 330.02 T
+(source.h:) 216 304.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(e) 279 304.02 T
+(xter) 285.31 304.02 T
+(n INT16 Current_Linen) 305.62 304.02 T
+(umber) 427.55 304.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(source.c:) 216 278.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(INT16 Current_Linen) 279 278.02 T
+(umber) 390.92 278.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+-0.24 (Global names will ha) 207 252.02 P
+-0.24 (v) 308.37 252.02 P
+-0.24 (e all components starting with an upper case letter) 314.19 252.02 P
+-0.24 (.) 552.24 252.02 P
+(The components of the names will be separated by underscore. e.g.:) 207 238.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+( e) 234 218.02 T
+(xter) 243.65 218.02 T
+(n UINT8 Read_Char\050FILE *fp\051;) 263.95 218.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(Local v) 207 192.02 T
+(ariable names will ha) 243.02 192.02 T
+(v) 345.1 192.02 T
+(e all lo) 350.92 192.02 T
+(wer case letters: e.g.) 383.28 192.02 T
+0 10 Q
+(stab_hash_v) 483.91 192.02 T
+(al.) 544.29 192.02 T
+3 12 Q
+(I generally prefer to ha) 207 166.02 T
+(v) 316.72 166.02 T
+(e local function names look lik) 322.54 166.02 T
+(e global function) 470.74 166.02 T
+(names \050partially because whether the) 207 152.02 T
+(y are local or global often changes,) 384.77 152.02 T
+(and this con) 207 138.02 T
+(v) 264.52 138.02 T
+(ention a) 270.34 138.02 T
+(v) 308.42 138.02 T
+(oids name changes or non-conforming code when) 314.18 138.02 T
+(the) 207 124.02 T
+(y do\051. But there are plenty of e) 221.48 124.02 T
+(xamples of all-lo) 368.6 124.02 T
+(wer) 449.63 124.02 T
+(-case local func-) 467.38 124.02 T
+(tion names in the Josie code.) 207 110.02 T
+FMENDPAGE
+%%EndPage: "7" 7
+%%Page: "8" 8
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+54 750.02 540 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+54 730.15 540 742.18 R
+7 X
+V
+0 7 Q
+0 X
+(P) 515.97 736.18 T
+(a) 520.43 736.18 T
+(g) 524.26 736.18 T
+(e) 528.6 736.18 T
+0 9 Q
+(8) 535 736.18 T
+54 726.98 540 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+0 -13 -14 95 14 108 28 54 45 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+54 76.5 540 76.5 2 L
+7 X
+V
+2 Z
+0 X
+N
+162 55.55 540 67.5 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 506.64 60.83 T
+54 87.98 540 686.02 R
+7 X
+V
+3 12 Q
+0 X
+-0.31 (Al) 189 678.02 P
+-0.31 (l) 201 678.02 P
+4 10 Q
+-0.29 (cpp) 207.02 678.02 P
+3 12 Q
+-0.31 ( d) 224.8 678.02 P
+-0.31 (e\336ned constants will be in upper case. This includes such things) 233.49 678.02 P
+(as the operator names \050OP_FMA) 189 664.02 T
+(C\051.) 347.16 664.02 T
+1 14 Q
+(4.3) 162.5 630.68 T
+(Miscellaneous) 189 630.68 T
+3 12 Q
+0 (Our general abbre) 189 604.02 P
+0 (viation philosoph) 275.32 604.02 P
+0 (y is to drop syllables rather than v) 358.93 604.02 P
+0 (o) 521.64 604.02 P
+0 (w-) 527.34 604.02 P
+(els, e.g.) 189 590.02 T
+0 10 Q
+(constant) 228.66 590.02 T
+3 12 Q
+( becomes) 270.33 590.02 T
+0 10 Q
+(const) 318.32 590.02 T
+3 12 Q
+( rather than) 344.99 590.02 T
+0 10 Q
+(cnstnt) 402.64 590.02 T
+3 12 Q
+(.) 432.64 590.02 T
+54 541.99 540 545.02 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+189 543.5 540 543.5 2 L
+0.25 H
+2 Z
+0 X
+0 0 0 1 0 0 0 K
+N
+54 543.5 180 543.5 2 L
+0 Z
+N
+0 0 612 792 C
+1 16 Q
+0 X
+0 0 0 1 0 0 0 K
+(Section 5) 118.22 550.35 T
+(Err) 189 550.35 T
+(or Messages and Sanity Checks) 213.59 550.35 T
+2 12 Q
+(Ra) 189 519.99 T
+(gnar) 202.21 519.99 T
+(ok) 224.34 519.99 T
+3 F
+( uses a consistent interf) 235.67 519.99 T
+(ace for reporting error messages \050user) 347.53 519.99 T
+(and compiler problems\051. F) 189 505.99 T
+(or all the gory detail, look at) 316.14 505.99 T
+4 10 Q
+(common/util/er-) 455.46 505.99 T
+(r) 189 491.99 T
+(or) 192.69 491.99 T
+(s.h) 202.54 491.99 T
+3 12 Q
+(. The general idea is that v) 216.99 491.99 T
+(arious errors are identi\336ed by) 343.66 491.99 T
+2 F
+(codes) 487.96 491.99 T
+3 F
+( \050i.e.) 515.29 491.99 T
+4 10 Q
+-0.11 (cpp) 189 477.99 P
+3 12 Q
+-0.12 ( literals\051. Errors are reported by passing the code and message param-) 206.78 477.99 P
+(eters \050e.g. descripti) 189 463.99 T
+(v) 280.01 463.99 T
+(e strings, symbol table elements, numbers, etc.\051 to a) 285.83 463.99 T
+(common interf) 189 449.99 T
+(ace routine \050actually a f) 259.87 449.99 T
+(amily of related routines\051, and the) 373.04 449.99 T
+(message is formatted using a descriptor associated with the code which) 189 435.99 T
+(pro) 189 421.99 T
+(vides most of the v) 204.82 421.99 T
+(erbiage for the message and speci\336es the format-) 295.97 421.99 T
+(ting for the other parameters.) 189 407.99 T
+(This scheme pro) 189 381.99 T
+(vides consistent formatting of the messages, allo) 268.14 381.99 T
+(ws it to) 500.82 381.99 T
+-0.03 (be changed without changing the in) 189 367.99 P
+-0.03 (v) 359.36 367.99 P
+-0.03 (ocations, and allo) 365.12 367.99 P
+-0.03 (ws global changes) 449.1 367.99 P
+(in the processing scheme. It will also f) 189 353.99 T
+(acilitate e) 373.52 353.99 T
+(v) 419.54 353.99 T
+(entual internationaliza-) 425.36 353.99 T
+(tion of error messages, so consistent use is strongly encouraged.) 189 339.99 T
+(The basic reporting routines are:) 189 313.99 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(v) 216 293.99 T
+(oid ErrMsg \050 ErrCode) 221.7 293.99 T
+(, P) 334.87 293.99 T
+(ar) 349.07 293.99 T
+(ameters ... \051;) 359.62 293.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(v) 216 277.99 T
+(oid ErrMsgLine \050 ErrCode) 221.7 277.99 T
+(, LineNumber) 357.55 277.99 T
+(, P) 428.98 277.99 T
+(ar) 443.17 277.99 T
+(ameters \051;) 453.72 277.99 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(There is a third routine \050a macro, actually\051 to f) 189 251.99 T
+(acilitate assertion check-) 411.49 251.99 T
+(ing:) 189 237.99 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(v) 216 217.99 T
+(oid Asser) 221.7 217.99 T
+(t \050 BOOL condition, \050 ErrMsg par) 272.2 217.99 T
+(ameter list \051 \051;) 444.13 217.99 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(If the Assert condition is F) 189 191.99 T
+(ALSE, ErrMsg is called with the second ar) 316.44 191.99 T
+(gu-) 522.19 191.99 T
+(ment as its parameter list, which must itself be a fully parenthesized list.) 189 177.99 T
+(In addition to the basic reporting routines, tw) 189 151.99 T
+(o macros) 405.53 151.99 T
+0 10 Q
+(Is_T) 452.18 151.99 T
+(rue) 471.39 151.99 T
+3 12 Q
+( and) 486.95 151.99 T
+0 10 Q
+(Asser) 189 137.99 T
+(tFmt) 216.99 137.99 T
+3 12 Q
+( are de\336ned:) 238.65 137.99 T
+558 674.02 560 686.02 R
+V
+FMENDPAGE
+%%EndPage: "8" 8
+%%Page: "9" 9
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72 750.02 558 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+72 730.15 558 742.18 R
+7 X
+V
+0 9 Q
+0 X
+(Err) 207 736.18 T
+(or Messa) 219.82 736.18 T
+(g) 258.75 736.18 T
+(es and Sanity Chec) 264.34 736.18 T
+(ks) 346.69 736.18 T
+0 7 Q
+(P) 533.97 736.18 T
+(a) 538.43 736.18 T
+(g) 542.26 736.18 T
+(e) 546.6 736.18 T
+0 9 Q
+(9) 553 736.18 T
+72 726.98 558 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+71.25 74.77 557.25 74.77 2 L
+7 X
+V
+2 Z
+0 X
+N
+71.25 55.76 467.25 67.71 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 71.25 61.04 T
+0 -13 -14 95 14 108 28 450 44 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+72 87.98 558 686.02 R
+7 X
+V
+1 1 0 0 0 0 1 K
+6 12 Q
+0 X
+1 1 0 0 0 0 1 K
+(#ifdef Is_T) 234 678.02 T
+(r) 288.59 678.02 T
+(ue_On) 292.76 678.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(# de\336ne Is_T) 234 662.02 T
+(r) 301.93 662.02 T
+(ue\050a, b\051 \050\050a\051 ? 1 : ErrMsg b \051) 306.11 662.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(#else) 234 646.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(# de\336ne Is_T) 234 630.02 T
+(r) 301.93 630.02 T
+(ue\050a, b\051 1) 306.11 630.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(#endif) 234 614.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(and similarly for) 207 588.02 T
+0 10 Q
+(Asser) 289.99 588.02 T
+(tFmt) 317.98 588.02 T
+3 12 Q
+(, e) 339.64 588.02 T
+(xcept that it is not in an #ifdef, and will) 350.79 588.02 T
+(therefore ne) 207 574.02 T
+(v) 264.34 574.02 T
+(er be disabled.) 270.16 574.02 T
+( Example:) 207 548.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(Is_T) 234 528.02 T
+(r) 255.9 528.02 T
+(ue) 260.08 528.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\050ND_name\050k\051 == TK_ID) 288 528.02 T
+(,) 413.86 528.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+( \050\322Bad node \050%s\051 f) 288 512.02 T
+(or func-id\323,) 385.01 512.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\050ND_name\050k\051\051 \051 \051;) 445.69 512.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(Note that the second ar) 207 486.02 T
+(gument is a parenthesized list of printf-lik) 317.42 486.02 T
+(e ar) 518.62 486.02 T
+(gu-) 536.05 486.02 T
+-0.11 (ments) 207 472.02 P
+-0.11 (; it) 235.67 472.02 P
+-0.11 ( is passed to ErrMsg as sho) 248.57 472.02 P
+-0.11 (wn abo) 378.26 472.02 P
+-0.11 (v) 412.96 472.02 P
+-0.11 (e. Ev) 418.78 472.02 P
+-0.11 (en if the inner parenthe-) 443.15 472.02 P
+(ses contain only one string, the) 207 458.02 T
+(y can not be omitted:) 355.48 458.02 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(Is_T) 234 438.02 T
+(r) 255.9 438.02 T
+(ue) 260.08 438.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(\050ND_name\050k\051 == TK_ID) 288 438.02 T
+(,) 413.86 438.02 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+( \050\322Bad node f) 288 422.02 T
+(or func-id\323\051 \051;) 357.01 422.02 T
+0 0 0 1 0 0 0 K
+0 10 Q
+0 0 0 1 0 0 0 K
+-0.39 (Is_T) 209.58 396.02 P
+-0.39 (rue) 228.79 396.02 P
+3 12 Q
+-0.42 ( is to be used as more frequent sanity check. It will be turned OFF) 244.35 396.02 P
+-0.07 (in production compilers after beta releases.) 207 382.02 P
+0 10 Q
+-0.06 ( Asser) 413.27 382.02 P
+-0.06 (t) 443.98 382.02 P
+3 12 Q
+-0.07 ( and) 447.31 382.02 P
+0 10 Q
+-0.06 (Asser) 470.5 382.02 P
+-0.06 (tFmt) 498.49 382.02 P
+3 12 Q
+-0.07 ( will re-) 520.15 382.02 P
+(main enabled in the shipped code.) 207 368.02 T
+(The symbol) 207 342.02 T
+0 10 Q
+(Is_T) 267 342.02 T
+(rue_On) 286.21 342.02 T
+3 12 Q
+( will be a) 321.22 342.02 T
+(v) 365.31 342.02 T
+(ailable e) 371.01 342.02 T
+(v) 411.03 342.02 T
+(erywhere and can be used in) 416.85 342.02 T
+(situations where use of) 207 328.02 T
+0 10 Q
+(Is_T) 320.32 328.02 T
+(rue) 339.53 328.02 T
+3 12 Q
+( is a) 355.09 328.02 T
+(wkw) 374.24 328.02 T
+(ard.) 397.45 328.02 T
+(Othe) 207 302.02 T
+(r) 230.33 302.02 T
+4 10 Q
+(cpp) 237.32 302.02 T
+3 12 Q
+( s) 255.1 302.02 T
+(ymbols can be de\336ned for specialized checking which is e) 262.77 302.02 T
+(x-) 541.53 302.02 T
+(pensi) 207 288.02 T
+(v) 232.03 288.02 T
+(e to in) 237.85 288.02 T
+(v) 267.37 288.02 T
+(ok) 273.13 288.02 T
+(e and e) 285.01 288.02 T
+(xpensi) 318.82 288.02 T
+(v) 349.85 288.02 T
+(e to do, for e) 355.67 288.02 T
+(xample bitv) 416.47 288.02 T
+(ector checks.) 473.29 288.02 T
+-0.05 (Other specialized checking which is ine) 207 262.02 P
+-0.05 (xpensi) 397.51 262.02 P
+-0.05 (v) 428.54 262.02 P
+-0.05 (e to in) 434.36 262.02 P
+-0.05 (v) 463.77 262.02 P
+-0.05 (ok) 469.53 262.02 P
+-0.05 (e b) 481.41 262.02 P
+-0.05 (ut e) 495.44 262.02 P
+-0.05 (xpensi) 512.87 262.02 P
+-0.05 (v) 543.91 262.02 P
+-0.05 (e) 549.73 262.02 P
+(to do will be controlled at runtime by \337ags to be determined later) 207 248.02 T
+(. Exam-) 518.98 248.02 T
+(ple) 207 234.02 T
+(s) 221.66 234.02 T
+( are lar) 226.33 234.02 T
+(ge v) 259.43 234.02 T
+(eri\336cation routines to check consistenc) 279.58 234.02 T
+(y between se) 466.03 234.02 T
+(v) 527.71 234.02 T
+(eral) 533.53 234.02 T
+(pieces of information. The) 207 220.02 T
+(y are f) 334.13 220.02 T
+(ast to in) 364.66 220.02 T
+(v) 402.18 220.02 T
+(ok) 407.94 220.02 T
+(e e) 419.82 220.02 T
+(v) 433.18 220.02 T
+(en with a runtime \337ag) 439 220.02 T
+(check, b) 207 206.02 T
+(ut can tak) 246.74 206.02 T
+(e a lot of time if the) 293.28 206.02 T
+(y are actually run.) 387.76 206.02 T
+(F) 207 180.02 T
+(or reasons discussed in the ne) 213.49 180.02 T
+(xt section, e) 355.62 180.02 T
+(xtensi) 413.1 180.02 T
+(v) 441.47 180.02 T
+(e use of) 447.29 180.02 T
+0 10 Q
+(Is_T) 487.61 180.02 T
+(rue) 506.82 180.02 T
+3 12 Q
+( is not) 522.38 180.02 T
+(encouraged. It is better to place checking code where it can remain per-) 207 166.02 T
+(manently) 207 152.02 T
+(, f) 250.88 152.02 T
+(acilitating deb) 260.76 152.02 T
+(ugging after release to customers.) 328.85 152.02 T
+(There are se) 207 126.02 T
+(v) 265.33 126.02 T
+(eral con) 271.15 126.02 T
+(v) 308.99 126.02 T
+(entions that we follo) 314.81 126.02 T
+(w to f) 412.84 126.02 T
+(acilitate dealing with in-) 440.71 126.02 T
+(complete, questionable, or fragile code in the future.) 207 112.02 T
+576 468.02 578 480.02 R
+V
+576 298.02 578 310.02 R
+V
+576 230.02 578 242.02 R
+V
+FMENDPAGE
+%%EndPage: "9" 9
+%%Page: "10" 10
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+54 750.02 540 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+54 730.15 540 742.18 R
+7 X
+V
+0 7 Q
+0 X
+(P) 510.97 736.18 T
+(a) 515.43 736.18 T
+(g) 519.25 736.18 T
+(e) 523.6 736.18 T
+0 9 Q
+(10) 529.99 736.18 T
+54 726.98 540 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+0 -13 -14 95 14 108 28 54 45 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+54 76.5 540 76.5 2 L
+7 X
+V
+2 Z
+0 X
+N
+162 55.55 540 67.5 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 506.64 60.83 T
+54 87.98 540 686.02 R
+7 X
+V
+5 7 Q
+0 X
+(l) 198 678.02 T
+3 12 Q
+(Unimplemented stub routines, switch cases, or similar instances,) 219.6 678.02 T
+(unless the) 219.6 664.02 T
+(y can produce a conserv) 267.08 664.02 T
+(ati) 382.74 664.02 T
+(v) 394.44 664.02 T
+(e result, should generate an) 400.26 664.02 T
+(error message if encountered so that it\325) 219.6 650.02 T
+(s not hard to track do) 406.22 650.02 T
+(wn) 507.58 650.02 T
+(problems that result. This simply requires the call:) 219.6 636.02 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(ErrMsg \050 EC_Unimplemented, \322Routine_Name\323 \051;) 234 616.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(\050Include) 219.6 599.02 T
+4 10 Q
+(er) 262.58 599.02 T
+(glob.h) 271.88 599.02 T
+3 12 Q
+( to get the error code.\051) 301.88 599.02 T
+5 7 Q
+(l) 198 582.02 T
+3 12 Q
+(Code which requires future attention for completion should be) 219.6 582.02 T
+(mark) 219.6 568.02 T
+(ed with a comment containing \322T) 244.14 568.02 T
+(ODO\323 so that we can use) 404.9 568.02 T
+(grep to \336nd all of them for cleanup before release. This approach) 219.6 554.02 T
+(can be used for missing code \050b) 219.6 540.02 T
+(ut see the abo) 371.33 540.02 T
+(v) 436.8 540.02 T
+(e\051, code which sim-) 442.62 540.02 T
+-0.24 (ply needs cleanup, questionable code which needs attention before) 219.6 526.02 P
+-0.08 (it is deemed \336nished, opportunities for enhancement, etc. \321 try to) 219.6 512.02 P
+-0.28 (indicate the actual situation in the comment. Similarly) 219.6 498.02 P
+-0.28 (, code which) 476.86 498.02 P
+(is #ifdef) 219.6 484.02 T
+(\325ed a) 259.92 484.02 T
+(w) 283.39 484.02 T
+(ay pending further w) 291.94 484.02 T
+(ork can use a name lik) 392.12 484.02 T
+(e:) 499.64 484.02 T
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(#ifdef T) 234 464.02 T
+(ODO_WHEN_XXX_IS_A) 273.54 464.02 T
+(V) 406.74 464.02 T
+(AILABLE) 413.78 464.02 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(to pro) 219.6 447.02 T
+(vide more information than the traditional \322#if 0\323.) 247.75 447.02 T
+5 7 Q
+(l) 198 430.02 T
+3 12 Q
+(W) 219.6 430.02 T
+(e use comments with W) 229.97 430.02 T
+(ARNING to indicate code which is sen-) 343.85 430.02 T
+(siti) 219.6 416.02 T
+(v) 233.98 416.02 T
+(e to non-ob) 239.8 416.02 T
+(vious assumptions, lik) 294.28 416.02 T
+(ely to change for a dif) 401.17 416.02 T
+(ferent) 506.51 416.02 T
+(tar) 219.6 402.02 T
+(get, or the lik) 232.04 402.02 T
+(e.) 295.92 402.02 T
+5 7 Q
+(l) 198 385.02 T
+3 12 Q
+(Most important, if there\325) 219.6 385.02 T
+(s something that you kno) 337.6 385.02 T
+(w requires w) 457.97 385.02 T
+(ork) 519.83 385.02 T
+(prior to release, \336le a PV b) 219.6 371.02 T
+(ug ag) 348.34 371.02 T
+(ainst it as a reminder) 374.6 371.02 T
+(.) 473.93 371.02 T
+FMENDPAGE
+%%EndPage: "10" 10
+%%Page: "11" 11
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72 750.02 558 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+72 730.15 558 742.18 R
+7 X
+V
+0 9 Q
+0 X
+(T) 207 736.18 T
+(racing) 211.78 736.18 T
+0 7 Q
+(P) 528.97 736.18 T
+(a) 533.43 736.18 T
+(g) 537.25 736.18 T
+(e) 541.6 736.18 T
+0 9 Q
+(11) 547.99 736.18 T
+72 726.98 558 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+71.25 74.77 557.25 74.77 2 L
+7 X
+V
+2 Z
+0 X
+N
+71.25 55.76 467.25 67.71 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 71.25 61.04 T
+0 -13 -14 95 14 108 28 450 44 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+72 87.98 558 686.02 R
+7 X
+V
+72 666.99 558 670.02 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+207 668.5 558 668.5 2 L
+0.25 H
+2 Z
+0 X
+0 0 0 1 0 0 0 K
+N
+72 668.5 198 668.5 2 L
+0 Z
+N
+0 0 612 792 C
+1 16 Q
+0 X
+0 0 0 1 0 0 0 K
+(Section 6) 136.22 675.35 T
+(T) 207 675.35 T
+(racing) 216.49 675.35 T
+3 12 Q
+(The tracing support in the) 207 644.99 T
+2 F
+(Ra) 333.98 644.99 T
+(gnar) 347.2 644.99 T
+(ok) 369.32 644.99 T
+3 F
+( and Apogee compilers is based on) 380.65 644.99 T
+(the follo) 207 630.99 T
+(wing observ) 247.03 630.99 T
+(ations and assumptions:) 305.72 630.99 T
+5 7 Q
+(l) 216 610.99 T
+3 12 Q
+-0.38 (The comple) 237.6 610.99 P
+-0.38 (xity of the compiler is such that man) 294.03 610.99 P
+-0.38 (y problems are not) 466.86 610.99 P
+-0.36 (easily deb) 237.6 596.99 P
+-0.36 (ugged using an interacti) 285.33 596.99 P
+-0.36 (v) 398.94 596.99 P
+-0.36 (e deb) 404.76 596.99 P
+-0.36 (ugger) 429.82 596.99 P
+-0.36 (, since the) 456.66 596.99 P
+-0.36 (y arise due) 504.09 596.99 P
+(to interactions between se) 237.6 582.99 T
+(v) 361.61 582.99 T
+(eral phases which are hard to pinpoint.) 367.43 582.99 T
+(Often the best means of identifying the cause of a problem is to) 237.6 568.99 T
+(study a trace of a k) 237.6 554.99 T
+(e) 328.45 554.99 T
+(y data structure or algorithm for the rele) 333.6 554.99 T
+(v) 525.59 554.99 T
+(ant) 531.29 554.99 T
+(part of the code being compiled.) 237.6 540.99 T
+5 7 Q
+(l) 216 523.99 T
+3 12 Q
+-0.25 (In order to be useful, trace output needs to be well-controlled at e) 237.6 523.99 P
+-0.25 (x-) 548 523.99 P
+(ecution time. If getting an) 237.6 509.99 T
+(y information requires getting tons of in-) 361.74 509.99 T
+(formation, the tracing often w) 237.6 495.99 T
+(on\325) 381.12 495.99 T
+(t be used when it w) 396.9 495.99 T
+(ould ha) 489.77 495.99 T
+(v) 525.19 495.99 T
+(e) 531.01 495.99 T
+(helped. If controlling the information requires recompiling to se-) 237.6 481.99 T
+(lect what w) 237.6 467.99 T
+(as w) 292.8 467.99 T
+(anted, tracing will also be a) 314.34 467.99 T
+(v) 446.08 467.99 T
+(oided.) 451.84 467.99 T
+5 7 Q
+(l) 216 450.99 T
+3 12 Q
+(It is highly desirable to ha) 237.6 450.99 T
+(v) 362.35 450.99 T
+(e full tracing support e) 368.17 450.99 T
+(v) 476.52 450.99 T
+(en in the pro-) 482.34 450.99 T
+(duction compiler) 237.6 436.99 T
+(. It can be just as useful in tracking do) 318.6 436.99 T
+(wn custom-) 500.94 436.99 T
+(er problems, and sometimes such problems are dependent on) 237.6 422.99 T
+-0.4 (things lik) 237.6 408.99 P
+-0.4 (e stack layout which may change from v) 282.09 408.99 P
+-0.4 (ersion to v) 473.39 408.99 P
+-0.4 (ersion.) 523.07 408.99 P
+(W) 237.6 394.99 T
+(e w) 247.97 394.99 T
+(ant to be able to trace the customer\325) 264.84 394.99 T
+(s v) 435.8 394.99 T
+(ersion.) 449.29 394.99 T
+(Accordingly) 207 368.99 T
+(, the) 266.21 368.99 T
+2 F
+(Ra) 289.87 368.99 T
+(gnar) 303.08 368.99 T
+(ok) 325.21 368.99 T
+3 F
+( compiler has a package which supports) 336.54 368.99 T
+(tracing with a great deal of command-line control. It consistently uses) 207 354.99 T
+-0.15 (\337ags starting with) 207 340.99 P
+0 10 Q
+-0.14 (-t) 295.55 340.99 P
+3 12 Q
+-0.15 (, assumed not to be documented to users. These \337ags) 302.21 340.99 P
+(control v) 207 326.99 T
+(arious general-purpose informational traces \050) 249.7 326.99 T
+0 10 Q
+(-ti) 465.64 326.99 T
+3 12 Q
+(..., e.g. timing) 475.08 326.99 T
+(information or f) 207 312.99 T
+(ailure information\051, special-purpose e) 283.54 312.99 T
+(xpensi) 463.98 312.99 T
+(v) 495.01 312.99 T
+(e) 500.83 312.99 T
+(consistenc) 207 298.99 T
+(y checks and deb) 256.81 298.99 T
+(ugging options \050) 338.88 298.99 T
+0 10 Q
+(-td) 417.55 298.99 T
+3 12 Q
+(...\051, symbol table \050) 430.32 298.99 T
+0 10 Q
+(-ts) 517.98 298.99 T
+3 12 Q
+(...\051) 530.2 298.99 T
+(and IR \050) 207 284.99 T
+0 10 Q
+(-tr) 246.32 284.99 T
+3 12 Q
+(...\051 dumps, and miscellaneous traces speci\336c to each compiler) 256.21 284.99 T
+-0.32 (phase \050) 207 270.99 P
+0 10 Q
+-0.29 (-tt) 241 270.99 P
+3 12 Q
+-0.32 (...\051. The) 250.99 270.99 P
+-0.32 (y also allo) 288.15 270.99 P
+-0.32 (w limiting most traces to speci\336c basic blocks) 336.55 270.99 P
+(\050) 207 256.99 T
+0 10 Q
+(-tb) 211 256.99 T
+3 12 Q
+(...\051 or to speci\336c functions \050) 223.29 256.99 T
+0 10 Q
+(-tf) 355.93 256.99 T
+3 12 Q
+(...\051 and stopping compilation after a) 365.92 256.99 T
+(speci\336c phase \050) 207 242.99 T
+0 10 Q
+(-tp) 280.98 242.99 T
+3 12 Q
+(...\051. See) 293.75 242.99 T
+4 10 Q
+(doc/Ra) 333.07 242.99 T
+(gnar) 366.31 242.99 T
+(ok/\337a) 387.78 242.99 T
+(gs) 413.8 242.99 T
+3 12 Q
+( for more detailed lists of) 425.47 242.99 T
+(speci\336c \337ags, and) 207 228.99 T
+4 10 Q
+(common/util/tracing.h) 295.66 228.99 T
+3 12 Q
+( for the interf) 400.12 228.99 T
+(ace.) 463.64 228.99 T
+FMENDPAGE
+%%EndPage: "11" 11
+%%Page: "12" 12
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+54 750.02 540 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+54 730.15 540 742.18 R
+7 X
+V
+0 7 Q
+0 X
+(P) 510.97 736.18 T
+(a) 515.43 736.18 T
+(g) 519.25 736.18 T
+(e) 523.6 736.18 T
+0 9 Q
+(12) 529.99 736.18 T
+54 726.98 540 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+0 -13 -14 95 14 108 28 54 45 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+54 76.5 540 76.5 2 L
+7 X
+V
+2 Z
+0 X
+N
+162 55.55 540 67.5 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 506.64 60.83 T
+54 87.98 540 686.02 R
+7 X
+V
+54 666.99 540 670.02 C
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+189 668.5 540 668.5 2 L
+0.25 H
+2 Z
+0 X
+0 0 0 1 0 0 0 K
+N
+54 668.5 180 668.5 2 L
+0 Z
+N
+0 0 612 792 C
+1 16 Q
+0 X
+0 0 0 1 0 0 0 K
+(Section 7) 118.22 675.35 T
+(Miscellaneous Style Issues) 189 675.35 T
+3 12 Q
+(The indentation interv) 189 644.99 T
+(al is 2 columns \050this may be set in) 295.36 644.99 T
+4 10 Q
+(vi) 461.69 644.99 T
+3 12 Q
+( by doing a) 470.03 644.99 T
+(\322) 189 630.99 T
+0 10 Q
+(:set ai=2) 194.33 630.99 T
+3 12 Q
+(\323\051. The style of indentation is:) 234.63 630.99 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+( while \050 e) 216 610.99 T
+(xpr \051 {) 263.65 610.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(stmt;) 234 594.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(s) 234 578.99 T
+(witch \050 e) 239.64 578.99 T
+(xpr \051 {) 283.96 578.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(case 1:) 252 562.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(stmt;) 306 562.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(stmt1;) 306 546.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(break;) 306 530.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(}) 234 514.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(stmt2;) 234 498.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+(}) 216 482.99 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+-0.03 (If the control e) 189 456.99 P
+-0.03 (xpressions for whiles, fors, ifs, or switches are too long to) 259.71 456.99 P
+(\336t on a line, the opening brack) 189 442.99 T
+(et should be on its o) 335.2 442.99 T
+(wn line lined up with) 431.23 442.99 T
+(the k) 189 428.99 T
+(e) 212.54 428.99 T
+(yw) 217.69 428.99 T
+(ord. If indentation is getting e) 232.24 428.99 T
+(xcessi) 374.71 428.99 T
+(v) 403.74 428.99 T
+(e, the cases of a switch) 409.56 428.99 T
+(statement may be lined up with the switch k) 189 414.99 T
+(e) 400.2 414.99 T
+(yw) 405.35 414.99 T
+(ord, and/or the state-) 419.89 414.99 T
+(ments within a case indented just tw) 189 400.99 T
+(o characters from the case k) 362.87 400.99 T
+(e) 497.03 400.99 T
+(yw) 502.18 400.99 T
+(ord.) 516.72 400.99 T
+(Placing the statement associated with an if on a separate line f) 189 374.99 T
+(acilitates) 486.49 374.99 T
+(deb) 189 360.99 T
+(ugging, allo) 206.09 360.99 T
+(wing dbx to break on just the conditional statement.) 263.12 360.99 T
+-0.31 (Brack) 189 346.99 P
+-0.31 (ets should be used when this is done, e) 217.54 346.99 P
+-0.31 (v) 400.4 346.99 P
+-0.31 (en for a single statement, to) 406.22 346.99 P
+(a) 189 332.99 T
+(v) 194.09 332.99 T
+(oid problems during later changes.) 199.85 332.99 T
+(Labels \050in the rare cases where the) 189 306.99 T
+(y appear\051 should be dedented a bit to) 354.76 306.99 T
+(mak) 189 292.99 T
+(e them visible.) 209.54 292.99 T
+(Comment blocks in the e) 189 266.99 T
+(xisting code look lik) 308.82 266.99 T
+(e:) 407.04 266.99 T
+1 1 0 0 0 0 1 K
+6 F
+1 1 0 0 0 0 1 K
+(/* This is a comment which spans se) 216 246.99 T
+(v) 409.7 246.99 T
+(er) 415.4 246.99 T
+(al lines) 425.95 246.99 T
+(.) 463.12 246.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+( * It star) 216 230.99 T
+(ts on the \336rst line) 257.83 230.99 T
+(, usually preceded b) 348.36 230.99 T
+(y a b) 455.51 230.99 T
+(lank line) 481.28 230.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+-0.09 ( * f) 216 214.99 P
+-0.09 (or readability) 230.13 214.99 P
+-0.09 (. The aster) 297.53 214.99 P
+-0.09 (isks are lined up) 354.89 214.99 P
+-0.09 (, and the comment) 440.89 214.99 P
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+( * ter) 216 198.99 T
+(minator is on a line b) 241.64 198.99 T
+(y itself) 352.12 198.99 T
+(.) 385.76 198.99 T
+0 0 0 1 0 0 0 K
+1 1 0 0 0 0 1 K
+( */) 216 182.99 T
+0 0 0 1 0 0 0 K
+3 F
+0 0 0 1 0 0 0 K
+(Note that comment content is more important than form.) 189 156.99 T
+-0.23 (In general whitespace mak) 189 130.99 P
+-0.23 (es code easier to read, and is encouraged. This) 316.48 130.99 P
+-0.21 (includes blank lines and spaces around parentheses, between parameters,) 189 116.99 P
+(etc.) 189 102.99 T
+FMENDPAGE
+%%EndPage: "12" 12
+%%Page: "13" 13
+612 792 0 FMBEGINPAGE
+[0 0 0 1 0 0 0]
+[ 0 1 1 0 1 0 0]
+[ 1 0 1 0 0 1 0]
+[ 1 1 0 0 0 0 1]
+[ 1 0 0 0 0 1 1]
+[ 0 1 0 0 1 0 1]
+[ 0 0 1 0 1 1 0]
+ 7 FrameSetSepColors
+FrameNoSep
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+0 0 0 1 0 0 0 K
+72 750.02 558 750.02 2 L
+7 X
+0 0 0 1 0 0 0 K
+V
+2 H
+0 Z
+0 X
+N
+72 730.15 558 742.18 R
+7 X
+V
+0 9 Q
+0 X
+(Miscellaneous Style Issues) 207 736.18 T
+0 7 Q
+(P) 528.97 736.18 T
+(a) 533.43 736.18 T
+(g) 537.25 736.18 T
+(e) 541.6 736.18 T
+0 9 Q
+(13) 547.99 736.18 T
+72 726.98 558 726.98 2 L
+7 X
+V
+0.25 H
+0 X
+N
+71.25 74.77 557.25 74.77 2 L
+7 X
+V
+2 Z
+0 X
+N
+71.25 55.76 467.25 67.71 R
+7 X
+V
+0 10 Q
+0 X
+(7/21/94) 71.25 61.04 T
+0 -13 -14 95 14 108 28 450 44 FMBEGINEPSF
+%%BeginDocument: /hosts/baalbek/a/dehnert/dev/mongoose/doc/templates/sgilogo.epsf
+%!PS-Adobe-2.0 EPSF-1.2
+%%Creator:Adobe Illustrator(TM) 1.2d4
+%%For:Howard
+%%Title:sgilogo.eps
+%%CreationDate:1/20/88 10:36 AM
+%%DocumentProcSets:Adobe_Illustrator_1.2d1 0 0
+%%DocumentSuppliedProcSets:Adobe_Illustrator_1.2d1 0 0
+%%BoundingBox:-13 -14 95 14
+%%EndComments
+%%BeginProcSet:Adobe_Illustrator_1.2d1 0 0
+/Adobe_Illustrator_1.2d1 dup 100 dict def load begin
+/Version 0 def
+/Revision 0 def
+% definition operators
+/bdef {bind def} bind def
+/ldef {load def} bdef
+/xdef {exch def} bdef
+%%EndProcSet
+%%EndProlog
+
+Adobe_Illustrator_1.2d1 begin
+
+
+
+%
+%  Parametric SGI logo path for clipping, filling, and stroking
+%
+%  (c) Copyright 1988, Silicon Graphics, Inc.
+%
+%  Hacked together by Dave Ciemiewicz
+%
+/SGILogoPath { % - = -
+    %
+    %  Shape tweaking constants
+    %
+    /radius 0.5 def
+    /offset 0.026 def
+    /width 0.09 def
+    /gap 0.020 def
+
+    %
+    %  Computed constants
+    %
+    /base radius offset sub def
+    /sin60 60 sin def
+    /halfspace offset sin60 mul def
+    /halfwidth width 2 div def
+    /thick width sin60 div def
+    /halfthick thick 2 div def
+    /gapthick gap sin60 div def
+    /halfjointwidth halfspace gap sub def
+
+    %
+    %  Compute points and vertices used for drawing one face of logo.
+    %
+    /Ax 0 def			% A = (0, thick)
+    /Ay thick def
+
+    /Gx base sin60 mul def		% G = (base * sin(60), base / 2)
+    /Gy base 2 div def
+    /Gxl 0 Gx sub def		% -x quadrant value
+
+    /Bx Gx 2 width mul sub def	% B = G - (2 * width, 0)
+    /By Gy def
+    /Bxl 0 Bx sub def		% -x quadrant value
+
+    /Fx halfspace def		% F = (halfspace, base - offset / 2)
+    /Fy base offset 2 div sub def
+    /Fxl 0 Fx sub def		% -x quadrant value
+
+    /Cx Fx width add def		% C = F + (width, -1.5 * thick)
+    /Cy Fy -1.5 thick mul add def
+    /Cxl 0 Cx sub def		% -x quadrant value
+
+    /Ex Ax halfspace add def	% E = A + (halfspace, offset/2 + gapthick)
+    /Ey Ay offset 2 div add gapthick add def
+    /Exl 0 Ex sub def		% -x quadrant value
+
+    /Dx Ex width add def		% D = E + (width, thick/2)
+    /Dy Ey thick 2 div add def
+    /Dxl 0 Dx sub def		% -x quadrant value
+
+    %
+    %  Compute points and vertices used for drawing one joint of logo.
+    %
+    /Hx Ax halfjointwidth add def	% H = A + (halfjointwidth,
+				    %	sqrt((offset - gapthick)^2 -
+				    %		halfjointwidth^2))
+    /Hy Ay offset gapthick sub dup mul halfjointwidth dup mul sub sqrt add def
+    /Hxl 0 Hx sub def
+
+    /Ix halfjointwidth def		% I = (halfjointwidth, halfthick -
+				    %	sqrt(halfwidth^2 - halfjointwidth^2)
+    /Iy  halfthick halfwidth dup mul halfjointwidth dup mul sub sqrt sub def
+    /Ixl 0 Ix sub def
+    /Iangle halfjointwidth halfthick Iy sub atan def
+
+
+    /doface {
+        0 offset translate
+        Ax Ay moveto
+        Bx By lineto
+        Cx Cy lineto
+        Dx Dy lineto
+        Ex Ey lineto
+        Fx Fy Gx Gy halfwidth arcto 4 {pop} repeat
+        Gx Gy 0 0 halfwidth arcto 4 {pop} repeat
+        0 0 Gxl Gy halfwidth arcto 4 {pop} repeat
+        Gxl Gy Fxl Fy halfwidth arcto 4 {pop} repeat
+        Fxl Fy Exl Ey halfwidth arcto 4 {pop} repeat
+        Exl Ey lineto
+        Dxl Dy lineto
+        Cxl Cy lineto
+        Bxl By lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    /dojoint {
+        0 offset translate
+        Ax Ay moveto
+        Hxl Hy lineto
+        Ixl Iy lineto
+        0 halfthick halfwidth 270 Iangle sub 270 Iangle add arc
+        Hx Hy lineto
+        closepath
+        0 0 offset sub translate
+    } def
+
+    newpath
+    doface
+    120 rotate doface
+    120 rotate doface
+    60  rotate dojoint
+    120 rotate dojoint
+    120 rotate dojoint
+    180 rotate
+} def
+
+%  Print logo
+gsave
+
+29 29 scale SGILogoPath 0 setgray fill
+grestore
+
+%  Print company name
+gsave
+
+22 0 translate
+[0.8 0 0.1 1 0 0] concat	% Add more skew
+/Helvetica-BoldOblique findfont 12 scalefont setfont
+0 -2 moveto (SiliconGraphics) show
+/Helvetica-Oblique findfont 8 scalefont setfont
+1.1 -11 moveto (Computer Systems) show
+
+grestore
+end
+end
+
+%%EndDocument
+FMENDEPSF
+72 87.98 558 686.02 R
+7 X
+V
+3 12 Q
+0 X
+-0.03 (Please try to limit line lengths to 72 characters. This allo) 207 678.02 P
+-0.03 (ws clean genera-) 477.42 678.02 P
+(tion of line-numbered listings with standard Unix print tools, for those) 207 664.02 T
+(who lik) 207 650.02 T
+(e to maintain reference listings. Note that) 243.22 650.02 T
+4 10 Q
+(vi) 444.52 650.02 T
+3 12 Q
+( will gi) 452.86 650.02 T
+(v) 486.56 650.02 T
+(e you some) 492.38 650.02 T
+(assistance here if you use \322) 207 636.02 T
+0 10 Q
+(:set wrapmar) 337.3 636.02 T
+(gin=9) 399.39 636.02 T
+3 12 Q
+(\323.) 425.79 636.02 T
+(I ha) 207 610.02 T
+(v) 225.08 610.02 T
+(e a) 230.9 610.02 T
+4 10 Q
+(vi) 247.56 610.02 T
+3 12 Q
+( con\336guration \336le which sets indents to 2 and the wrapmar) 255.9 610.02 T
+(gin) 536.99 610.02 T
+-0.1 (to 9 as describe) 207 596.02 P
+-0.1 (d abo) 281.01 596.02 P
+-0.1 (v) 307.05 596.02 P
+-0.1 (e, and inserts a right brack) 312.87 596.02 P
+-0.1 (et and indents when you) 438.87 596.02 P
+(type a left brack) 207 582.02 T
+(et,i) 284.52 582.02 T
+(n \336le) 299.52 582.02 T
+4 10 Q
+(baalbek:~) 326.86 582.02 T
+(dehner) 373.27 582.02 T
+(t/.e) 406.81 582.02 T
+(xr) 421.11 582.02 T
+(c.cc) 430.36 582.02 T
+3 12 Q
+( if an) 449.82 582.02 T
+(yone cares to) 474.3 582.02 T
+(cop) 207 568.02 T
+(y it. Simply put it in your home directory) 224.21 568.02 T
+(, and link) 421.1 568.02 T
+4 10 Q
+(.e) 469.1 568.02 T
+(xr) 477.29 568.02 T
+(c) 486.54 568.02 T
+3 12 Q
+( to it from di-) 492.1 568.02 T
+(rectories where you will w) 207 554.02 T
+(ork on sources.) 334.85 554.02 T
+576 578.02 578 604.02 R
+V
+FMENDPAGE
+%%EndPage: "13" 13
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%PageOrder: Ascend
+%%Pages: 13
+%%DocumentFonts: Helvetica-Bold
+%%+ Times-Bold
+%%+ Times-Italic
+%%+ Times-Roman
+%%+ Helvetica-BoldOblique
+%%+ ZapfDingbats
+%%+ Helvetica
+%%EOF

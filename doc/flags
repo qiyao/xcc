@@ -1,0 +1,3060 @@
+/* ====================================================================
+ * ====================================================================
+ *
+ * Module: flags
+ * $Revision: 2.409 $
+ * $Date: 2000/05/02 14:21:54 $
+ * $Author: lesniak $
+ * $Source: /isms/cmplrs.src/osprey1.0/doc/Mongoose/RCS/flags,v $
+ *
+ * Revision history:
+ *  08-Sep-89 - Original Version
+ *  25-Jan-91 - Copied for TP/Muse
+ *  29-Sep-93 - Rearranged IRB flags
+ *  30-Jan-94 - Rearranged target specification flags
+ *  20-May-94 - SPEC-inspired rearrangement
+ *
+ * Description:
+ *
+ * This file documents the internal flag options in the Muse compiler.
+ *
+ * ====================================================================
+ * ====================================================================
+ */
+
+Informational trace options are enabled by -tin, where n is a mask:
+
+ -ti1	General compilation timing statistics.
+ -ti2	Compiled code statistics (e.g. cycles per block).
+ -ti4	Provide trace information for hard failures.
+ -ti8	Provide trace information for soft (non-fatal) failures.
+ -ti16	Provide miscellaneous statistics.
+ -ti32	Disable printing of source lines alongside IR dumps.
+ -ti64	Print trace flags.
+ -ti128 Dump WHIRL trees in prefix order
+ -ti256 Compilation-only timing information
+	(same as -ti1, but doesn't have the info for each PU).
+
+Miscellaneous control options are enabled by -tcn, where n is a small
+integer:
+
+ -tc1	stab: Don't generate 1assign radicals.
+ -tc2	cfold: Don't order TK_ID nodes alphabetically.
+ -tc3	cfold: Don't order different opcodes numerically by opcode.
+
+Debug options are enabled by -tdn, where n is a mask:
+
+ -td1	Dispose of ST memory after each PU.
+ -td2	Enable aggressive dead code elimination (GLRA).
+ -td4	Force large stack frame model.
+ -td8	Force dynamic stack frame model.
+ -td16	Check operands for type in tree building.
+ -td32	Force sp update fixup for large stack frames (even if not large).
+
+Execution of the compiler is controlled by -tpn, where n is the last
+compiler phase to be executed, as defined in tracing.h, e.g.:
+
+ -tp6	Stop after front end (semantics)
+ -tp15	Stop after global optimization
+ -tp18	Stop after global constant/copy propagation
+ -tp21	Stop after global live range analysis
+ -tp22	Stop after code expansion
+ -tp27	Stop after scheduling preparation
+ -tp28	Stop after scheduling
+
+Intermediate representation traces are enabled by -trn, where n is a
+compiler phase number as defined in tracing.h.  These traces are
+generated for the most part at the end of the specified phase, and the
+IR information traced depends on the phase, e.g. early in the
+compilation it may be an abstract syntax tree, and later it may be
+CGIR.  Some of the following phases may not support this flag.
+
+Symbol table traces are enabled by -tsn, where n is a compiler phase
+number as defined in tracing.h.  These traces are generated for the
+most part at the end of the specified phase, and the symbol table
+information traced depends to some extent on the phase.
+Some of the following phases may not support this flag.
+
+ -tr6	-ts6	Scanner
+ -tr7	-ts7	Parser
+ -tr8	-ts8	Semantics analysis
+ -tr9	-ts9	Pre-IRB transformations
+ -tr10	-ts10	IR builder
+ -tr12	-ts12	IR reader/writer (-tr supported in mongoose)
+ -tr13	-ts13	WHIRL to Fortran/C
+ -tr14	-ts14	WHIRL simplifier
+ -tr15	-ts15	Region support
+ -tr17	-ts17	Inliner
+ -tr18	-ts18	IPA local summary phase
+ -tr19	-ts19	IPA analysis phase
+ -tr20	-ts20	IPA optimization phase
+ -tr21	-ts21	IPA miscellaneous
+ -tr24	-ts24	Alias/mod/ref analysis
+ -tr25	-ts25	WOPT: Global optimization
+ -tr26	-ts26	WOPT: More global optimization
+ -tr27	-ts27	WOPT: Even more lobal optimization
+ -tr30	-ts30	Vector data dependency analysis
+ -tr31		Loop nest optimizer
+ -tr32		More loop nest optimizer
+ -tr33		Even more loop nest optimizer
+ -tr36	-ts36	VHO Lowerer
+ -tr37 		WHIRL Lowerer
+ -tr40	-ts40	Data layout
+ -tr41	-ts41	Code generator expansion
+ -tr42		Localize TNs
+ -tr43	-ts43	Find global register live ranges
+ -tr44	-ts44	Extended Block Optimization
+ -tr45	-ts45	Scheduling preparation
+ -tr46	-ts46	Peephole optimization
+ -tr47	-ts47	Flow optimization
+ -tr48	-ts48	Global code motion
+ -tr49	-ts49	Inner loop analysis and transformation
+ -tr50	-ts50	Software pipelining
+ -tr52	-ts52	HyperBlock Scheduling
+ -tr53	-ts53	Global register allocation
+ -tr54	-ts54	Local register allocation
+ -tr55	-ts55	Post-scheduling global code motion
+ -tr56	-ts56	Code emission
+ -tr57		Hyperblock formation
+ -tr58		Predicate query system
+ -tr60		All cg phases
+
+TN list traces are enabled by -tnm, where m is a compiler phase
+number as defined in tracing.h.  These traces are generated for the
+most part at the end of the specified phase, as for the IR and symbol
+table traces, and some phases do not support this flag.  For
+example:
+
+ -tn12	IR reader/writer
+
+Memory allocation traces are enabled by -tam, where m is a compiler phase
+number.  These should be generated just as with the ir, tn and symbol table
+traces.
+
+Per-phase traces are enabled by -ttm,n where m is a compiler phase
+number as defined in tracing.h, and n is a flag mask.  Those currently
+defined are:
+
+ -tt1:n	 (PT1) Performance tracing #1  (see #defines in tracing.h)
+  -tt1:0x01   Turn on all performance tracing (-tt1:0xffffffff,
+-tt2:0xffffffff)
+  -tt1:0x02   Inlining/cloning
+  -tt1:0x04   Other IPA, e.g. constant propagation
+  -tt1:0x08   LNO
+  -tt1:0x10   OPT
+  -tt1:0x20   CG
+
+ -tt2:n	 (PT2) Performance tracing #2 (see #defines in tracing.h)
+
+ -tt3:n	 (MSC) Miscellaneous
+  -tt3:0x1   Controls
+  -tt3:0x2   TDT setup
+  -tt3:0x4   Display phase names as entered
+  -tt3:0x8   Display TN sizes
+  -tt3:0x10  TCON tracing
+  -tt3:0x20  Brief command line options tracing
+  -tt3:0x40  Enable (disable) DevWarn messages.  Change from default setting.
+  -tt3:0x80  Full command line options tracing
+  -tt3:0x100 Dump CG register class contents
+
+ -tt4:n	 (TDT) TDT support
+
+ -tt6:n	 (SCN) Scanner
+
+ -tt7:n	 (PAR) Parser
+  -tt7:1   Trace tree nodes.
+  -tt7:32  Don't trace tree node line numbers.
+
+ -tt8:n	 (SEM) Semantics analysis
+  -tt8:1       Trace IL at file scope level
+  -tt8:2       Trace IL at routine scope level before lowering
+  -tt8:4       Trace IL at routine scope level after lowering
+  -tt8:8       Generate equivalent C program from tree
+  -tt8:0x10    Disable Partial Lowering
+  -tt8:0x20    Trace Partial Lowering
+  -tt8:0x40    Enable Delta C++
+  -tt8:0x80    Trace Delta C++
+  -tt8:0x100   Trace the trees as they are built.
+  -tt8:0x200   Treat pointers as arrays.
+  -tt8:0x400   Enter unreferenced external functions into symbol table
+  -tt8:0x800   Disable optimization of trees for pointer arithmetic
+
+ -tt9:n	 (PIR) Pre-IRB transformations
+  -tt9:1   General constant folding trace.
+  -tt9:2   Detailed constant folding trace.
+  -tt9:4   Turn off address reassociation hack
+
+ -tt10:n (IRB) IR builder
+  -tt10:0x000001 General IR builder trace
+  -tt10:0x000002 IR builder memory reference trace (irbmem.c)
+  -tt10:0x000004 IR builder expression trace (irbexpr.c)
+  -tt10:0x000008 IR builder call trace (irbcall.c, callutil.c, calls.c)
+  -tt10:0x000010 IR builder instruction build trace (insutil.c)
+  -tt10:0x000020 IR builder BB trace (bbutil.c)
+  -tt10:0x000080 irbmem addressing option -- attempt base/index addressing
+  -tt10:0x000100 irbmem array address composition -- don't fold in loops
+  -tt10:0x000200 irbmem array address composition -- invert base, index
+  -tt10:0x000400 KAI IR builder trace
+  -tt10:0x000800 Trace .B file output (mtob.c)
+  -tt10:0x001000 Disable misaligned memops (obsolete -- use -TENV:aligned
+  -tt10:0x002000 Dumps the DST (intermediate dwarf) to "<srcfile>.fe.dst"
+  -tt10:0x004000 Trace DST header emission
+  -tt10:0x010000 Enable Splitting of Common/Equivalence
+  -tt10:0x020000 WN write binary
+  -tt10:0x040000 Enable Copyin/Copyout
+  -tt10:0x080000 Enable using PREGS for user variables
+  -tt10:0x100000 trace WN stack
+  -tt10:0x200000 trace WN low
+  -tt10:0x400000 trace WN medium
+  -tt10:0x800000 trace WN high
+  -tt10:0x1000000 Enable generation of OPC_PAREN
+
+ -tt12:n (IRR) IR reader/writer
+  -tt12:1    General IR input trace (btom.c)
+  -tt12:2    Detail IR input trace (btom.c)
+  -tt12:4    Symbolic constant manipulation trace (symconst.c)
+  -tt12:8    Symbol table entry trace (stab.c)
+  -tt12:64   DST is read from the .B file and dumped to "<srcfile>.be.dst"
+  -tt12:1024 Disable pre-optimization (pre_opt.c)
+  -tt12:2048 Trace pre-optimization (pre_opt.c)
+
+ -tt13:n (WH2) WHIRL to C/Fortran
+
+ -tt14:n (SMP) WHIRL simplifier
+  -tt14:0x1    Show rules
+  -tt14:0x2    Show trees
+
+ -tt15:n (RGN) Region support
+
+ -tt16:n (FEEDBACK) Feedback support
+  -tt16:0x1    Show progress annotating WHIRL tree
+  -tt16:0x2    Show progress annotating CFG
+
+ -tt17:n (INL) Inliner
+  -tt17:1      Trace copy propogation in stand alone inliner
+  -tt17:2      Trace inline/size decisions
+  -tt17:128    Trace inliner split common
+
+ -tt18:n (IPL) IPA local summary phase
+  -tt18:1  General IPL progress tracing.
+  -tt18:2  IPL mod/ref tracing.
+  -tt18:128 Array Section, scalar kill, euse tracing
+
+ -tt19:n (IPA) IPA analysis phase
+  -tt19:1  General IPA progress tracing.
+  -tt19:2  General alias/mod/ref trace (ipaa.cxx).
+  -tt19:4  Detail alias/mod/ref trace (ipaa.cxx).
+  -tt19:8  Callgraph management trace (ip_graph.c, ipa_cg.cxx, ...).
+  -tt19:16 IPAA summary file output
+  -tt19:32 IPAA statistics
+  -tt19:64 IPAA iterator
+  -tt19:128 IPA split commons
+  -tt19:256 IPA propagation of array sections
+  -tt19:512 IPA multi cloning (combined with constant propagation)
+
+ -tt20:n (IPO) IPA optimization phase
+  -tt20:1  General IPO progress tracing.
+
+ -tt21:n (IPM) IPA miscellaneous
+
+ -tt24:n (ALI) Alias analysis (wopt)
+  -tt24:1  Alias analysis general progress trace
+  -tt24:2  IPAA summary file input to WOPT
+  -tt24:4  IPAA query tracing
+
+ -tt25:n (OPT) Global optimization (wopt)
+  -tt25:0x00000001  Print dominator tree
+  -tt25:0x00000002  Trace construction of phi functions
+  -tt25:0x00000004  Verify control flow graph
+  -tt25:0x00000008  Dump control flow graph
+  -tt25:0x00000010  Trace dead store elim (preopt)
+  -tt25:0x00000020  Dump after copy propagation
+  -tt25:0x00000040  Trace simple folding to constants
+  -tt25:0x00000080  Dump dead code elim (on stmtrep)
+  -tt25:0x00000100  Dump/trace IV recognition
+  -tt25:0x00000200  Dump/trace D-U chain construction
+  -tt25:0x00000400  Dump after converting back to WHIRL
+  -tt25:0x00000800  Trace alias analysis
+  -tt25:0x00001000  Dump itable
+  -tt25:0x00002000  Dump data flow equations
+  -tt25:0x00004000  Dump CODEMAP, STMTREP, and CODEREP
+  -tt25:0x00008000  Dump data flow equations (local attributes)
+  -tt25:0x00010000  Trace Reg-variable identification
+  -tt25:0x00020000  Dump main emitter
+  -tt25:0x00040000  Trace mainopt find induction var
+  -tt25:0x00080000  Dump mainopt lowered tree
+  -tt25:0x00100000  Trace linear function test replacement
+  -tt25:0x00200000  Trace induction var elim
+  -tt25:0x00400000  Trace copy-in copy-out opt
+  -tt25:0x00800000  Trace index load opt
+  -tt25:0x01000000  Trace alias analysis for CG
+  -tt25:0x02000000  Trace C++ exception handling
+  -tt25:0x04000000  Trace tail recursion
+
+ -tt26:n (OP2) More global optimization (wopt)
+
+ -tt27:n (OP3) More global optimization (wopt)
+
+ -tt30:n (VDD) Vector data dependency analysis
+
+ -tt31:n (LNO) Loop nest optimizer
+  -tt31:0x0001	 base dependence analysis trace
+  -tt31:0x0002	 detailed dependence analysis trace
+  -tt31:0x0004   print useful LNO info to stdout
+  -tt31:0x0008   print "useful" prefetch info to stdout
+  -tt31:0x0010	 skip fiz_fuse phase
+  -tt31:0x0020	 skip SNL phase
+  -tt31:0x0040	 skip inner_fission phase
+  -tt31:0x0080	 skip lno entirely, run only pre-opt
+  -tt31:0x0100	 debugging information for SNL
+  -tt31:0x0200	 extra debugging information for SNL
+  -tt31:0x0400   interactive transformation selection
+  -tt31:0x0800   use the stack for scalar expansion
+  -tt31:0x1000   debug SIMD
+  -tt31:0x4000   debug the machine model
+  -tt31:0x8000   debug the cache model
+  -tt31:0x10000  debug equivalence local arrays
+  -tt31:0x20000  debug scalarize local arrays
+  -tt31:0x40000  debug dead code cf elimination
+  -tt31:0x80000  turns off guarding of DO loops and memory invariant removal
+  -tt31:0x100000 debug memory invariant removal
+  -tt31:0x200000 turns off scalar renaming
+  -tt31:0x400000 Enable prefetching.
+  -tt31:0x800000 Dump prefetch debug info to trace file
+
+ -tt32:n (LN2) More loop nest optimizer
+
+ -tt33:n (LN3) Even more loop nest optimizer
+
+ -tt37:n (LOW) WHIRL lowering
+  -tt37:0x01    Map preservation tracing (LNO Dependency Graph)
+  -tt37:0x02    Map preservation tracing (WOPT Alias)
+  -tt37:0x04    Alignment tracing
+  -tt37:0x08    Feedback frequency tracing
+  -tt37:0x10    Turn off splitting symbols into base/offset
+  -tt37:0x20	IO lowerer tracing
+  -tt37:0x40	Trace CAND/CIOR/CSELECT speculative code
+  -tt37:0x80	Trace tree height reduction
+
+
+ -tt40:n (LAY) Data layout
+  -tt40:0x1	trace data layout
+
+ -tt41:n (EXP) Code generator expansion
+  -tt41:0x01    General expansion trace.
+  -tt41:0x02	Whirl statements before expansion.
+  -tt41:0x04	trace load/store expansion.
+  -tt41:0x20    Disable optimization of constant multiplies and divides
+                into shift/add sequences.
+  -tt41:0x40    Trace adjustments to entry/exit code
+  -tt41:0x100	Use lower latency for T5 32-bit multiplies
+  -tt41:0x200	Trace BB's before localize dedicated tns.
+
+ -tt42:n (LOC) Localize TNs
+  -tt42:0x1	trace localize
+
+ -tt43:n (GLR) Find global register live ranges
+  -tt43:0x001   General trace of global TN detection
+  -tt43:0x002   Trace global dead code elimination
+  -tt43:0x008   Trace aggressive dead code elimination (BB graph mods)
+  -tt43:0x010   More detailed trace messages
+  -tt43:0x020   Detailed trace of the detection of the global TNs
+  -tt43:0x040   Trace literal copy replacement
+  -tt43:0x080   When mapping TNs to RegClass via INSs, fail if null OPER
+  -tt43:0x100   Force valid operations
+  -tt43:0x200   Disable renaming of duplicate liveout TNs
+  -tt43:0x400   Trace conversion of simulated instructions
+  -tt43:0x800   Disable conversion of simulated instructions
+
+ -tt44:n (EBO) Extendedn Block Optimization (EBO)
+  -tt44:0x0000001   general execution trace
+  -tt44:0x0000002   trace optimization transformations
+  -tt44:0x0000004   trace block processing
+  -tt44:0x0000008   trace data processing
+  -tt44:0x0000010   trace hash table operations
+  -tt44:0x0000020   trace copy propagation
+  -tt44:0x0000040   trace select branch based on pc-relative offset
+  -tt44:0x0000080   trace register copy propragation
+  -tt44:0x0000100   trace store (to stack) removal
+
+ -tt45:n (PRP) Scheduling preparation (CGPREP)
+  -tt45:0x0000001   general scheduling preparation
+  -tt45:0x0000002   inner loop unrolling/zcl
+  -tt45:0x0000004   dependency graph building
+  -tt45:0x0000008   TN renaming
+  -tt45:0x0000010   copy removal
+  -tt45:0x0000020   dead code removal
+  -tt45:0x0000040   constant folding
+  -tt45:0x0000080   invariant combination
+  -tt45:0x0000100   TN duplication trace
+  -tt45:0x0000200   R/W trans. trace
+  -tt45:0x0000400   checkpoints during R/W
+  -tt45:0x0000800   recurrence breaking
+  -tt45:0x0001000   strongly connected component (recurrence) detection
+  -tt45:0x0002000   MII calculation
+  -tt45:0x0004000   loop overhead transformation
+  -tt45:0x0008000   if conv control flow
+  -tt45:0x0010000   if conv data flow
+  -tt45:0x0020000   if conv elementary transformations
+  -tt45:0x0040000   if conv composite transformations
+  -tt45:0x0080000   if conv select insertion
+  -tt45:0x0100000   if conv intermediate checkpoints
+  -tt45:0x0200000   memory dependence pruning
+  -tt45:0x0400000   loop optimization checkpoints
+  -tt45:0x0800000   final optimization checkpoints
+  -tt45:0x1000000   scheduling estimates
+  -tt45:0x2000000   madd creation
+  -tt45:0x4000000   dump out BB at the end of this phase
+  -tt45:0x8000000   loop-invariant hoisting
+  
+
+ -tt46:n (PEP) Peephole optimization
+  -tt46:0x000001   general peephole trace
+  -tt46:0x400000   reasons for not performing other traced optimizations
+
+ -tt47:n (FLW) CG Control flow utilities
+  -tt47:0x0001   Optimization tracing
+  -tt47:0x0002   Verbose/detailed optimization tracing, includes:
+  -tt47:0x0004       Unreachable BB removal
+  -tt47:0x0008       Branch optimization
+  -tt47:0x0010       BB merging
+  -tt47:0x0020       BB reordering
+  -tt47:0x0040       BB freq-guided ordering
+  -tt47:0x0080       BB cloning
+  -tt47:0x0100   Frequency estimates
+  -tt47:0x0200   Dominators
+  -tt47:0x0400   BB layout tracing
+
+ -tt48:n (GCM) Global code motion
+  -tt48:0x001	 General tracing for GCM.
+  -tt48:0x002	 Trace filling of branch delay slots.
+  -tt48:0x004	 Trace computation of register liveness.
+  -tt48:0x008  	 Disable global code motion before GRA.
+  -tt48:0x010    Disable global code motion after GRA.
+  -tt48:0x0020   Disable equivalence code motion across basic blocks.
+  -tt48:0x0040   Disable speculative code motion across basic blocks.
+
+ -tt49:n (LAN) Loop analysis and transformation (pre-SWP)
+
+ -tt50:n (SWP) Software pipelining
+  -tt50:0x000001  SWP results (schedules)
+  -tt50:0x000002  SWP control (low detail)
+  -tt50:0x000004  SWP control (add higher detail)
+  -tt50:0x000008  SWP non-results (DPG, priority orders)
+  -tt50:0x000010  priority ordering
+  -tt50:0x000020  scheduling backtracks matrix
+  -tt50:0x000040  replication factor reason
+  -tt50:0x000080  live ranges on register allocation failure
+  -tt50:0x000100  live interferences on register allocation failure
+  -tt50:0x000200  Print DAG to trace file suitable for DAG program.
+  -tt50:0x000400  schedules at each backtrace (Can make HUGE traces!)
+  -tt50:0x000800  OP heights & depths
+  -tt50:0x001000  <reserved for future use>
+  -tt50:0x002000  schedules on register allocation failures
+  -tt50:0x004000  print CG_DEP arcs
+  -tt50:0x008000  adjust op clocks pass2
+  -tt50:0x010000  loop info
+  -tt50:0x020000  trace loop/prolog/epilog IR before and after SWP
+
+ -tt52:n (SCH) HyperBlock Scheduling
+  -tt52:0x0001  General scheduling trace.
+  -tt52:0x0002  Resource conflict trace.
+  -tt52:0x0004  Detailed resource conflict trace.
+  -tt52:0x0010  Enable scheduling notes in .s file for each basic block
+  -tt52:0x0800  Disable moving of loads/stores past addiu's.
+  -tt52:0x1000	Enable movement of of OPs that define operands of an xfer-op.
+  -tt52:0x2000  Disable computing of register estimates for LRA.
+
+ -tt53:n (GRA) Global register allocation
+  -tt53:0x0001    high detail
+  -tt53:0x0002    coloring
+  -tt53:0x0004    splitting
+  -tt53:0x0008    register grants to LRA
+  -tt53:0x0010    preferencing
+  -tt53:0x0020    spill/restore placement optimization
+  -tt53:0x0040    statistics
+  -tt53:0x0080    neighbors in conflict graph during coloring
+  -tt53:0x0100    gra loop splitting
+  -tt53:0x0200    homing
+  -tt53:0x0400    performance comparison trace
+  -tt53:0x0800    trace and check split borders (not yet implemented)
+
+ -tt54:n (LRA) Local register allocation
+  -tt54:0x0001 General LRA trace.
+  -tt54:0x0002 General LRA trace (more detail).
+  -tt54:0x0004 LRA Spilling trace.
+  -tt54:0x0008 LRA entry/exit trace (for callee saved regs).
+  -tt54:0x0010 LRA Copy Removal trace.
+  -tt54:0x0020 LRA fatpoints trace.
+  -tt54:0x0100 Disable spilling of global live ranges.
+  -tt54:0x0200 Disable rescheduling to reduce register pressure when spilling.
+  -tt54:0x0400 Disable removal of redundant definitions.
+  -tt54:0x0800 Disable movement of GRA spill loads/stores.
+  -tt54:0x1000 Disable replicating of loads to spill live range.
+  -tt54:0x2000 Disable reordering of instructions to shorten live ranges.
+
+ -tt55:n (PSG) Post-scheduling global code motion
+
+ -tt56:n (EMT) Code emission
+  -tt56:0x0001  Trace emitting of instructions
+  -tt56:0x0004  Trace emitting of INITOs
+  -tt56:0x0008  Trace emitting of dwarf
+  -tt56:0x0040  Trace emitting of unwind
+  -tt56:0x0100  Emit count of unaligned instructions
+  -tt56:0x0200  Disable emitting dwarf
+  -tt56:0x0800  Trace long branch fixup
+  -tt56:0x1000  Enumerate all normal and pseudo insts in assembly form
+
+ -tt57:n (HBF) Hyperblock formation
+   -tt57:0x00000001 Show generated hyperblocks
+      0x002 Block selection information
+      0x004 Tail duplication information
+      0x008 Dump if-conversion information
+      0x010 Dump control dependencies
+      0x020 Dump information about hammock region identification
+      0x080 Dump IR before hyperblock formation
+      0x100 Draw flow graph (DaVinci) before hyperblock
+      0x200 Draw flow graph (DaVinci) after leaf conversion
+      0x400 Draw flow graph (DaVinci) after  hyperblock
+      0x80000000 Send trace information for this phase to stdout
+
+
+ -tt58:n (PQS)
+    -tt58:1 - dump all non-trivial queries and results
+
+ -tt61:n (TMP) Temporary/miscellaneous usage
+  -tt61:0x001  Make really bad schedules for HW debug
+  -tt61:0x002  Trace rematerialization during spilling
+  -tt61:0xx40  Stop compilation at intermediate stage (depends on debug)
+  -tt61:0xx80  Disable extra forward code motion in outer regions
+  -tt61:0x200  Enable backward motion of unsafe region invariant loads
+  -tt61:0x400  Quad align r10k
+  -tt61:0x800  Trace long branches
+  -tt61:0x1000 Trace 16-bit multiply identification
+  -tt61:0x2000 Trace cg padding of global symbols
+  -tt61:0x4000 Trace autotie information generation / output
+  -tt61:0x8000 Trace CG fusion analysis / generation.
+  -tt61:0x10000 Trace CG Code Motion.
+
+ -tt66:n (TIE) TIE type/intrinsic processing
+  -tt66:0x001  Trace TIE general information
+  -tt66:0x002  Trace TIE intrinsic expansion in CG
+  -tt66:0x004  Trace TIE branch conversion
+
+Application of many of the trace flags described above can be
+restricted to parts of the program being compiled.  One or more
+instances of '-tbn' restrict tracing to those BB:n listed.  In
+addition, '-tfname' restricts tracing to the subprogram named 'name'.
+Not all traces respect these restrictions, but they can substantially
+decrease the amount of trace output.
+
+/* ====================================================================
+ * ====================================================================
+ *
+ * Option groups:
+ *
+ * The following options are organized into groups based on the nature
+ * of the features they affect.  Each group is introduced on the
+ * command line by a distinct keyword, followed by a list of colon-
+ * separated options, with the syntax:
+ *
+ *	-KEYWORD:opt1[=val1]{:opt[=val]}*
+ *
+ * Each option consists of a name, which may be abbreviated (i.e.
+ * truncated), and an optional value after an equal sign.  Depending on
+ * the type of the option, the value may be an integer, a string, or
+ * a Boolean value (ON, OFF, TRUE, FALSE, YES, NO).  Boolean options
+ * default to TRUE if no value (i.e., only the option name) is specified.
+ *
+ * The keywords currently defined are OPT (optimization), TARG (target
+ * machine), TENV (target environment), SWP (software pipelining),
+ * IPA (interprocedural analysis) and INLINE (inlining).
+ *
+ * In general, identical options in these groups should be passed to
+ * both front and back ends.
+ *
+ * ====================================================================
+ * ====================================================================
+ */
+
+
+/* ================================================================= */
+
+
+-LIST: This group contains options controlling user listings.
+
+  =[Bool]
+    Turn on a listing file.  It defaults to <basename>.l, but can be
+    modified with -fl,...
+
+  cite[=Bool]
+    Enable output required by the CITE tool.  This includes LNO log
+    messages in the listing file, whirl2c or whirl2f output after LNO,
+    and an assembly (.s) file.
+
+  options[=Bool]
+    Dump non-internal options.
+
+  source[=Bool]
+    List the source with any other annotations requested.  Currently
+    unimplemented (was -ls in Ragnarok).
+
+  symbols[=Bool]
+    List the symbol table.  Currently unimplemented (was -ly in
+    Ragnarok).
+
+  notes[=Bool]
+    List notes in assembly output (.s) file. [TRUE]
+
+  software_names[=Bool]
+    Use software (ABI) register names in assembly output (.s) file. [FALSE]
+
+
+/* ================================================================= */
+
+
+-FE: This group mentions options used by the frontend.
+     Note that these flags are purely for internal use.
+
+  partial_split=[Bool]
+    Allocate each item of a common block an ST which will be used in the
+    WHIRL generated.  In addition set its base to be the ST of the common
+    block itself.
+    (mfef77,default TRUE)
+  block_split=[Bool]
+    Allocate each item of a common block an ST which will be used in the
+    WHIRL generated.  Unlike partial_split above, this option would
+    split a common block into multiple blocks by grouping adjacent elements
+    so that the size does not exceed the value speciied by block_size.
+    Note that this currently assumes that all declarations of the
+    common block are identical.
+    (mfef77, default FALSE, obsolete, replaced by -OPT:pad_common.)
+  block_size=n
+    Controls the size of the split common block
+    (mfef77,default=16384)
+  switch_opt=[BOOL]
+    Control code sequences generated for switch statements.
+    (fec|fecc,default=on)
+  switch_if_else=n
+    For switch statements having less than or equal to "n" cases use
+    if_else sequence.
+    (fec|fecc,default=6)
+
+  constr_opt=[BOOL]
+    optimize (remove) calls to "empty" constructors and destructors.
+    (fecc,default TRUE)
+
+
+/* ================================================================= */
+
+
+-CG:	flags specific for Global Code Motion (GCM), HyperBlock Scheduler
+	and IGLS framework.
+
+  fdiv_algorithm={sgi,intel_min_lat,intel_max_thr}
+  sqrt_algorithm={sgi,intel_min_lat,intel_max_thr}
+    Select the algorithm used for floating point divide or square root.
+    This is a temporary switch to be used in deciding which algorithm
+    is best. It is also only for IA-64 and has no effect on other
+    targets. (Default sgi)
+
+  pre_local_sched[=Bool]
+    Enable the local scheduling (LOCS) phase before register allocation.
+    (Default -O >= 1)
+
+  post_local_sched[=Bool]
+    Enable the local scheduling (LOCS) phase after register allocation.
+    (Default -O >= 2)
+
+  local_scheduler[=Bool]
+    Enable the local scheduling (LOCS) phase. Controls both the pre_local_sched
+    and post_local_sched phases.
+
+  local_sched_xbb[=Bool]
+    Enable the use of cross-basic-block(xbb) dependence in the local scheduler.
+    When scheduling a BB, the xbb considers the dependence of BB's predecessors
+    and successors in order to generate a better scheduling.  
+    (Default true when -O >= 2)
+
+  pre_gcm[=Bool]
+    Enable the global code motion phase before register allocation (GRA/LRA).
+    (default -O >= 3)
+
+  post_gcm[=Bool]
+    Enable the global code motion phase after register allocation.
+    (default -O >= 2)
+
+  gcm[=Bool]
+    Enable the Global code motion phase. Controls both pre_gcm and post_gcm
+    phase. (default -O >= 2)
+
+  pre_hb_sched[=Bool]
+    Enable the HyperBlock Scheduling phase before register allocation
+(GRA/LRA).
+    (default -O >= 3)
+
+  post_hb_sched[=Bool]
+    Enable the HyperBlock Scheduling phase after register allocation.
+    (default -O >= 2)
+
+  hb_sched[=Bool]
+    Enable the HyperBlock Scheduling phase. Controls both pre_hb_sched and
+    post_hb_sched phase. (default -O >= 2)
+
+  cflow_after_gcm[=Bool]
+    Enable calling the control flow optimizer when GCM has created
+    optimization opportunities.
+    (default TRUE)
+
+  pointer_speculation[=Bool]
+    Enable speculative_ptr_deref/speculative_null_ptr_deref.  (See
+    below.)  Requires kernel collaboration to map page zero.
+    (default TRUE)
+
+  cross_call_motion[=Bool]
+    Enable code motion across procedure calls. Uses WOPT/IPA summary to
+    decide legality of code movement.
+    (default TRUE)
+
+  use_sched_est[=Bool]
+    Enable the use of the scheduler estimator package instead of calling
+    the Local Scheduler (LOCS). The schedule estimator gives a rough
+    picture of the schedule using critical chains and resource requirements.
+    (default FALSE)
+
+  forw_circ_motion[=Bool]
+    Enable circular motion across loop-back edges, instructions in the
+    loophead block are peeled out of the loop and inserted at the end of
+    the loopbody. This helps reducing the critical dependences resolving an
+    frequently executed early-exit almost to zero.
+
+  gcm_minimize_reg_usage[=Bool]
+   Minimizes the register usages when deciding profitability code movement.
+   Calculates an accurate estimate of local and global register usages,
+   determines delta register usages, to decide net profitability.
+   This is default TRUE for pre-GCM phase invoked before register allocation.
+
+  branch_likely[=Bool]
+   Enables the conversion of highly probable branches (branch_prob > 0.95)
+   to branch-likely instructions. This improves the overall branch
+   prediction in the hardware in addition to reducing cycles in wasted
+   speculation. (default -O >= 1)
+
+  fill_delay_slots[=Bool]
+   Fills the delay slot of branch instructions with instruction from the
+   most probable successor taken path. (default -O >= 1)
+
+The following are not documented for users:
+
+  speculative_ptr_deref[=Bool]
+    Search for lw $a,x($b) in the movement destination.
+    Assume 'lw $a,y($b)' is safe to move if $b is not modified in between.
+    (default TRUE)
+
+  gra_live_predicate_aware[=Bool]
+    Turn on predicate-aware gra_live computation (default TRUE)
+
+  pqs_disable=[Bool]
+    Disable use of the predicate query system (default FALSE, i.e. PQS is
+enabled)
+
+  localize[=Bool]
+    Turn localize on or off.  (default is true if O0 or O1, else false).
+
+
+  loop_force_ifc[=int]
+    Force if-conversion of inner loops. If set to 1, only if-convert
+    inner loops which result in a single BB. If set to 2, Try to if-convert
+    all inner loops of more than one BB. Default is 2.
+
+  cmotion[=Bool]
+    Turn Code Motion on or off.
+    (default is on if Os at O2 or O3, else false).
+
+/* ================================================================= */
+
+-PHASE: This group controls what backend phases are run.
+
+  {l,p,w,c,i,clist,flist,purple}[=Bool]
+    Run {lno,preopt,wopt,cg,ipl,w2c,w2f,purple} phase.
+
+  {l,w,c,i,w2c,w2f,pur}path=<path>
+    Use given path for {lno,wopt,cg,ipl,w2c,w2f,purple} phase.
+
+
+/* ================================================================= */
+
+-OPT: This group defines options which control optimization choices.
+
+  alias=name
+	Define the pointer aliasing model to be used.  The possible
+	values of "name" are:
+    Aliasing model for C and C++:
+      typed
+	Pointers to different base types are assumed NOT to point to
+	aliased objects.  This is the default in ANSI C and C++.
+      unnamed
+	Pointers are assumed to point to unnamed objects only.  If one
+	assumes that the only pointers are formal reference parameters,
+	this amounts to the default Fortran 77 behavior.
+      restrict
+	Distinct pointer variables are assumed never to point to overlapping
+	storage.  Intended to enable Sun's restricted pointer treatment.
+      disjoint
+	Distinct pointer expressions are assumed never to point to overlapping
+	storage.  Intended to enable IBM's disjoint pointer treatment.
+      no_typed
+	Pointers to different base types may point to the same object.
+      no_unnamed
+        Pointer may point to named object.
+      no_restrict
+        Distinct pointer variables may point to overlapping storage.
+      no_disjoint
+        Distinct pointer expressions may point to overlapping storage.
+    Aliasing model for Fortran:
+      parm
+        Fortran parameters are assumed not aliased to any other objects.
+      cray_pointer
+	A pointee's storage is assumed never overlaid on another
+	variable's storage.  The pointee is stored in memory before
+	a call to an external procedure and is read out of memory
+	as its next reference.  It is also stored before a RETURN
+	or END statement of a subprogram.
+      no_parm
+        Fortran parmaters may alias to other objects.
+      no_cray_pointer
+        A pointee's storage may overlay on another variable's storage.
+    Default aliasing model:
+      any
+	alias=any equals to alias=typed:alias=no_unnamed:alias=no_restrict
+	for ANSI C, C++.  It equals to alias=no_typed:alias=no_unnamed:alias=
+        no_restrict for CCKR C.  It equals to alias=parm:alias=no_cray_pointer
+        for Fortran.
+
+  cis[=Bool]
+	Enable combining calls to sin(x) and cos(x) into a single
+        call to cis(x).  If OPT:roundoff=1 or above is used, this is the
+        default.
+
+  const_copy_limit=n
+	Don't do const/copy prop if there are more than n TNs.
+	(default 10,000)
+
+  div_split[=Bool]
+	Enable conversion of x/y to x*1/y.  (Default FALSE -- see
+	IEEE_arithmetic.
+
+  fast_bit_intrinsics[=Bool]
+	If ON, turns off the check for the bit count being within range
+	for Fortran bit intrinsics (e.g., BTEST, ISHFT).  Default OFF.
+
+  fast_complex[=Bool]
+	Use fast complex ABS/DIV, though it may cause unnecessary
+	overflows.  (Default ON if roundoff = 3.)
+
+  fast_exp[=Bool]
+	Enable optimization of exponentiation by replacing the exp
+	runtime call by multiplication and/or square root for certain
+	fixed exponents. This is on by default in FORTRAN, if
+	-OPT:roundoff=1 or above is used. For C, this is the default
+	if exp() is marked intrinsic and -OPT:roundoff=1 or above is used.
+
+  fast_io[=Bool]
+        Enable inlining of printf(), fprintf(), sprintf(), scanf(), fscanf(),
+        sscanf() and printw() in terms of more specialized lower-level
+        subroutines.  This option only applies if the candidates for inlining
+        are marked as intrinsic (-D__INLINE_INTRINSICS) in the respective
+        header files (<stdio.h> and <curses.h>), otherwise they will not be
+        inlined.  Programs which use functions such as printf() or scanf()
+        heavily will generally have improved I/O performance when this
+        switch is used.  Since this option may cause substantial code-
+        expansion, it is OFF by default.
+
+  fast_nint[=Bool]
+	Enables use of the round instruction to implement NINT and ANINT
+	(both single- and double-precision versions).  This violates the
+	Fortran 77 standard for certain argument values (for example,
+	Fortran says that NINT(1.5) is 2, and NINT(2.5) is 3, while IEEE
+	rounds both of these to 2).  If fast_trunc is also enabled, NINT
+	and ANINT are implemented with round instructions (i.e.,
+	fast_nint takes precedence for these intrinsics).  Default OFF
+	(ON if roundoff = 3).
+
+  fast_sqrt[=Bool]
+	Enable use of the identity sqrt(x) = x * rsqrt(x) (MIPS IV).
+
+  fast_trunc[=Bool]
+	The Fortran intrinsics NINT, ANINT, AINT, and AMOD (both single-
+	and double-precision versions) are inlined in a fast way which,
+	although fully compliant with the Fortran 77 standard, reduces the
+	valid argument range somewhat.  Default OFF (ON if roundoff >= 1).
+	If fast_nint is also enabled, NINT and ANINT are implemented with
+	round instructions (i.e., fast_nint takes precedence for these
+	intrinsics).
+
+  feopt[=Bool]
+	Enable front end (e.g. KAP) optimizations.  (Default TRUE,
+	subject to -O levels, so normally used to disable.)
+
+  fold_aggressive[=Bool]
+	Enable aggressive expression folding transformations.  (Default
+	ON if Opt_Level > 0.)
+
+  fold_arith_limit=n
+	Maximum # of insts in a BB for Fold_Arithmetic_Expressions to work
+	(default 1000).
+
+  fold_float[=Bool]
+	Enable constant folding of floating point numbers.  (See
+	roundoff above.)
+
+  fold_reassociate[=Bool]
+	Enable expression folding transformations which reassociate
+	operands, potentially affecting rounded values.  (See roundoff
+	below.)
+
+  global_limit=n
+	Don't do global optimizations if there are more than n TNs.
+	(default 10,000)
+
+  got_call_conversion[=Bool]
+	Enable the conversion of %call16 relocation to %got_disp when
+	the load of the functions address is being relocated outside
+	of a region (typically a loop).  (Default ON if Opt_Level > 1)
+
+  IEEE_comparisons
+	Force floating point comparisons to yield results conforming
+	to the IEEE 754 standard for NaN and Inf operands.  This
+	implies suppressing certain optimizations, for instance the
+	recognition that x==x must be TRUE.
+
+  inline_intrinsics[=Bool]
+	All Fortran intrinsics which have a library function will be
+        turned into a call to that function if set to OFF.  Default ON.
+
+  iv_simplify_limit=n
+	Do not replace uses of an induction variable if it requires
+	the creation of more than 'n' loop-invariant values.
+
+  Olimit=n
+	Any routine above the Olimit size will not be optimized.
+	If the compile is -O2 or above, and a routine is so big that the
+	compile speed may be slow, then it will print a message about what
+	Olimit value is needed to optimize.  You can recompile with that
+	value or you can use -OPT:Olimit=0 to avoid having any Olimit cutoff.
+
+  pad_common=[Bool]
+	Allocate each item of a common block an ST which will be used
+	in the WHIRL generated.  Unlike -FE:partial_split above, this
+	option splits a common block into multiple blocks by grouping
+	adjacent elements so that the size does not exceed the value
+	speciied by block_size.  Note that this currently requires that
+	all declarations of the common block be identical (user's
+	responsibility).  (mfef77 only, default FALSE.)
+
+  ptr_opt
+	Allow a declaration of a pointer to a scalar type to be viewed
+	as a declaration of an array with elements of the scalar type.
+	This means pointer operations will be viewed as array operations,
+	which again may provide for better analysis of inductive code
+	patterns for better optimization.
+
+  recip[=Bool]
+	Enable generation of -mips4 recip instruction.  (Default FALSE,
+	enabled by -OPT:IEEE_arithmetic=2.  Never TRUE for -mips1..3.)
+
+  rsqrt[=Bool]
+	Enable generation of -mips4 rsqrt instruction.  (Default FALSE,
+	enabled by -OPT:IEEE_arithmetic=2.  Never TRUE for -mips1..3.)
+
+  roundoff[=n]	n in 0..3
+	Identify the extent of acceptable roundoff error introduced by
+	optimizations.  See the man page and the Performance and Tuning
+	guide for more extensive explanations.  See also the
+	IEEE_arithmetic options.  The values of n mean:
+    n=0		(default)
+	Don't do transformations that introduce roundoff error.
+    n=1
+	Allow simple transformations which may introduce limited
+	roundoff (1 or 2 ULP) and/or overflow errors (restricting valid
+	range by no more than a factor of two).  Enables options
+	fold_float, fast_exp, and fast_trunc.
+    n=2		(default for -OPT:roundoff without value)
+	Allow more aggressive transformations which may introduce
+	roundoff by extensive reassociation.  Enables fold_reassociate
+	described below.  Does not enable transformations know to cause
+	systematic (cumulative) roundoff or overflow/underflow for a
+	large range of otherwise valid operands.
+    n=3
+	Anything goes.  For KAP, enables blocking and the like, sum
+	reductions, and real induction variables.  Enables options
+	fast_complex and fast_nint.  Source level parenthesis are also
+	ignored.
+
+	NOTE:  This definition is being reconsidered, most likely to
+	remove global reorganizations (e.g. reductions) to separate
+	control.
+
+  space[=Bool]
+	Bias optimization choices to favor minimizing code space.
+	Forces single exit blocks from subprograms.  (Default FALSE.)
+
+  space_flix[=Bool]
+	Bias optimization choices to favor minimizing code space for flix.
+        (space=[Bool] does not apply to flix). Default is FALSE.
+
+  speculative_null_ptr_deref[=Bool]
+	Enable speculation past the NULL ptr test. Assumes Page Zero as
+	readable. (Default FALSE)
+
+  unroll_remainder_fully[=Bool]
+        Enable full unrolling of remainder loop. (Default TRUE)
+
+  unroll_times_max=n
+	Maximum number of times that an innermost loop will be unrolled if
+	not unrolled fully.  Defaults to 8 for R10000 and R8000 and 4 for
+	other architectures.  Unrolling of innermost loops also controlled
+	by OPT:unroll_size, CG:unroll_min_trips, and CG:unroll_analysis.
+	In particular, CG:unroll_analysis often decides to unroll loops
+	less that unroll_times_max.  To force unrolling of all loops by
+	a factor k, use -OPT:unroll_times_max=k:unroll_size=0 along with
+	-CG:unroll_analysis=no:unroll_min_trips=0.
+
+  unroll_size=n
+	Maximum number of instructions in an innermost loop body after
+	unrolling.  0 means "no limit".	See also OPT:unroll_times_max,
+	CG:unroll_min_trips, CG:unroll_analysis, and CG:unroll_fully.
+	(default 80)
+
+  unroll_prune_prefetches[=BOOL]
+ 	For loops that have been unrolled but have not been software
+        pipelined, use the prefetch's stride to determine if the prefetch
+        is necessary in a given replication and remove it if not.
+        [TRUE]
+
+The following are not documented for users:
+
+  align_instructions=n
+	Align procedures and frequent blocks (e.g. loops) to the
+	byte alignment specified.  This alignment must be a power of 2.
+	This can either be set to a higher alignment than default,
+	or the default alignment can be overridden by using a value of 4.
+
+  allow_new_bb[=Bool]
+	Allow GDSE to insert new BBs for its spill/restore code.
+	(Default FALSE -- nasty interactions with unrolling in Ragnarok.)
+
+  base_pointers[=Bool]
+	Address generation will use base pointers instead of direct
+	addressing.  (Default TRUE for static sections.)
+
+  bblength=n
+	Set the number of instructions that constitutes "long basic block"
+	and break the block into parts if the block exceeds that amount
+	by 50%.  The number of instructions ending up in the block depends
+	upon where a "good breaking point" is in the block.
+
+  Ofast[=ipXX]
+	Select best optimizations for target platform IPXX (default
+	IP25, R10000 Power Challenge), based on SPEC.  See the man page
+	for more information.
+
+  unroll_mem_ivar[=Bool]
+        Control unrolling of loops whose index variables are in memory.
+	(Not used in Mongoose.)
+
+  inline_divide[=Bool]
+	In cases where divide-type operations are not directly handled
+	in the target instruction set, control whether the sequence
+	to perform the operation should be inlined or if a function
+	should be called. (NOTE: both options are not always provided
+	by the backend, but in those cases this switch is ignored).
+	[TRUE for -OPT:space=0, FALSE for -OPT:space=1]
+
+  extract_deposit[=Bool]
+	On IA64 generate the extract_bits and compose_bits WHIRL opcodes in the
+simplifier.
+	Default is TRUE.
+
+/* ================================================================= */
+
+-SWP:	Specify software pipelining options for code generation.
+	Unless otherwise indicated, these settings override the
+        defaults set by the -O level, and any option name may be
+	abbreviated as a non-ambiguous prefix of the full name.
+
+ =[Bool]
+	Forceably enable/disable software pipelining.  (e.g., CG_SWP:=off
+	disables software pipelining.)  The rest of these options make
+	sense only when software pipelining is enabled.
+
+ force_failure[=Bool]
+	Force SWP to always fail to pipeline. Useful for testing
+	cgprep paths that are specific to SWP. [FALSE]
+
+ ignore_max_profitable_ii[=Bool]
+	SWP is given an estimate of the II of the loop without SWP.
+	This is the maximum II at which it is profitable to SWP, and
+	if MII exceeds this, then SWP gives up. Setting this option
+	to TRUE, causes SWP to ignore the estimate. [FALSE]
+
+ max_ii_factor_limit=n
+	Determines the maximum multiple of the initial II that SWP will
+	consider before rejecting a loop after backtracking. The test which SWP
+	uses is MIN(max_ii_limit, max_ii_factor_limit * initial_MII).  [2]
+
+ max_ii_limit=n
+	Determines the maximum MII SWP will consider before rejecting
+	a loop after backtracing. The test which SWP uses is
+	MIN(max_ii_limit, max_ii_factor_limit * initial_MII).
+	[INT32_MAX]
+
+ rotate_reps[=Bool]
+	For constant trip count loops, rotate the replications
+	such that the last replication contains the exit
+	branch (minimizes the number of dynamically executed
+	branches). [TRUE]
+
+ dfo_from_successors[=Bool]
+	When building a priority order using folded depth first
+	ordering, try to move stores (loads if FALSE) to the end of the
+	list in an attempt to minmize register pressure. [TRUE]
+
+ aggressive_r4k_heuristics[=Bool]
+	Set priority sorting heuristics to be aggressive (i.e. to find
+	possibly better schedules at the expense of compile time) for
+	R4K targets. [FALSE]
+
+ prune_prefetches[=Bool]
+	For each prefetch OP in the final schedule, specifies if
+	the prefetch's stride should be used to determine if the
+	prefetch belongs in the replication that it has been placed
+	in, and remove it if not. [TRUE for TARG:pr=T5; FALSE otherwise]
+
+ fatpoint[=Bool]
+	When preparing to do register allocation, determine the
+	register fatness and use it to predict that the register
+	allocation will fail. [TRUE]
+
+ force_issue_order[=Bool]
+	Force instructions to issue in the order that SWP
+	specifies (accomplished by filling unused issues slots).
+	Note that this is mostly unimplemented, currently
+	it only controls the suppression of NOPS generated
+	by prefetch pruning. [FALSE]
+
+ multi_inst_spills[=Bool]
+	Debugging aid. Allows spill and restores to be more than one
+	instruction. [FALSE]
+
+ rematerialize_constants[=Bool]
+	Debugging aid. Enable/disable rematerialization of constants.
+	Note that -CG:remat=off also disables SWP rematerialization.
+	[TRUE]
+
+ ignore_loop_info[=Bool]
+	Debugging aid. When set, LOOPINFO annotations are
+	not used to guide the pipeliner in making decisions.
+	SWP will still generate LOOPINFO annotations on loops
+	it creates. [FALSE]
+
+ ii_search_optimistic[=Bool]
+	Assume that we can schedule at an II that is close to
+	the calculated minimum. For some architectures setting
+	this to true can result in excessive backtracking.
+	[FALSE for R4K; TRUE otherwise]
+
+ new_adjust_op_clock[=Bool]
+        Debugging aid. Enable "new" adjust OP clock (pass 2) algorithm.
+	[TRUE].
+
+ spill_limit[=n]
+        Gives a percentage by which a schedule may exceed the lower bound
+        (MII) before the SWP starts trying to spill.  More exactly, SWP
+        will accept schedules <= N cycles where
+
+            N = 1 + (spill_limit / 100)
+
+        [25 (But see immediately below.)]
+
+ fallback_spill_limit_threshold[=n]
+        The number of spilling backtracks before the SWP starts using
+        fallback_spill_limit instead of spill_limit. [2 (set to higher
+	numbers to look harder for schedules with fewer spills.)]
+
+ fallback_spill_limit[=n]
+        Just like spill_limit, but used after
+        fallback_spill_limit_threshold is exceeded.  [100 (but
+        set to lower numbers to try more spilling in search of shorter
+        schedules.)]
+
+ loop_overhead[=Bool]
+	Forceably enable/disable the loop overhead transformation.
+        NOTE: loop_overhead=ON with TFP or T5 is currently not a supported
+	combination. [FALSE for TFP and T5; TRUE otherwise]
+
+ dynamic_priority_scheduling[=Bool]
+        Enable/disable dynamic priority scheduling.  When this switch is
+	TRUE, backtracking during scheduling will reorder scheduling
+	priority so that the failed operation will be scheduled
+	immediately after the backtrack point. [TRUE]
+
+ ii_backtracks_max=n
+	Set maximum total number of backtracks per II per heuristic
+	for any loop.  This can be overridden by heuristic-specific
+	parameters.
+
+ ii_reg_allocs_max=n
+	Set maximum total register allocation attempts per II per heuristic
+	for any loop.  This can be overridden by heuristic-specific
+	parameters.
+
+ ii_mem_usage_backtracks_max=n
+	Set maximum total number of memory usage failures per II per
+	heuristic for any loop. This can be overridden by heuristic-specific
+	parameters.
+
+ backtracks_max=n
+	Set maximum total number of backtracks over all IIs per heuristic
+	for any loop. This can be overridden by heuristic-specific
+	parameters.
+
+ reg_allocs_max=n
+	Set maximum total register allocation attempts over all IIs
+	per heuristic for any loop. This can be overridden by
+	heuristic-specific parameters.
+
+ mem_usage_backtracks=n
+	Set maximum total number of memory usage failures over all IIs
+	per heuristic for any loop. This can be overridden by
+	heuristic-specific parameters.
+
+ heuristics=[heur,[ii_backtracks,[ii_reg_allocs,[backtracks,[reg_allocs,]]]]]*
+	Specify a list of priority sorting heuristics to try in the order
+	given.  Optionally, the maximum number of backtracks and register
+	allocation attempts (both per II and over all IIs) may be set for
+	each heuristic listed.	A heuristic may be listed more than once
+	with different parameters.  The defaults for this vary according
+	to target and optimization level, but this allows for manual
+	overrides to be specified.  Priority heuristics can be abbreviated
+	any non-ambiguous prefix of either the full name or the
+	abbreviation given below.  Available priority heuristics are:
+
+	Folded_DFO_ms (fdms)		DFO with recurrences, divides first,
+                                    	simple memory references last
+
+	Norm_heights_ms (nhms)		Increasing heights, normalized for
+					critical readers, with simple memory
+					references last
+
+	Rev_norm_heights_ms (rnhms)	Decreasing heights, normalized for
+					critical readers, with simple memory
+					references last [Tends to schedule
+					multiplies first, good for r4k]
+
+	Folded_DFO_no_ms (fdnms)	Simple DFO influenced by CSEs.  The
+					old default.
+
+	Norm_heights_no_ms (nhnms)	Like Norm_heights_ms, but memory
+                                    	references appear at their true
+					heights.
+
+ <heur>_ii_backtracks_max=n
+ <heur>_ii_reg_allocs_max=n
+ <heur>_ii_mem_usage_backtracks_max=n
+ <heur>_backtracks_max=n
+ <heur>_reg_allocs_max=n
+	Set the default parameters for specific heuristics.  These can
+	be overridden only by parameter values (if any) given in the
+	heuristics list.  <heur> is either the full heuristic name or the
+	abbreviation given above.
+
+ trip_count_min[=n]
+	Set the minimum trip count for loops (whose trip counts are
+	constant or estimated at compile time) to be considered for
+	software pipelining. [5]
+
+ madd[=Bool]
+	Enable/disable transformation(s) to create MADDs. [TRUE]
+
+/* ================================================================= */
+
+-GRA:   Specify global register allocation options.  Currently these are only
+        useful for compiler debugging.
+
+  optimize_placement[=Bool]
+        Enable/disable movement of spills and restores created during
+        live range splitting.  TRUE by default.
+
+  local_forced_max=[0-31]
+        How many locals to force allocate (out of the number requested by LRA).
+        [Default 4]
+
+  avoid_glue_references[=BOOL]
+        If possible grant the forced locals from the set of registers not
+        referenced for glue copies in the same block.  [Default TRUE]
+
+  split_entry_exit_blocks[=BOOL]
+        Split entry and exit blocks before GRA and join them after so that
+        the copies to/from the callee-saves registers don't interfere with
+        other allocation decisions.  [Default TRUE]
+
+  split_lranges[=BOOL]
+	Turn on/off splitting of live ranges [Default TRUE]
+
+  non_split_tn[=n]
+	Turn off live range splitting for a given TN specified by
+	its tn number (n).  [Default -1]
+
+  shrink_wrap[=BOOL]
+	Turn on/off shrink wrapping (currently, only for callee saved regs).
+	[Default TRUE].
+
+  loop_splitting[=BOOL]
+	Turn on/off loop directed live range splitting [Default TRUE]
+
+  home[=BOOL]
+	Turn on/off gra homing [Default TRUE]
+
+  remove_spills[=BOOL]
+	Turn on/off gra removal of spill instructions in Optimize_Placment
+	[Default TRUE]
+
+  ensure_spill_proximity[=BOOL]
+	Turn on/off gra placement of spills code immediately next to
+	first use/last def in the block [Default TRUE]
+
+  choose_best_split[=BOOL]
+	Turn on/off gra live range split back tracking algorithm
+	[Default TRUE].
+
+/* ================================================================= */
+
+-CG_EMIT: Specify code emission options.  Unless otherwise indicated,
+	  these settings override the defaults set by the -O level, and
+	  any option name may be abbreviated as a non-ambiguous prefix
+	  of the full name.
+
+  None currently specified.  Note that this group should only be used
+  for internal-use-only options -- its name is not conducive to user
+  understanding...
+
+/* ================================================================= */
+
+-CG: Options effecting code generation globally
+
+  fast_imul[=Bool]
+    Generate an alternative sequence for integer multiplies
+    where possible instead of the straight forward translation. [TRUE]
+
+  emit_unwind_info[=Bool]
+   Enable the emission of unwind info to the .s or .o file. [FALSE]
+
+  use_copyfcc[=Bool]
+    Use simulated fcc copy instruction for copying fcc registers. [TRUE]
+
+  longbranch_limit=n
+    If branches exceed the maximum distance for a branch instruction,
+    use this limit as the maximum when adding branch stubs. The value
+    is in units of bytes. [architecture dependent default]
+
+  tail_call[=Bool]
+    Generate tail calls where possible. [TRUE]
+
+  unique_exit[=Bool]
+    Generate unique exit blocks (returns) in a PU. [TRUE]
+
+  warn_bad_freqs[=Bool]
+    Whenever a phase notices that freq related data is wrong or
+    inconsistent, it can warn when this flag is TRUE. The output has
+    to be taken with a grain of salt, hence this flag, and the default
+    setting. [FALSE]
+
+  optimization_level=[0-3]
+    Use to override -O command line option within CG.  [-O?  level from the
+    command line]
+
+  ebo_level=[0-3]
+    Use to activate the Extended Block Optimizer from the command line.
+
+  ebo_copy_prop[=Bool]
+    EBO's copy propagation suboption, the default is TRUE
+
+  ebo_copy_backward[=Bool]
+    use to control backward copy prop that is done prior to the peephole phase;
+    default is TRUE.  Valid only if ebo_copy_prop is TRUE.
+
+  ebo_copy_bb_loop[=Bool]
+    use to control propagating copies over a single BB loop prior to the peephole
+    phase; default is TRUE. Valid only if ebo_copy_prop is TRUE.
+
+  ebo_copy_prop_intra[=Bool]
+    use to control copy prop within a single BB; default is FALSE.
+    Valid only if ebo_copy_prop is TRUE.
+
+  ebo_reg_copy_prop[=Bool]
+    use to control copy prop in the peephole phase (after register allocation);
+    default is TRUE.  Valid only if ebo_copy_prop is TRUE.
+
+  ebo_reg_copy_backward[=Bool]
+    use to control backward copy prop in the peephole phase; default is TRUE.
+    Valid only if ebo_reg_copy_prop is TRUE.
+
+  ebo_reg_copy_swp[=Bool]
+    use to control propagating copies over SWP'ed BB in the peephole phase;
+    default is TRUE. Valid only if ebo_reg_copy_prop is TRUE.
+
+  ebo_select_br[=Bool]
+    use to control the selection of branches based on PC-relative distances
+    of their targets, for instance, whether to use blt with immd8 or bltz 
+    with immd12; default is TRUE.
+
+  cu_skip_after=n
+    Skip optimizations (i.e. set opt level to 0) for CUs after n.
+    It must be enabled under -Wb,-fc:<counter_file>. 
+    See be/com/be_util.cxx for more detail.
+
+  cu_skip_before=n
+    Skip optimizations (i.e. set opt level to 0) for CUs before n.
+    It must be enabled under -Wb,-fc:<counter_file>
+    See be/com/be_util.cxx for more detail.
+
+  cu_skip_equal=n
+    Skip optimizations (i.e. set opt level to 0) for CU n.
+    It must be enabled under -Wb,-fc:<counter_file>
+    See be/com/be_util.cxx for more detail.
+
+  skip_after=n
+    Skip optimizations (i.e. set opt level to 0) for PUs after n.
+
+  skip_before=n
+    Skip optimizations (i.e. set opt level to 0) for PUs before n.
+
+  skip_equal=n
+    Skip optimizations (i.e. set opt level to 0) for PU n.
+
+  local_skip_after=n
+  local_skip_before=n
+  local_skip_equal=n
+    Options to control optimizations done by a specific phase in CG. These
+    options have to be used in conjunction with a phase specific skip
+    option. The meaning of 'n' is left to the phase using this.
+
+  skip_local_sched[=Bool]
+    Skip scheduling of basic blocks based on the local_skip_xxxx options.
+
+  skip_local_prep[=Bool]
+    Skip scheduling preparation optimization of basic blocks based on the
+    local_skip_xxxx options (note that this includes if-conversion and all
+    the loop optimizations as well: SWP, unrolling, recurrence breaking)
+    The local_skip_xxxx options specify BB ids.
+
+  skip_local_peep[=Bool]
+    Skip peephole optimization of basic blocks based on the
+    local_skip_xxxx options which specify BB ids.
+
+  loop_skip_after=line[,index]
+  loop_skip_before=line[,index]
+  loop_skip_equal=line[,index]
+    Options to control optimizations done on a loop in CGPREP.
+    'line' specifies the line number of a loop head. The optional
+    'index' parameter is for dealing with multiple loops at a single
+    line number. When specified, 'index' identifies the 'nth' (0-based,
+    i.e. 0 is the first one) loop at line 'line'.
+
+  skip_local_swp[=Bool]
+    Skip SWP attempts of loops as specified by loop_skip_xxxx (a
+    line number and line index pair) or local_skip_xxxx (a PU loop
+    index). When skip_local_swp is specified, for each swp-able loop,
+    cgprep will print a message indicating if it is being skipped or
+    attempting to swp. The message includes the PU loop-index and the
+    loop line and line-index. Hint: specifying skip_local_swp without
+    one of the _skip_ switches will not change the generated code,
+    but will generate the index/line-number message.
+
+  rematerialize[=Bool]
+    Rematerialize constant TNs rather than spilling to and restoring
+    from memory [TRUE].
+
+  force_rematerialization[=Bool]
+    Force rematerialization of constants at each use for debugging
+    purposes [FALSE].
+
+  force_copy_before_select[=Bool]
+    Force generation of a copy of the "default operand" before each select
+    instruction for debugging purposes.  [FALSE]
+
+  peephole_optimize[=Bool]
+    Enable peephole optimization after all register allocation and before
+    last scheduling pass [TRUE iff optimization_level > 0]
+
+  ignore_lno[=Bool]
+    Ignore dependence information from LNO [FALSE]
+
+  ignore_wopt[=Bool]
+    Ignore alias information from WOPT [FALSE]
+
+  addr_analysis[=Bool]
+    Analyze address expressions within CG before asking LNO or WOPT
+    to disambiguate them [TRUE]
+
+  verify_mem_deps[=Bool]
+    Cross-check CG address analysis results against WOPT/LNO results.
+    If there's a conflict, DevWarn and return the result from CG address
+    analysis (as we'd do if we weren't verifying).  [TRUE]
+
+  relax_xfer_depndnce[=Bool]
+    Prunes and relaxes control dependences surrounding branch instructions
+    within a HyperBlock. The dependence graph builder uses this filter
+    to prune unnecessary dependences. [TRUE]
+
+  force_mem_recompute[=Bool]
+    When a memory op is changed, recompute all incoming/outgoing memory
+    dependences (otherwise just recomputes indefinite dependences since
+    those are the only ones that should change) [TRUE, temporarily]
+
+  prune_mem=n
+    Set level of pruning of memory dependence arcs that aren't necessary
+    for scheduling or R/W elimination (because other arcs express the
+    same or stronger constraints).  Each level includes pruning enabled
+    by all lower levels:
+	0 = no pruning
+	1 = prune non-cyclic graph
+	2 = prune non-cyclic graph, using register arcs for pruning too
+	3 = prune intra-iteration (omega=0) arcs in cyclic graph
+	4 = prune inter-iteration arcs with distance (omega) 1 in cyclic graph
+    Currently defaults to level 0.  Levels 2 and 4 not yet implemented.
+
+  opt_all[=Bool]
+    Run CGPREP optimizations (copy_removal, dead_code_removal,
+    const_folding) on all BBs (except SWP steady-state BBs - see below),
+    not just the ones CGPREP modifies [TRUE]
+
+  opt_swp[=Bool]
+    Run CGPREP optimizations (see above) on steady-state BBs from SWP
+    during PEEP [FALSE]
+
+  opt_non_trip_countable[=Bool]
+    Run CGPREP loop optimizations (cross-iter r/w removal, cross-iter CSE,
+    unrolling, recurrence breaking, invariant formation and hoisting, plus
+    the usual CGPREP opts) on loops whose trip counts can't be computed
+    before the loop runs [TRUE]
+
+  opt_non_innermost[=Bool]
+    Run some CGPREP loop optimizations (currently limited to attaching
+    prolog and epilog to help GRA spill placement) on non-innermost
+    loops [TRUE]
+
+  opt_multi_targ[=Bool]
+    TEMPORARY SWITCH
+    Run CGPREP loop optimizations on loops that exit to multiple targets
+    (not to be confused with loops with multiple exits, which are always
+    optimized).  Currently disabled by default to avoid bug in GTN liveness
+    recomputation.  [FALSE]
+
+  opt_lno_winddown_reg[=Bool]
+    Run CGPREP loop optimizations (see above) on loops created by LNO
+    as part of register winddown from outer unrolling [TRUE]
+
+  opt_lno_winddown_cache[=Bool]
+    Run CGPREP loop optimizations (see above) on loops created by LNO
+    as part of winddown from cache blocking [TRUE]
+
+  copy_removal[=Bool]
+    Perform copy propagation/removal during CGPREP/PEEP [TRUE]
+
+  change_to_copy[=Bool]
+    Attempt to transform instructions to equivalent copy instructions
+    during copy propagation/removal [TRUE]
+
+  create_madds[=Bool]
+    Turn mul/add(sub) combinations into madds (msubs/nmsubs) in CGPREP.
+    Has no effect when madds are disallowed by ISA or by -TARG:madd=no.
+    [TRUE for MIPS4+, FALSE otherwise]
+
+  propagate_fpu_ints[=Bool]
+    Attempt to propagate "copies" of integer values on the FPU
+    during copy propagation/removal [TRUE]
+
+  dead_code_removal[=Bool]
+    Perform dead code removal during CGPREP [TRUE]
+
+  peep_dead_code_removal[=Bool]
+    Perform dead code removal during PEEP [TRUE]
+
+  dead_store_removal[=Bool]
+    Remove memory stores that are never read during dead code removal [TRUE]
+
+  const_folding[=Bool]
+    Perform constant folding after CG loop optimizations [TRUE]
+
+  fold_expanded_daddiu[=Bool]
+    Fold constants in the expanded daddiu (addiu/daddu) sequence used
+    to workaround the R4000 daddiu chip bug.  [TRUE for R4k, FALSE for
+    others]
+
+  combine_invariants[=Bool]
+    Combine loop invariants outside the loop (reassociating when
+    allowed) after CG loop optimizations [TRUE]
+
+  integer_divide_by_constant[=Bool]
+    Convert integer divides by a constant into a sequence that
+    uses a multiply-hi operation.  [TRUE if optimization level > O0
+    and not optimizing for space]
+
+  integer_divide_use_float[=Bool]
+    Perform 32 bit integer divides in the floating point unit after
+    converting them to 64 bit floats. [TRUE if mips4, optimization
+    level > O0, not optimizing for space, and not -TENV:kernel]
+
+  mispredict_branch[=n]
+    Penalty in cycles associated with a mispredicted branch. This penalty is
+    weighted by the branch probability which may NOT correlate with
+misprediction.
+
+  mispredict_factor[=n]     0<= n <=100
+    This factor (percentage) will weight the branch probability (internally 0
+.. 1.0)
+    The idea is that the misprediction rate may be less than the branch
+probabilities.
+
+  init_black_hole[=Bool]
+    initialize the black hole location for speculated fp loads
+    to 1.0. This should allow -TENV:X=2 to be more useful.
+    [TRUE for -O2 and greater && EAGER_LEVEL >=2, FALSE otherwise]
+
+  body_ins_count_max=n
+    Sets maximum number of instructions allowed in body of loop
+    to be considered by certain potentially expensive optimizations
+    (currently if conversion, recurrence fixing, software pipelining).
+    The maximum number of instructions is further limited by
+    the maximum BB length (see -OPT:bblength). Zero indicates
+    the maximum is the same as -OPT:bblength. To control the size
+    of unrolled loop bodies, see -OPT:unroll_size.  [100]
+
+  body_blocks_count_max[=n]
+    Sets maximum number of basic blocks allowed in body of
+    loop considered for if conversion.
+    [30]
+
+  spec_idiv[=Bool]
+    Enable/disable speculation of integer divides in if
+    converted loops or in non loop if conversion.[FALSE]
+
+  spec_imul[=Bool]
+    Enable/disable speculation of integer multiplies in if
+    converted loopsor in non loop if conversion. [Default TRUE]
+
+  spec_fdiv[=Bool]
+    Enable/disable speculation of fdivs including recips in if
+    converted loops or in non loop if conversion. [Default TRUE]
+
+  spec_fsqrt[=Bool]
+    Enable/disable speculation of fsqrts in if
+    converted loops or in non loop if conversion. [Default TRUE]
+
+  guards_count_max[=n]
+    Set a maximum number "n" of guarded ops permiitted in
+    any if converted loop. [Default=100]
+
+  body_freq_fb[=n]
+    Use feedback frequency to determine when to if convert.
+    If the (loop fb freq) > n * (fb freq of a conditional block )
+    do not if convert. If [=0] ignore fb frequency. [Default=0]
+    Non-integral values are allowed.
+
+  vector_rw_removal[=Bool]
+    Enable/disable vector read/write removal. [TRUE]
+
+  vector_ww_removal[=Bool]
+    Enable/disable vector write/write removal [TRUE]
+
+  cross_iter_cse_removal[=Bool]
+    Enable/disable cross-iteration CSE removal. If
+    no cross iteration {read,write}/write has been done
+    then there will be no opportunities exposed
+    for cross-iteration CSE removal [TRUE].
+
+  prefetch[=Bool]
+    Controls whether or not prefetch ops are generated. This is
+    the master switch -- when prefetch is explicitly disabled,
+    all other prefetch switches ignored.
+    [TRUE - T5,Beast,Alien; TRUE if [n]z_conf_prefetch=on; FALSE - otherwise]
+
+  z_conf_prefetch[=Bool]
+  nz_conf_prefetch[=Bool]
+    Controls whether or not prefetch ops are generated for
+    WHIRL prefetches with confidence == 0 (z) / != 0 (nz).
+
+    If either z_conf_prefetch or nz_conf_prefetch are explicitly
+    set to TRUE, the default for prefetch is TRUE (prefetch=off
+    takes precedence).
+
+    If both z_conf_prefetch and nz_conf_prefetch are explicitly
+    set to FALSE, prefetching is disabled, and is equivalent to
+    prefetch=off.
+
+    [FALSE - z_conf_prefetch; TRUE - nz_conf_prefetch]
+
+  pf_L1_ld[=Bool]
+  pf_L1_st[=Bool]
+  pf_L2_ld[=Bool]
+  pf_L2_st[=Bool]
+    Controls whether or not CG generates prefetch ops for WHIRL
+    prefetches which are associated with loads (ld) / stores (st)
+    to/from the L1/L2 cache.
+
+    When prefetching is enabled, the defaults for pf_L[12]_{ld,st}
+    are dependant on the target as follows:
+
+                T5  Beast Alien other-mips4+
+      pf_L1_ld:  F    F     F        T
+      pf_L1_st:  F    F     F        T
+      pf_L2_ld:  T    T     T        T
+      pf_L2_st:  T    T     T        T
+
+    [FALSE (see above for special cases)]
+
+  ld_latency=n
+    Cycle after issue of a ld when CG believes the data is available
+    for use [0]
+
+  L1_pf_latency=n
+    Cycle after issue of an L1 prefetch when CG believes the data is
+    available for use. [0 - T5, 12 otherwise].
+    The default is set to [0] to be consitent with
+    -LNO:prefetch_ahead=2 as the default.
+
+  L2_pf_latency=n
+    Cycle after issue of an L2 prefetch when CG believes the data is
+    available for use. [0 - T5, 12 otherwise].
+    The default is set to [0] to be consitent with
+    -LNO:prefetch_ahead=2 as the default.
+
+  L1_ld_latency=n
+    Cycle after issue of a ld when CG believes the data is available
+    for use if there was an L1-read prefetch with non-zero confidence
+    associated with the load in WHIRL, but CG did not generate
+    the associated prefetch op [8 - T5, 0 otherwise]
+
+  L2_ld_latency=n
+    Cycle after issue of a ld when CG believes the data is available
+    for use if there was an L2-read prefetch with non-zero confidence
+    associated with the load in WHIRL, but CG did not generate
+    the associated prefetch op [0]
+
+  z_conf_L1_ld_latency=n
+    Cycle after issue of a ld when CG believes the data is available
+    for use if there was an L1-read prefetch with zero confidence
+    associated with the load in WHIRL, but CG did not generate
+    the associated prefetch op [0]
+
+  z_conf_L2_ld_latency=n
+    Cycle after issue of a ld when CG believes the data is available
+    for use if there was an L2-read prefetch with zero confidence
+    associated with the load in WHIRL, but CG did not generate
+    the associated prefetch op [0]
+
+  rw_iter_max=n
+    controlling maximum iterations
+    back to do r/w removal[10].
+    NOT YET USED.
+
+  rw_ii_omega_threshold=n
+    controlling maximum iterations
+    back to do r/w removal[70].
+    NOT YET USED.
+
+  rw_reg_limit=n
+    controlling maximum iterations
+    back to do r/w removal[10].
+    NOT YET USED.
+
+  cflow[=Bool]
+    Enable control flow optimization [TRUE]
+
+  cflow_before_cgprep[=Bool]
+    Run cflow optimizations (if enabled) at start of CGPREP [TRUE]
+
+  cflow_after_cgprep[=Bool]
+    Run cflow optimizations (if enabled) at end of CGPREP [TRUE]
+
+  cflow_unreachable[=Bool]
+    Remove unreachable BBs [TRUE]
+
+  cflow_branch[=Bool]
+    Optimize branches [TRUE]
+
+  cflow_merge[=Bool]
+    Merge BBs [TRUE]
+
+  cflow_reorder[=Bool]
+    Reorder BBs to maximize fall-throughs [FALSE]
+
+  cflow_clone[=Bool]
+    Clone BBs to decrease dynamic schedule length [TRUE]
+
+  cflow_clone_incr[=n]
+  cflow_clone_max_incr[=n]
+  cflow_clone_min_incr[=n]
+    These parameters control the amount of growth that can result
+    from BB cloning. clone_incr is the main control and limits
+    growth to a percentage of the PU size (specified as a positive
+    integer). clone_max_incr and clone_min_incr set the minimum
+    and maximum increments (in instructions). The defaults are
+    dependent on -OPT:space:
+
+			    -OPTspace=0 -OPT:space=1
+	cflow_clone_incr	10	     0
+	cflow_clone_max_incr	15	     5
+	cflow_clone_min_incr	100	     5
+
+  cflow_clone_threshold=n
+    When performing BB cloning, clone a BB only if it improves
+    the schedule estimate by at least this percentage. [10]
+
+  cflow_freq_order[=Bool]
+    Reorder BBs using freq info as a guide (to minimize taken
+    branch penalties, etc). [TRUE]
+
+  cflow_opt_all_br_to_bcond[=Bool]
+    Optimize all branches to conditional branches even if it increases
+    code size. [FALSE]
+
+  cflow_heuristic_tolerance[=n.n]
+    A floating point number between 0 and 1 inclusive, that specifies
+    the tolerance in considering the probabilities in a conditional
+    branch as equally likely. The tolerance is the percentage of
+    the average probability that the actual probability may vary
+    above or below the average and still be considered equally likely.
+    This tolerance only applies to heuristically determined probablities.
+    [0.40]
+
+  cflow_feedback_tolerance[=n.n]
+    Same as cflow_heuristic_tolerance except it applies only to
+    feedback determined probabilities. [0.10]
+
+  cflow_cold_threshold[=n.n]
+    Frequency threshold at which a cold region is created. The exact
+    mechanism used to locate the boundary is TBD. Currently a cold
+    region is not produced unless this switch is specified.
+    [0.005 for -shared; 0.01 for -call_shared and -non_shared]
+
+  enable_frequency[=Bool]
+    Compute BB frequencies [TRUE]
+
+  freq_frequent_never_ratio=n
+    For branches where one or more of the successors reach a BB with
+    a frequency pragma hint, set the ratio "frequent":"never"
+    to 'n' ('n' is expressed as a floating point number). [1000.0]
+
+  freq_view_cfg[=Bool]
+    Indicates if daVanci should be invoked to view the frequency
+    annotated CFG at appropriate times. [FALSE]
+
+  eh_freq=n
+    Sets the frequency that an exception handler entry point is reached,
+    relative to the main entry point. [0.1]
+
+  create_loop_prologs[=Bool]
+    * TEMPORARY *
+    Create a new loop prolog block even when there's an existing block
+    that's suitable.  Currently used to workaround a SWP performance
+    weakness.  [FALSE]
+
+  create_loop_epilogs[=Bool]
+    * TEMPORARY *
+    Create a new loop epilog block even when there's an existing block
+    that's suitable.  Currently used to workaround a GRA_LIVE bug.
+    [TRUE]
+
+  ooo_unroll_heuristics[=Bool]
+    Apply out-of-order heuristics to determine amount of unrolling
+    for out-of-order execution processors such as R10000.
+    Default is on for out-of-order execution processors.
+
+  reorder_buffer_size=n
+    When ooo_unroll_heuristics is on, specify the number of entries
+    in the processor reorder buffer available for instruction
+    scheduling.  When a loop suffers signficant cache misses, this
+    number should be small so that more entries in the reorder buffer
+    can be used to tolerate cache misses.
+
+  unroll_fully[=Bool]
+    Controls fully unrolling innermost loops with a constant number of
+    iterations, provided the unrolled loop has at most -OPT:unroll_size
+    instructions.  If -OPT:unroll_size=0, fully unroll only loops with
+    a maximum of -OPT:unroll_times_max iterations.  [TRUE]
+
+  unroll_min_trips=n
+    When not fully unrolling an innermost loop with a constant number of
+    iterations, don't unroll at all unless the unrolled loop will have at
+    least this many iterations.  See also OPT:unroll_times_max,
+    OPT:unroll_size, CG:unroll_fully, and CG:unroll_analysis.  [5]
+
+  unroll_non_trip_countable[=Bool]
+    Consider unrolling loops whose trip counts can't be computed before
+    the loop is executed (e.g., "while" loops).  [TRUE]
+
+  unroll_multi_bb[=Bool]
+    Consider unrolling loops whose bodies consist of multiple BBs (that
+    we haven't if-converted into a single BB).  [TRUE]
+
+  unroll_analysis[=Bool]
+    Perform analysis of resource usage and recurrences in bodies of innermost
+    loops that don't qualify for being fully unrolled, unrolling only to the
+    point that there's a potential benefit in doing so (i.e., so the shortest
+    possible schedule length per iteration decreases).  In general it shouldn't
+    be necessary to disable this.  Note that this often results in unrolling
+    less than the upper limit dictated by OPT:unroll_times_max,
+    OPT:unroll_size, and CG:unroll_min_trips.  [TRUE]
+
+  multi_bb_unroll_analysis[=Bool]
+    * TEMPORARY *
+    Apply unroll_analysis (if enabled) to multi-BB loop bodies too [TRUE]
+
+  unroll_analysis_threshold[=n]
+    When doing unroll analysis, we double the unrolling amount only if
+    our analysis indicates that doing so improves the cycles/iter estimate
+    by at least this percentage.  [10]
+
+  sched_est_calc_dep_graph[=Bool]
+    Controls whether the schedule estimator forces calculation of
+    dependence graphs to make critical path estimates more accurate.
+    [FALSE]
+
+  sched_est_call_cost[=n]
+    Gives the cost (in cycles) to assume during schedule estimation
+    for a call to a routine that we have no specific cost information
+    about.  [100]
+
+  local_scheduler(sched)[=Bool]
+    Enable the local scheduler [TRUE]
+
+  hb_scheduler(sched)[=Bool]
+    Enable the hyperblock (HB) scheduler [FALSE]
+
+  branch_taken_penalty[=n]
+    Some targets (such as R10000) incur a penalty (pipeline bubble) when
+    a branch is taken.  The default value (1 cycle for R10000, 0 otherwise)
+    shouldn't need changing under normal circumstances, but this switch
+    gives a way of overriding the default for experimentation.
+
+  branch_likely(brlikely)[=Bool]
+    Enable the generation of branch-likely instructions. [TRUE]
+
+  fill_delay_slots(fill_delay)[=Bool]
+    Enable filling branch delay slots with an instruction from one of
+    the successor basic blocks [TRUE]
+
+ fix_recurrences[=Bool]
+	Enable/disable fixing of recurrences.  For finer control over the
+	fixing of recurrences, see interleave_reductions and
+	back_substitution. [TRUE]
+
+ back_substitution[=Bool]
+	Enable/disable back substitution to fix recurrences.  If this
+	is enabled, fix_recurrences will also be enabled. [TRUE]
+
+ interleave_reductions[=Bool]
+	Enable/disable the interleaving of reductions to fix recurrences.
+	If this is enabled, fix_recurrences will also be enabled.
+	[TRUE]
+
+ copy_same_res_opnds[=Bool]
+	Enable/disable the copying of same-result operands to fix
+	recurrences.  [TRUE]
+
+ choose_same_res_opnd_carefully[=Bool]
+	Enable/disable the choice of same-result operands to minimize
+	recurrence length in the first place.  [TRUE]
+
+ branch_out[=Bool]
+	Enable/disable consideration of loops with branches out of the
+	loop body for loop scheduling. [FALSE]
+
+ lra_reorder[=Bool]
+	Enable/disable lra reordering of instructions to reduce register
+	lifetimes. [FALSE]
+
+ use_cold_section[=Bool]
+	Enable use of an ELF section (.text.cold) to hold the cold region.
+	[TRUE]
+
+
+// Hyperblock formation (HB) options.
+
+  hb_formation
+    Turn on/off hyperblock formation [Default ON]
+
+  hb_coalesce_backedges
+    Turn on/off hyperblock formation's coalescing of loop backedges [Default
+architecturally dependent]
+
+  hb_static_freq_heuristics
+    Turn on/off hyperblock formation's use of different heuristics in the
+presence of static frequency analysis [Default ON]
+
+  hb_static_freq_no_fifty_splits
+    Turn on/off termination of hyperblocks at 50/50 split points in the
+presence of static frequency analysis [Default ON]
+
+  hb_max_blocks
+    How many blocks allowed in a hyperblock [Default architecturally dependent]
+
+  hb_min_blocks
+    Minimum blocks allowed in a hyperblock [Default 2]
+
+  hb_max_instructions
+    How many instructions allowed in a hyperblock [Default architecturally
+dependent
+
+  hb_max_sched_growth
+    Multiplier for max increase in HB sched height [Default:3.0]
+
+  hb_max_sched_growth_sf
+    Multiplier for max increase in HB sched height when static frequency data
+[Default:1.5]
+
+  hb_min_path_priority_ratio
+    Ratio to control relative size of paths included in hyperblock [Default:
+.1]
+
+  hb_min_priority
+    Minimum priority allowed for a hyperblock [Default: .1]
+
+  hb_call_hazard_multiplier
+    Factor by which to reduce path priority in presence of calls [Default: .25]
+
+  hb_memory_hazard_multiplier
+    Factor by which to reduce path priority in presence of unresolvable memory
+stores [Default: 1.0]
+
+  hb_base_probability_contribution
+    Factor to ensure base contribution of path probability to priority
+[Default: 0.1]
+
+  hb_require_alias
+    Turn on/off requirement that alias information be present for complex
+hyperblock formation [Default ON]
+
+  hb_loop
+    Turn on/off aggressive hyperblock formation for loops [Default ON]
+
+  hb_loops_with_exits
+    Turn on/off aggressive hyperblock formation for loops with exits [Default
+Architecure dependent]
+
+  hb_complex_non_loop
+    Turn on/off complex hyperblock formation for non-loop regions [Default ON]
+
+  hb_simple_ifc
+    Turn on/off simple always profitable hyperblock formation for non-loop
+regions [Default ON]
+
+  hb_general_use_pq
+    Turn on/off using priority queue when following side paths in general
+region id for hyperblocks [Default OFF]
+
+  hb_general_from_top
+    Turn on/off following side paths from top of main path in general region id
+for hyperblocks [Default OFF]
+
+  hb_general_from_bottom
+    Turn on/off following side paths from bottom of main path in general region
+id for hyperblocks [Default ON]
+
+
+
+/* ================================================================= */
+
+-TENV:	Specify the target environment, i.e. attributes and assumptions
+	about the runtime environment which allow optimizations or
+	require special handling.
+
+  ABI			(not yet implemented)
+	Generate purely ABI-compliant code.
+
+  align_aggregates=n
+	Force any aggregates (structs/arrays) larger than n bytes to be
+	n-byte aligned.  n must be a power of two between 1 and 16.
+
+  check_div=n
+	Insert check of divide by zero and overflow:
+	0 = no checks
+	1 = check for divide by 0 (default)
+	2 = check for overflow
+	3 = check for both 0 and overflow.
+
+  large_GOT
+	Assume that the GOT may not fit in 64K bytes.
+
+  small_GOT
+	Assume that the GOT fits in 64K bytes (default).
+
+  fixed_addresses	(not yet implemented)
+	Assume that objects with protected names will have fixed addresses
+	at runtime, i.e. that the link-time addresses will not change
+	at runtime.  This implies either a main executable, or a DSO
+	with restrictions on runtime relocation.
+
+  large_stack
+	Force data layout to use the large stack model (uses 32-bit offsets
+	and $fp register).  By default we estimate how much space is needed,
+	which can overflow in rare cases.
+
+  local_names		(not yet implemented)
+	All names defined in this module will have LOCAL export scope,
+	i.e. they will not be exported from the containing executable
+	or DSO.
+
+  long_eh_offsets
+	Force C++ exception tables to use long offsets.
+	By default they use short offsets, which may overflow in large
+	programs.
+
+  profile_call
+	For each function call, generate a call to a profiler function
+		__profile_call( &func, &call, char *funcname, char *callname);
+	The extern __profile_call must be user supplied and can be overridden
+by
+		-TENV:profile_name=FOO
+	This option is being used internally to get a dynamic trace of the call
+graph.
+
+  protected_names	(not yet implemented)
+	All names defined in this module will have PROTECTED export
+	scope, i.e. they will not be preemptible by another DSO or
+	executable at runtime.
+
+  non_volatile_GOT	(not yet implemented)
+	Assume that addresses loaded from the GOT are non-volatile,
+	i.e. that they will not change between loads.  For procedure
+	calls, enforce this by doing non-CALL relocations.
+
+  short_data=n		(not yet implemented)
+	Put all data objects with size smaller than 'n' bytes in a
+	GP-relative section.
+
+  short_lits=n		(not yet implemented)
+	Put all literals with size smaller than 'n' bytes in a merged
+	GP-relative section.
+
+  section_for_each_function[=Bool]
+	Put each function/PU in a seperate ELF section and give it
+	a name in the form ".text<PU-name>". When this flag is not
+	set, all PUs are put into ".text". [FALSE]
+
+The following are not documented for users:
+
+  aligned
+	Assume that all addresses are properly aligned.
+	WARNING: this may cause invalid code in some cases of struct
+	parameters to functions.
+
+  align_extern=n
+	Do not assume that external references are aligned by more than
+	n bytes.
+
+  CPIC
+	Generate CPIC code, i.e. main-program code which is suitable
+	for combination with DSOs.
+
+  no_page_offset
+	Do not generate page-offset GOT addressing.
+
+  PIC
+	Generate PIC code, i.e. shared code suitable for inclusion in
+	DSOs.
+
+  zeroinit_in_bss[=Bool]
+	Whether or not to put all-zero initialized file-level data in
+	the BSS section. ON by default.
+
+/* ================================================================= */
+
+-TARG:	Specify the target machine attributes, e.g. processor to
+	schedule for, instruction set to use, bug workarounds required,
+	etc.
+
+  abi=(32|n32|64)
+	Select the ABI to use, as either the original published 32-bit
+	ABI (abi=32), the new 64-bit ABI (abi=64), or the new 32-bit
+	ABI for Mips3+ based on the 64-bit ABI (abi=n32).  The
+	choice restricts several of the following options, and will
+	default to abi=32 unless an ISA or processor specification
+	implies otherwise.
+
+  pure	Whichever ABI is chosen, force generated objects to slavishly
+	follow the published restrictions and avoid extensions.  This
+	is currently only relevant to abi=32.  Equivalent to cc -abi.
+
+  isa=(mips1|mips2|mips3|mips4)
+	Select the instruction set architecture (ISA) to generate.
+	ABI 32 implies mips1 by default; ABI 32fast or 64 imply mips3
+	by default.  However, it may be desirable to use mips2 with the
+	original 32-bit ABI, or mips4 (TFP) with the 64-bit or new
+	32-bit ABIs.  If no ABI is specified, mips1/2 imply abi=32, and
+	mips3/4 imply abi=64.
+
+  platform=ipxx
+	Select the target platform for which to optimize code.  This
+	implies a processor and a best ISA for that processor, and
+	sometimes also affects information like cache sizes.  Default
+	is IP25, R10000 Power Challenge.
+
+  processor=(r3000|r4000|r5000|r8000|r10000)
+	Select the processor for which to schedule code.  The chosen
+	processor must support the ISA specified (or implied by the
+	ABI).
+
+  fp_regs=(16|32)
+	Specify the number of floating point registers to assume.  This
+	choice must be consistent with the capabilities of the target
+	processor, i.e. 16 for R3000 and 16/32 for R4000/TFP.  This is
+	NOT to be a published external option, and non-default values
+	are NOT supported, i.e. they are likely to encounter compiler
+	bugs and other horrid situations.
+
+  r4krev22[=Bool]
+ 	Generate code to work around the bugs in the R4000 rev 2.2
+	chip.  This currently means simulating 64-bit variable shifts
+	in the software.
+
+  tfp_branch_likely_bug[=Bool]
+ 	Forceably enable/disable the workaround to the TFP bug with
+	a store in the delay slot of a branch-likely.  (Default FALSE.)
+
+  slow_cvtdl[=Bool]
+	Try to avoid generating cvt.d.l and cvt.s.l instructions. This
+	is to workaround a bug in handling these instructions in the
+	R5000 rev 1.1 . (Default FALSE, except when scheduling for the
+	R5000, i.e. TRUE when -r5000 or -TARG:processor=r5000 is used)
+
+  sync[=Bool]
+	Enable generation of sync instructions in the compiler as part
+	of the __lock_release and __synchronize intrinsics. For IP26,
+	we need to disable generation of sync instructions because of
+	a bug. The memory barrier semantics are maintained even with
+	this option disabled (Default TRUE).
+
+/* ================================================================= */
+
+-LNO:	Options affecting the Loop Nest Optimizer.
+
+    -LNO:opt={0,1}
+
+	General control over the LNO optimization level.
+
+	-LNO:opt=0
+
+	   Compute dependence graph to be used by later passes.
+	   Remove unexecutable loops and if statements.
+	   Guard DO loops so that every do loop is guranteed to have
+	   at least one iteration.
+
+	-LNO:opt=1
+
+	   Full LNO transformations.
+
+    -LNO:override_pragmas
+
+        By default, pragmas within a file override the command-line
+        options.  This command-line options allows the user to have
+        the command-line options override the pragmas in the file.
+
+
+    -LNO:fission=0,1,2          [default: 1]
+
+        0   no fission will be performed
+        1   do normal fission as necessary in fiz_fuse phase
+        2   try fission before fusion in fiz_fuse phase
+            fission inner loop as much as possible in inner_fission phase
+
+        If both -LNO:fission and -LNO:fusion (see below) are both set
+        to 1 or 2, fusion is preferred.
+
+
+    -LNO:fusion=0,1,2           [default: 1]
+
+        0   no fusion will be performed
+        1   do normal outer loop fusion and fiz_fuse phase fusion
+        2   fuse outer loops even if it means partial fusion
+            try fusion before fission in fiz_fuse phase
+            allow partial fusion in fiz_fuse phase if not all levels
+            can be fused in the multiple level fusion
+
+	If both -LNO:fission and -LNO:fusion are both set to 1 or 2,
+	fusion is preferred. Note that fiz_fuse phase of LNO is run
+	regardless of these flag values. These flags will, however,
+	affect the SNLs produced by fiz_fuse phase.
+
+
+    -LNO:fusion_peeling_limit=n [default: 5]
+
+        Set the limit (n>=0) for number of iterations allowed to be
+        peeled in fusion.
+
+
+    -LNO:fission_inner_register_limit=n        [default: from proc spec]
+
+        Set the limit (n>=0) for estimated register usage of loop bodies
+        after inner loop fission in inner_fission phase.
+
+    -LNO:outer={ON,OFF}                        [default: ON]
+
+        Turn on and off the outer loop fusion. LNO fuses two outer most
+        loops for reuse and reduced loop overhead.
+
+    -LNO:vintr={ON,OFF}                        [default: ON]
+
+	Replace mathematical intrinsic calls in loops with vectorized
+	versions of the intrinsics. The transformation is done by
+	fissioning intrinsic calls out of the loops and convert the
+	fissioned loops with vector intrinsic calls. See also man page
+	for 'math'.
+
+
+     -LNO:{cache_size1,cs1}=n
+     -LNO:{cache_size2,cs2}=n
+     -LNO:{cache_size3,cs3}=n
+     -LNO:{cache_size4,cs4}=n
+
+       The size of the cache.  The value n may either
+       be 0, or it must be a positive integer followed by exactly one
+       of the letters k, K, m or M.  This specified the cache size in
+       kilobytes or megabytes.  Setting a value to zero indicates that
+       there is no cache at that level.
+
+     -LNO:{line_size1,ls1}=n
+     -LNO:{line_size2,ls2}=n
+     -LNO:{line_size3,ls3}=n
+     -LNO:{line_size4,ls4}=n
+
+       The line size in bytes.  This is the number of bytes that are
+       moved from the memory hierarchy level further out to this level
+       on a miss.
+       Setting a value to zero indicates that there is no cache at that level.
+
+     -LNO:{associativity1,assoc1}=n
+     -LNO:{associativity2,assoc2}=n
+     -LNO:{associativity3,assoc3}=n
+     -LNO:{associativity4,assoc4}=n
+
+       The cache set associativity.  Large values are equivalent.
+       E.g. when blocking for main memory, it's adequate to set assoc3=128.
+       Setting a value to zero indicates that there is no cache at that level.
+
+     -LNO:{miss_penalty1,mp1}=n
+     -LNO:{miss_penalty2,mp2}=n
+     -LNO:{miss_penalty3,mp3}=n
+     -LNO:{miss_penalty4,mp4}=n
+
+       In processor cycles, the time for a miss to the next outer level
+       of the memory hierarchy.  This number is
+       obviously approximate, since it depends upon a clean or dirty
+       line, read or write miss, etc.
+       Setting a value to zero indicates that there is no cache at that level.
+
+     -LNO:{is_memory_leve1,is_mem1}={on,off}
+     -LNO:{is_memory_leve2,is_mem2}={on,off}
+     -LNO:{is_memory_leve3,is_mem3}={on,off}
+     -LNO:{is_memory_leve4,is_mem4}={on,off}
+
+       Does not need to be specified.  Default is off.  If specified, the
+       corresponding associativity is ignored and needn't be specified.
+       Model this memory hierarcy level as a memory, not a cache.  This means
+       that blocking may be attempted for this memory hierarcy level, and
+       that blocking appropriate for a memory rather than cache would be
+       applied.  E.g. no prefetching, no need to worry about conflict misses.
+
+     The following options may also be specified to model the TLB.  The
+     tlb is assumed to be fully associative.
+
+     -LNO:{tlb_entries1,tlb1}=n
+     -LNO:{tlb_entries2,tlb2}=n
+     -LNO:{tlb_entries3,tlb3}=n
+     -LNO:{tlb_entries4,tlb4}=n
+
+       The size of the tlb for this cache level.
+
+     -LNO:{page_size1,ps1}=n
+     -LNO:{page_size2,ps2}=n
+     -LNO:{page_size3,ps3}=n
+     -LNO:{page_size4,ps4}=n
+
+       The number of bytes in a page.
+
+     -LNO:{tlb_miss_penalty1,tlbmp1}=n
+     -LNO:{tlb_miss_penalty2,tlbmp2}=n
+     -LNO:{tlb_miss_penalty3,tlbmp3}=n
+     -LNO:{tlb_miss_penalty4,tlbmp4}=n
+
+    The following option controls aides in modelling, but is not
+    required.  The default depends upon the target processor.
+
+      -LNO:{non_blocking_loads,nbl}=n1
+
+        Specify FALSE if the processor blocks on loads.  If not set,
+        takes the default of the current processor.  This is not associated
+        with a cache level, and does not have to be defined when
+        defining a cache level.
+
+    The following options control which transformations to apply.
+
+      -LNO:interchange={ON,OFF}           [default: ON]
+
+        Specify OFF to disable the interchange transformation.
+
+      -LNO:blocking={ON,OFF}              [default: ON]
+
+        Specify OFF to disable the cache blocking transformation.
+        Note that loop interchange to improve cache performance could
+        still be applied.
+
+      -LNO:blocking_size=[n1][,n2]        [no default]
+
+        Specify a blocksize that the compiler Must use when performing
+        any blocking.
+
+      -LNO:outer_unroll=n                 [no default]
+      -LNO:ou=n
+      -LNO:outer_unroll_max=n             [no default]
+      -LNO:ou_max=n
+      -LNO:outer_unroll_prod_max=n        [default 16]
+
+        If outer_unroll (abbreviation ou) is specified, neither
+        outer_unroll_max (abbreviation ou_max) nor
+        outer_unroll_prod_max (abbreviation ou_prod_max) may be.
+        outer_unroll indicates
+        that every outer loop for which unrolling is legal should
+        be unrolled by exactly n.  The compiler will either unroll by
+        this amount or not at all.  outer_unroll_max indicates that the
+        compiler may unroll as many as n per loop, but no more.
+        outer_unroll_prod_max indicates that the product of unrolling
+        of the various outer loops in a given loop nest is not to
+        exceed outer_unroll_prod_max.
+
+      -LNO:ou_further=n                              [default: 6]
+      -LNO:outer_unroll_further=n
+
+        These are equivalent.  When generating wind-down code from outer
+        loop unrolling, the compiler sometimes will attempt to generate
+        additional register tiling of unrolling factor two.  For example,
+        rather than transforming
+
+                DO i = 1, n
+                 DO j = 1, n
+                  S(i,j)
+                 END DO
+                END DO
+
+        into
+
+                DO i = 1, n-5, 6
+                 DO j = 1, n, 6
+                  S(i,j); S(i+1,j); S(i+2,j); S(i+3,j); S(i+4,j); S(i+5,j)
+                 END DO
+                END DO
+                DO i = i, n
+                 DO j = 1, n
+                  S(i,j)
+                 END DO
+                END DO
+
+        the compiler may choose to generate
+
+                DO i = 1, n-5, 6
+                 DO j = 1, n, 6
+                  S(i,j); S(i+1,j); S(i+2,j); S(i+3,j); S(i+4,j); S(i+5,j)
+                 END DO
+                END DO
+                DO i = i, n-1, 2
+                 DO j = 1, n
+                  S(i,j); S(i+1,j)
+                 END DO
+                END DO
+                DO i = i, n
+                 DO j = 1, n
+                  S(i,j)
+                 END DO
+                END DO
+
+        The compiler will not always do this.  But it is guaranteed not
+        to when the unrolling factor (six in the above example) is less
+        than the number supplied in this parameter.  Thus, this additional
+        unrolling is disabled by specifying -LNO:ou_futher=999999, and
+        is enabled as much as sensible by specifying -LNO:ou_further=3.
+
+      -LNO:ou_deep={on,off}                           [default: on]
+      -LNO:outer_unroll_deep={on,off}
+
+        These are equivalent.  When on, for 3-deep or deeper nests, we
+        outer unroll the wind-down loops that result from outer
+        unrolling loops futher out.  This results on larger code, but
+        generates much better code whenever wind down loop execution
+        costs are at all important.
+
+      -LNO:pwr2={on,off}                              [default: on]
+
+        When the leading dimension of an array is a power of two,
+        the compiler makes an extra effort to make the inner loop
+        stride one, and is less likely to block since it'll be
+        harder to take advantage of reuse.  Set to OFF to disable
+        this, so that the leading dimension is ignored.
+
+      -LNO:apply_illegal_transformation_directives={ON,OFF}    [default: OFF]
+      THIS OPTION IS CURRENTLY UNIMPLEMENTED.
+
+        If the compiler sees a directive to perform a transformation it
+        considers illegal, it will issue a warning and then
+        OFF: will not attempt to perform the transformation.
+        ON: might attempt to perform the transformation anyway.
+
+    -LNO:prefetch=[0,1,2]
+
+        Specify whether prefetching should be disabled (0),
+        enabled but conservative (1), or enabled and aggressive (2).
+            Default enabled+conservative for T5/R10000,
+            disabled for all previous processors.
+
+    -LNO:prefetch_leveln=[on,off]
+    -LNO:pfn=[on,off]
+
+        Selectively enable/disable prefetching for cache level 'n'
+        where 'n' ranges from [1..4].
+
+    -LNO:prefetch_manual=[on,off]
+
+        Specify whether manual prefetches (through pragmas) should be
+        respected or ignored.
+            off - ignore manual prefetches  (default for R8000  and earlier)
+            on  - respect manual prefetches (default for R10000 and beyond)
+
+    -LNO:prefetch_ahead=[n]
+
+        Prefetch the specified number of cache lines ahead of the
+        reference. Default value = 2.
+
+====================================================================
+
+-IPA:   Interprocedural analysis options.
+
+  addressing[=Bool]
+    Perform addr-taken analysis in alias analyzer
+    (default FALSE)
+
+  aggr_cprop[=Bool]
+    Perform aggressive interprocedural constant propagation.  By
+    default, non-aggressive interprocedural constant propagation is on.
+    This goes a step furthur in that it tries to eliminate constant
+    parameters at callsites and their corresponding formals.
+    (default FALSE)
+
+  alias[=Bool]		(implied/forced by opt_alias below)
+    Perform alias/mod/ref analysis
+    (default FALSE)
+
+  opt_alias[=Bool]	(implies alias above)
+    Emit alias/mod/ref analysis to summary file and use in WOPT
+    (default FALSE)
+
+  dfe[=Bool]
+    Perform dead function elimination
+    (default TRUE)
+
+  echo[=Bool]
+    Echo back end and final link commands to stderr
+    (default FALSE)
+
+  inline[=Bool]
+    Perform inline processing (during main IPA processing: does not affect
+    the stand-alone inliner)
+    (default TRUE)
+
+  picopt[=Bool]
+    Perform PIC optimization
+    (default TRUE)
+
+  autognum[=Bool]
+    Perform AutoGnum optimization
+    (default TRUE)
+
+  dve[=Bool]
+    turn on/off dead global variables eliminiation (default TRUE).
+
+  cgi[=Bool]
+    turn on/off constant globals identification.  Global variables
+    (except arrays) that are never modified are marked as constant.
+    And for scalar, the constant values are propagated to all object
+    files.  (default TRUE)
+
+  cprop[=Bool]
+    Perform interprocedural constant propagation (default TRUE).
+
+  graph=[Bool]
+    Display call tree using daVinci tool
+    (default FALSE, internal use only).
+
+  compile=[Bool]
+    Call ipacom (to perform back-end compilation) after IPA
+    (default TRUE, internal use only).
+
+  link=[Bool]
+    Allow ipacom to perform final link step after IPA and back-end
+    compilation (default TRUE, internal use only).
+
+  maxdepth=[n]
+    Inline nodes at depth <= n in the call graph. Leaf nodes are
+    at depth 0.  Inlining still subject to space limit (see space and
+    plimit below).
+
+  depth=[n]
+    same as maxdepth.
+
+  forcedepth=[n]
+    inline nodes at depth <= n in the call graph regardless of the
+    size of the procedures and total program size.  Leaf nodes are at
+    depth 0.
+
+  skip_after=n
+   Skip IPA transformations for flowgraph nodes after n.
+
+  skip_before=n
+   Skip IPA transformations for flowgraph nodes before n.
+
+  skip_equal=n
+   Skip IPA transformations for flowgraph node n.
+
+  skip_report=n
+   Report the flograph node number <=> subprogram name mapping for use
+   with the above skip options.
+
+  space=[n]
+   Inline until a program factor of n% is reached. Example, n=20 implies
+   stop inlining if the program has grown in size by 20%.
+
+  plimit=[n]
+   Inline calls into a procedure until the procedure
+   has grown to a size of n, where n is the number of whirl nodes.
+
+  max_job[=n]
+   specify max. level of parallelism when invoking the backend to
+   compile the IPA output.  The default is twice the number of
+   available processors in the system.
+
+  ta=[Bool]
+    Perform  IPA memory tracing (present only if MEM_STATS is defined)
+    (default FALSE).  Specifying "ta=true" (or yes or on) for main IPA phase
+    is equivalent to specifying "-ta10" to other IPA phases (e.g., ipl,
+    stand-alone inliner).
+
+  gp_partition=[Bool]
+    Enable partitioning for archieving different GP-groups, as specified by
+    the user externally or determined by IPA internally.  This
+    option basically enables PICOPT in the presence of -multigot.
+    (default FALSE)
+
+  sp_partition=[Bool]
+    Enable partitioning for disk/address-saving purpose.  Mainly
+    used for building huge programs, e.g. PTC.  Partitioning should
+    normally be done by IPA internally.
+    (default FALSE)
+
+  partition_group={symbol_name[%{I|G}]|file_name%F}[,{symbol_name[%{I|G}]|file_name%F}]*
+    Specifying EXTERNAL symbols belonging to the same group.  All
+    unspecified symbols will be considered by IPA as belonging to the
+    "COMMON" group, which has the properties of always being in memory AND
+    available for inlining.  Following the symbol_name, the user
+    can specify the properties for that symbol by adding a '%'
+    follows by the property wanted:
+	'I' -- symbol is used ONLY within the partition.
+  	'G' -- symbol should be marked as GP-relative, for DATA symbols only.
+    Alternatively, the user can specify a gp_partition per file, as in
+	partition_group=file_name%F
+    Then every defined EXTERNAL symbols exist in that file will have
+    the same group. file_name must be specified in the same way that
+    the file is specified in the link-line, e.g.
+	cc
+-IPA:gp_partition=on:partition_group=/usr/tmp/p007.o%F:partition_group=./add.o%F
+/usr/tmp/p007.o ./add.o
+
+  map_limit=n
+    This controls when IPA should enable "sp_partition".   n is
+    the maximum size (in bytes) of input files mapped before
+    IPA does "sp_partition".
+    (default value 0x1fff0000)
+
+  specfile=file_name
+    Open file_name to read more options.  A specfile contains
+    zero or more of the options allowed by -IPA.  E.g. on the command-line:
+	-IPA:specfile=option_file
+    and inside the file "option_file", the user can specify anything for -IPA
+as
+    if it is specified in the command line, like:
+	-IPA::gp_partition=on:partition_group=p007.o%F:partition_group=add.o%F
+    Since "specfile=..." is not legal within a specfile, a specfile cannot
+    point at other specfiles.
+
+  keeplight=[Bool]
+    Tells IPA NOT to send down "-keep" to the BE.  The purpose is to
+    save space.
+
+  Gfactor=n
+    n is the percentage used to multiply the estimated External GOT
+    entries with for estimating the total .got size. A n of 200
+    means that IPA will multiply the estimated External GOT entries
+    by 2 to get the estimated total .got size.
+    (default is 200).
+
+  Intrinsics=n
+    n is the number of FORTRAN intrinsic functions that the executable
+    may have entries in the GOT area.  This number is added to
+    the estimated External GOT entries to get the estimated total
+    .got size.  IPA has difficulty in estimating the number of
+    FORTRAN intrinsic functions that will be added by the Lowerer
+    after the IPA phase.
+    (default is 100).
+
+  relopt=[Bool]
+    Enable optimizations similar to the Ucode -O3 -c, where objects are
+    built with the assumption that the compiled objects will be linked
+    into a call-shared executable later.  In effect, optimizations based
+    on position-dependent code (non-PIC) are performed on those objects.
+
+
+-WB,...   Pass the string after the comma to the back end running
+    under IPA.  Multiple options may be passed by separating them with
+    commas; any commas as part of an option must be duplicated.  For
+    example:
+		-WB,-Yb,,pathname
+
+    passes the option '-Yb,pathname' to the back end.
+
+====================================================================
+
+-INLINE: Inlining options.
+
+  [Unless explicitly described otherwise, all options referenced in
+   this section's text are inlining options]
+
+  ={on,off}
+    Forcibly turn on or off stand-alone inline processing; ignored with
+    a warning for compiles which invoke main IPA processing.  When both are
+    seen in the command line for a compile which will not invoke main IPA
+    processing, "=off" is processed and "=on" is overridden with a warning.
+    If used within a specfile read by the stand-alone inliner, "=off" will
+    skip inline processing within the stand-alone inliner and "=on" is
+    ignored with a warning.
+
+    NOTE:
+    The options below may also be used in conjunction with -IPA.
+    However, in that case, they need to be passed to the ld driver.
+    Hence you need to specify -Wl,-INLINE:, instead of just -INLINE:
+
+  none
+    At call sites not marked by inlining pragmas, do not attempt to
+    inline routines not specified with must option or a routine pragma
+    requesting inlining; observe site inlining pragmas.  If "all" has been
+    specified, and "none" is then specified, "none" is ignored with a warning.
+
+  all
+    At call sites not marked by inlining pragmas, attempt to inline
+    all routines not specified with never option or a routine pragma
+    requesting no inlining; observe site inlining pragmas.  If "none" has been
+    specified, and "all" is then specified, "all" is ignored with a warning.
+
+  dfe[=Bool]
+    Perform dead function elimination
+    (default TRUE for C++ not -g, FALSE otherwise).
+
+  exceptions[=Bool]
+    Inline PUs which contain exception processing (throws/catches)
+    (default TRUE, internal use only).
+
+  keep_pu_order[=Bool]
+    Emit PUs to the output files in the same order as they appear in
+    the input files (default FALSE, internal use only).
+
+  list[=Bool]
+    List inlining actions as they occur to stderr (default FALSE).
+
+  must=routine_name<,routine_name>*
+    Attempt to inline the associated routines at call sites not marked by
+    inlining pragmas, but do not inline if varargs or similar complications
+    prevent it; observe site inlining pragmas.  For C++, mangled routine
+    names must be given.
+
+    Equivalently, a routine definition can be marked with a pragma
+    requesting inlining.
+
+  never=routine_name<,routine_name>*
+    Do not inline the associated routines at call sites not marked by
+    inlining pragmas; observe site inlining pragmas.  For C++, mangled
+    routine names must be given.
+
+    Equivalently, a routine definition can be marked with a pragma
+    requesting no inlining.
+
+  preemptible[=Bool]
+    Allow inlining of preemptible functions by default (default FALSE,
+    internal use only:  'must' option is preferred mechanism).
+
+  recycle_sym[=Bool]
+    Recycle the temporary symbols/types created during inlining
+    (default TRUE, internal use only).
+
+  specfile=file_name
+    Open file_name to read more options.  A specfile contains
+    zero or more of the following options: "none", "all", "must=...",
+    "never=...", and "=off".  Since "specfile=..." is not legal
+    within a specfile, a specfile cannot point at other specfiles.
+
+  For compiles which do not invoke main IPA processing:
+
+  1.  For C++ compiles, the stand-alone inliner will be invoked by default;
+      specifying "=off" as an command line option group will skip stand-alone
+      inline processing; specifying "=off" as an specfile option group
+      will skip inline processing within the stand-alone inliner.
+
+  2.  For non-C++ compiles, the stand-alone inliner will be invoked if
+      "=off" was not specified as a command line option group and (a)
+      "=on" was specified as a command line option group or (b) one or
+      more other command line option groups were specified.
+
+  For compiles which invoke main IPA processing:
+
+  1.  If the boolean option "-IPA:inline" is turned on (the default),
+      inline processing will be done according to the -INLINE group
+      options; site inlining pragmas will be honored.
+
+  2.  If the boolean option "-IPA:inline" is turned off, no inline
+      processing will be done during main IPA processing, and therefore
+      any -INLINE: group options will be ignored..
+
+====================================================================
+
+-WOPT:   Global Optimizer (NOTE: These are strictly internal flags, and
+	 should not be exposed to the user.  The -OPT:.. flags are
+	 mostly exposed to the user.
+
+  add_do_loop_info=[BOOL]		[TRUE]
+  add_do=[BOOL]
+
+    Create a OPC_LOOP_INFO structure attached to DO_LOOPs
+
+  add_label_loop_info=[BOOL]		[TRUE]
+  add_label=[BOOL]
+
+    Never used.
+
+  addr=[BOOL]				[TRUE]
+
+  aggcm=[BOOL]				[TRUE]
+
+  aggcm_threshold=[INT32]		[70]
+  aggcm_thres=[INT32]
+
+  aggirm=[BOOL]				[TRUE]
+
+  aggstr_reduction=[BOOL]		[TRUE]
+  aggstr=[BOOL]
+
+  canon_expr=[BOOL]			[TRUE]
+
+  canon_uplevel=[BOOL]			[FALSE]
+  canon=[BOOL]
+
+  cg_alias=[BOOL]			[TRUE]
+
+  combine_operations=[BOOL]		[TRUE]
+  combine=[BOOL]
+
+  compare_simp=[BOOL]			[TRUE]
+  compare=[BOOL]
+
+  copy_propagate=[BOOL]			[TRUE]
+  copy=[BOOL]
+
+  cr_simp=[BOOL]			[TRUE]
+  cr=[BOOL]
+
+  dce_aggressive=[BOOL]			[TRUE]
+  dce=[BOOL]
+
+    Attempt to remove control-flow during dead-code elimination.
+    (remove empty loops, if's that control no code, etc.)
+
+  dce_alias=[BOOL]			[FALSE]
+
+  dce_branch=[BOOL]			[TRUE]
+
+    Attempt to determine if control-flow is redundant.
+
+      if ( x > 0 )
+	if ( x < 0 )
+	  ..
+
+    Will determine that second "if" always evaluates to false because
+    first "if" dominates it.
+
+  dce_global=[BOOL]			[TRUE]
+
+    Perform dead-code elim on global scalars.
+
+  dead_code_elim=[BOOL]			[TRUE]
+  dead=[BOOL]
+
+    Perform dead-code elimination.  Implementation may require that
+    this never be disabled.
+
+  divrem=[BOOL]				[FALSE]
+
+    Try to combine DIV and REM operators when there would be a CSE
+    allowing us to generate one DIVREM to get both results.
+
+  dse_aggressive=[BOOL]			[TRUE]
+  dse=[BOOL]
+
+  du_full=[BOOL]			[FALSE]
+
+  entry_chi=[BOOL]			[TRUE]
+  entry=[BOOL]
+
+  falsebr=[BOOL]			[TRUE]
+
+    [To be made unconditionally true]  Allow use of FALSEBR opcode
+    rather than using negation of condition on TRUEBR.
+
+  fastcolor=[BOOL]			[TRUE]
+  fast=[BOOL]
+
+  fold2const=[BOOL]			[TRUE]
+  fold=[BOOL]
+
+  fp_copy_propagation=[BOOL]		[FALSE]
+  fp_copy=[BOOL]
+
+  goto_conversion=[BOOL]		[TRUE]
+  goto=[BOOL]
+
+    Perform GOTO-conversion which tries to change unstructured control
+    flow into structured High-WHIRL.  Performed only once if both
+    preopt and mainopt are run.
+
+  icopy_propagate=[BOOL]		[TRUE]
+  icopy=[BOOL]
+
+  if_conv=[BOOL]			[TRUE]
+
+    Perform simple if-conversion.
+
+  iload_prop=[BOOL]			[TRUE]
+  iload=[BOOL]
+
+  ipaa=[BOOL]				[FALSE]
+
+  ipaa_file=[NAME]			[NULL]
+  ipaa_f=[NAME]
+
+  irm=[BOOL]				[TRUE]
+
+  iv_elimination=[BOOL]			[TRUE]
+  iv_elim=[BOOL]
+
+  iv_recognition=[BOOL]			[TRUE]
+  iv_recog=[BOOL]
+
+  ivar_common=[BOOL]			[TRUE]
+  ivar=[BOOL]
+
+  ldx=[BOOL]				[FALSE]
+
+  ldx_ratio_regins=[INT32]		[1]
+  ldx_ratio=[INT32]
+
+  lftr=[BOOL]				[TRUE]
+
+  minmax=[BOOL]				[FALSE]
+
+  mp_varref=[BOOL]			[TRUE]
+
+  ocopy=[BOOL]				[TRUE]
+
+  parm=[BOOL]				[TRUE]
+
+    [To be made unconditionally true].  Can use OPC_PARM opcode.
+
+  phi_simp=[BOOL]			[TRUE]
+  phi=[BOOL]
+
+  process=[NAME]			[NULL]
+
+    Perform optimization only on the function NAME.  Do not optimize
+    any other functions.
+
+  prop_aggressive=[BOOL]		[TRUE]
+  prop=[BOOL]
+
+  rvi_enable=[BOOL]			[TRUE]
+  rvi=[BOOL]
+
+    Enables Register Variable Identification phase, which attempts
+    to keep variables and constants in registers.
+
+  rviistore=[BOOL]			[TRUE]
+
+    Enables more aggressive handling of ISTOREs during RVI.
+
+  rviskip=[NAME]			[NULL]
+
+    Skip the variable NAME by not trying to put it in a register.
+
+  rvisplit=[BOOL]			[FALSE]
+
+    Split basic blocks at every statement at CFG construction time,
+    rather than at control-flow points, or during RVI at points that
+    have indirect references/definitions.
+
+  simp_iload=[BOOL]			[TRUE]
+
+  skip=[NAME]				[NULL]
+
+    Perform optimization only on the functions that do not match NAME.
+    Do not optimize function NAME.
+
+  skip_after=[LIST]			[NULL]
+  skip_a=[LIST]
+
+  skip_before=[LIST]			[NULL]
+  skip_b=[LIST]
+
+  skip_equal=[LIST]			[NULL]
+  skip_e=[LIST]
+
+  slt=[BOOL]				[TRUE]
+
+  strength_reduction=[BOOL]		[TRUE]
+  str=[BOOL]
+
+  trip_count=[INT32]			[2]
+  trip=[INT32]
+
+  update_vsym=[BOOL]			[TRUE]
+
+  verbose=[BOOL]			[FALSE]
+  v=[BOOL]
+
+  verify=[INT32]			[1]
+
+  vn_full=[BOOL]			[TRUE]
+  vn=[BOOL]
+
+  vsym_unique=[BOOL]			[FALSE]
+  vsym=[BOOL]
+
+  while_loop=[BOOL]			[TRUE]
+  while=[BOOL]
+
+  zero_version=[BOOL]			[TRUE]
+  zero=[BOOL]

@@ -1,0 +1,49 @@
+#
+# Copyright (C) 2001-2005 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+#
+#  Makefile.base for Xtensa dwarfdump
+#
+
+include	$(COMMONDEFS)
+
+CVERSION =
+LCOPTS += $(STD_COMPILE_OPTS)
+
+TARG_LIBELF = $(BUILD_AREA)/libelf
+TARG_LIBDWARF = $(BUILD_AREA)/libdwarf
+LLDLIBS = $(TARG_LIBDWARF)/libdwarf.a $(TARG_LIBELF)/libelf.a
+
+ifneq ($(BUILD_OS), CYGWIN) 
+LDFLAGS += -Wl,-rpath -Wl,$(STDTOOLS)/lib
+endif
+
+TARGETS = dwarfdump
+
+LCINCS = -I$(BUILD_BASE) -I$(BUILD_TOT)/include
+
+LCXXOPTS = $(LCOPTS)
+LCXXDEFS = $(LCDEFS)
+LCXXINCS = $(LCINCS)
+
+CXXFILES= dwarfdump.cxx
+
+default: first $(TARGETS) last
+
+first:
+	cd $(TARG_LIBELF) && $(MAKE)
+	cd $(TARG_LIBDWARF) && $(MAKE)
+
+last: make_deps
+
+install: default 
+	$(STD_INSTALL) -F /usr/sbin dwarfdump
+
+include $(COMMONRULES)
+
+VPATH = $(BUILD_BASE)	# this is needed to invoke suffix rules
+
+dwarfdump: dwarfdump.o
+	$(CXX) -o dwarfdump dwarfdump.o $(LLDLIBS) $(LDFLAGS)
+
+

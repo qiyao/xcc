@@ -1,0 +1,191 @@
+#
+# Copyright (C) 2004-2005 Tensilica, Inc.  All Rights Reserved.
+# Revised to support Tensilica processors and to improve overall performance
+#
+#  Copyright (C) 2000 Silicon Graphics, Inc.  All Rights Reserved.
+#
+#  This program is free software; you can redistribute it and/or modify it
+#  under the terms of version 2 of the GNU General Public License as
+#  published by the Free Software Foundation.
+#
+#  This program is distributed in the hope that it would be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+#
+#  Further, this software is distributed without any warranty that it is
+#  free of the rightful claim of any third person regarding infringement 
+#  or the like.  Any license provided herein, whether implied or 
+#  otherwise, applies only to this software file.  Patent licenses, if 
+#  any, provided herein do not apply to combinations of this program with 
+#  other software, or any other product whatsoever.  
+#
+#  You should have received a copy of the GNU General Public License along
+#  with this program; if not, write the Free Software Foundation, Inc., 59
+#  Temple Place - Suite 330, Boston MA 02111-1307, USA.
+#
+#  Contact information:  Silicon Graphics, Inc., 1600 Amphitheatre Pky,
+#  Mountain View, CA 94043, or:
+#
+#  http://www.sgi.com
+#
+#  For further information regarding this notice, see:
+#
+#  http://oss.sgi.com/projects/GenInfo/NoticeExplan
+#
+#
+
+#
+#  Makefile.base for libcomutil
+#
+
+include	$(COMMONDEFS)
+
+ifeq ($(BUILD_OPTIMIZE), DEBUG)
+HOSTDEFS += -DIs_True_On
+HOSTDEFS += -DInsist_On 
+endif
+
+
+# to the best of my knowledge, (grepping makefiles) 
+# the only clients of libcomutil are the front ends
+# and ir_tools, none of which use DLLs. so we should 
+# not need to share anything across dlls from libcomutil
+# consequently, DLL_SHARED is nothing on either platform
+
+ifeq ($(BUILD_OS), CYGWIN)
+HOSTDEFS += -DDLL_SHARED=
+else
+HOSTDEFS += -DDLL_SHARED=
+endif
+
+ifeq ($(BUILD_COMPILER), EDG)
+CVERSION = -xansi
+WOFF = -fullwarn
+else
+CVERSION =
+WOFF =
+endif
+
+LASOPTS = $(STD_COMPILE_OPTS)
+
+LCOPTS = $(STD_COMPILE_OPTS)
+LCDEFS = $(HOSTDEFS) $(TARGDEFS)
+LCXXOPTS = $(STD_COMPILE_OPTS)
+LCXXDEFS = $(HOSTDEFS) $(TARGDEFS)
+
+ifeq ($(BUILD_TARGET), MIPS)
+LCINCS = -I$(BUILD_BASE) -I$(BUILD_TOT)/common/com
+LCXXINCS = -I$(BUILD_BASE) -I$(BUILD_TOT)/common/com
+else
+LCINCS= -I$(BUILD_AREA)/include
+LCXXINCS=-I$(BUILD_AREA)/include
+ifeq ($(BUILD_COMPILER), SGI)
+LCINCS+=   -I/usr/ia64-sgi-linux/ia64-sgi-linux/include
+LCXXINCS+= -I/usr/ia64-sgi-linux/ia64-sgi-linux/include
+endif
+LCINCS+= -I$(BUILD_BASE) -I$(BUILD_TOT)/common/com
+LCXXINCS+= -I$(BUILD_BASE) -I$(BUILD_TOT)/common/com
+endif
+
+
+ifneq ($(BUILD_COMPILER), EDG)
+LCINCS   += -I$(BUILD_TOT)/include/cmplrs -I$(BUILD_TOT)/include
+LCXXINCS += -I$(BUILD_TOT)/include/cmplrs -I$(BUILD_TOT)/include
+endif
+
+LCINCS += -I$(BUILD_TOT)/common/targ_info/static/common/com/$(BUILD_TARGET_DIR)
+LCXXINCS += -I$(BUILD_TOT)/common/targ_info/static/common/com/$(BUILD_TARGET_DIR)
+
+LIBRARY = libcomutil.a
+
+TARGETS = $(LIBRARY)
+
+# only build mips3 version and install in default place
+ifeq ($(BUILD_TARGET), MIPS)
+STD_LIBRARY_LOC=$(DEF_LIBRARY_LOC)
+endif
+
+ifeq ($(BUILD_COMPILER), EDG)
+ASFILES	= \
+	c_qwmultu.s
+else
+CFIL	= \
+	c_qwmultu.c
+endif
+
+ifeq ($(BUILD_OS), SOLARIS)
+CFILE = strsep.c
+endif
+
+CFILES	= \
+	bitset.c \
+	c_a_to_q.c \
+	c_q_add.c \
+	c_q_div.c \
+	c_q_mul.c \
+	c_q_neg.c \
+	c_q_rel.c \
+	c_q_sqrt.c \
+	c_q_sub.c \
+	c_q_to_a.c \
+	c_qtenscale.c \
+	file_util.c \
+	flags.c \
+	linklist.c \
+	memory.c \
+	priority_queue.c \
+	quadsim.c \
+	resource.c \
+	mstack.c \
+	tracing.c \
+	util.c \
+	vstring.c \
+	$(CFIL)
+
+HFILES	= \
+	libcomutil.h \
+	bitset.h \
+	errors.h \
+	file_util.h \
+	flags.h \
+	linklist.h \
+	mempool.h \
+	cxx_memory.h \
+	quad.h \
+	quadsim.h \
+	priority_queue.h \
+	resource.h \
+	mstack.h \
+	tracing.h \
+	util.h \
+	vstring.h
+
+CXXFILES = \
+   cxx_memory.cxx	\
+   errors.cxx		\
+
+default: first
+	$(MAKE) $(JOBS) $(TARGETS)
+	$(MAKE) last
+
+include $(COMMONRULES)
+
+VPATH =  $(BUILD_BASE) $(BUILD_BASE)/$(BUILD_TARGET_DIR) \
+	$(BUILD_TOT)/common/targ_info/static/common/util/$(BUILD_TARGET_DIR)
+
+first:
+	cd $(BUILD_AREA)/include && $(MAKE)
+
+last: make_libdeps
+
+exports: default
+#	$(INSTALL) -m 444 -F $(STD_LIBRARY_LOC) $(TARGETS)
+
+install: default
+#	$(STD_INSTALL) -m 444 -F $(STD_LIBRARY_LOC) $(TARGETS)
+
+.PRECIOUS : $(LIBRARY)
+
+$(LIBRARY): $(OBJECTS)
+	$(AR) rc $(LIBRARY) $?
+

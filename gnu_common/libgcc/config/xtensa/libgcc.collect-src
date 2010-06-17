@@ -1,0 +1,126 @@
+#!/bin/sh
+# Collect source files for libgcc (XCC version).
+
+# Copyright (c) 2003-2005 Tensilica Inc.  ALL RIGHTS RESERVED.
+# These coded instructions, statements, and computer programs are the
+# copyrighted works and confidential proprietary information of Tensilica Inc.
+# They may not be modified, copied, reproduced, distributed, or disclosed to
+# third parties in any manner, medium, or form, in whole or in part, without
+# the prior written consent of Tensilica Inc.
+
+if [ $# -ne 3 ]; then
+  echo "Usage: $0 <gcc-srcdir> <gcc-builddir> <libgcc-srcdir>"
+  exit 1
+fi
+
+if [ ! -d $1 ]; then
+  echo "Error: directory $1 does not exist"
+  exit 1
+fi
+
+if [ ! -d $2 ]; then
+  echo "Error: directory $2 does not exist"
+  exit 1
+fi
+
+mkdir -p $3
+
+gcc_srcdir=`cd $1; pwd`
+gcc_builddir=`cd $2; pwd`
+libgcc_srcdir=`cd $3; pwd`
+
+src_files="\
+	crtstuff.c \
+	libgcc2.c \
+	longlong.h \
+	gbl-ctors.h \
+	tsystem.h \
+	config/dbxelf.h \
+	config/elfos.h \
+	config/linux.h \
+	config/svr4.h \
+	config/xtensa/sysv4.h \
+	config/xtensa/linux.h \
+	config/xtensa/xm-xtensa.h \
+	config/xtensa/xtensa.h \
+	defaults.h \
+	eh-common.h \
+	frame.c \
+	frame.h \
+	gansidecl.h \
+	gcov-io.h \
+	gthr.h \
+	gthr-single.h \
+	gthr-vxworks.h \
+	machmode.def \
+	machmode.h \
+	cp/new.cc \
+	cp/new1.cc \
+	cp/new2.cc \
+	cp/tinfo.cc \
+	cp/tinfo.h \
+	cp/tinfo2.cc \
+	cp/exception.cc \
+	cp/xtensa_eh.cc"
+
+libgcc_src_files="\
+	mklibgcc.in \
+	config/xtensa/crti.asm \
+	config/xtensa/crtn.asm \
+	config/xtensa/lib1funcs.asm \
+	config/xtensa/lib2funcs.S \
+	config/xtensa/ieee754-sf.S \
+	config/xtensa/ieee754-df.S"
+
+include_src_files="\
+	ansidecl.h"
+
+build_files="\
+	tm.h \
+	tconfig.h \
+	auto-host.h"
+
+rm -rf ${libgcc_srcdir}
+mkdir -p ${libgcc_srcdir}/config/xtensa
+mkdir -p ${libgcc_srcdir}/cp
+ 
+copy_files ()
+{
+  for f in ${files}; do
+    if [ -r ${srcdir}/$f ]; then
+      cp ${srcdir}/$f ${libgcc_srcdir}/$f
+    else
+      echo "Error: ${srcdir}/$f is not readable"
+      exit 1
+    fi
+  done;
+}
+
+gnu_common_libgcc=${gcc_srcdir}/../../gnu_common/libgcc
+
+srcdir=${gcc_srcdir}
+files=${src_files}
+copy_files
+
+srcdir=${gnu_common_libgcc}
+files=${libgcc_src_files}
+copy_files
+
+srcdir=${gnu_common_libgcc}/../include
+files=${include_src_files}
+copy_files
+
+srcdir=${gcc_srcdir}/xtensa
+files=${build_files}
+copy_files
+
+cp ${gnu_common_libgcc}/config/xtensa/libgcc.README \
+   ${libgcc_srcdir}/README
+cp ${gnu_common_libgcc}/config/xtensa/libgcc.makefile \
+   ${libgcc_srcdir}/Makefile.in
+cp ${gnu_common_libgcc}/config/xtensa/libgcc.configure.in \
+   ${libgcc_srcdir}/configure.in
+(cd ${libgcc_srcdir}; autoconf --no-cache)
+
+cp ${gnu_common_libgcc}/install-sh ${libgcc_srcdir}
+chmod u+x ${libgcc_srcdir}/install-sh
